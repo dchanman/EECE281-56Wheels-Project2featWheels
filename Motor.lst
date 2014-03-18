@@ -1,0 +1,1502 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1034 (Dec 12 2012) (MSVC)
+0000              4   ; This file was generated Tue Mar 18 15:23:18 2014
+0000              5   ;--------------------------------------------------------
+                  5   $name Motor
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_PSEG    segment xdata
+0000             13            R_ISEG    segment idata
+0000             14            R_OSEG    segment data overlay
+0000             15            BIT_BANK  segment data overlay
+0000             16            R_HOME    segment code
+0000             17            R_GSINIT  segment code
+0000             18            R_IXSEG   segment xdata
+0000             19            R_CONST   segment code
+0000             20            R_XINIT   segment code
+0000             21            R_DINIT   segment code
+0000             22   
+0000             23   ;--------------------------------------------------------
+0000             24   ; Public variables in this module
+0000             25   ;--------------------------------------------------------
+0000             26            public _main
+0000             27            public _updateUI
+0000             28            public _pwmcounter
+0000             29            public __c51_external_startup
+0000             30            public _LCD_Init
+0000             31            public _LCD_WriteString
+0000             32            public _direction
+0000             33            public _pwm1
+0000             34            public _pwmcount
+0000             35            public _LCD_Clear
+0000             36            public _LCD_Put
+0000             37   ;--------------------------------------------------------
+0000             38   ; Special Function Registers
+0000             39   ;--------------------------------------------------------
+0000             40   _ACC            DATA 0xe0
+0000             41   _B              DATA 0xf0
+0000             42   _PSW            DATA 0xd0
+0000             43   _SP             DATA 0x81
+0000             44   _SPX            DATA 0xef
+0000             45   _DPL            DATA 0x82
+0000             46   _DPH            DATA 0x83
+0000             47   _DPLB           DATA 0xd4
+0000             48   _DPHB           DATA 0xd5
+0000             49   _PAGE           DATA 0xf6
+0000             50   _AX             DATA 0xe1
+0000             51   _BX             DATA 0xf7
+0000             52   _DSPR           DATA 0xe2
+0000             53   _FIRD           DATA 0xe3
+0000             54   _MACL           DATA 0xe4
+0000             55   _MACH           DATA 0xe5
+0000             56   _PCON           DATA 0x87
+0000             57   _AUXR           DATA 0x8e
+0000             58   _AUXR1          DATA 0xa2
+0000             59   _DPCF           DATA 0xa1
+0000             60   _CKRL           DATA 0x97
+0000             61   _CKCKON0        DATA 0x8f
+0000             62   _CKCKON1        DATA 0xaf
+0000             63   _CKSEL          DATA 0x85
+0000             64   _CLKREG         DATA 0xae
+0000             65   _OSCCON         DATA 0x85
+0000             66   _IE             DATA 0xa8
+0000             67   _IEN0           DATA 0xa8
+0000             68   _IEN1           DATA 0xb1
+0000             69   _IPH0           DATA 0xb7
+0000             70   _IP             DATA 0xb8
+0000             71   _IPL0           DATA 0xb8
+0000             72   _IPH1           DATA 0xb3
+0000             73   _IPL1           DATA 0xb2
+0000             74   _P0             DATA 0x80
+0000             75   _P1             DATA 0x90
+0000             76   _P2             DATA 0xa0
+0000             77   _P3             DATA 0xb0
+0000             78   _P4             DATA 0xc0
+0000             79   _P0M0           DATA 0xe6
+0000             80   _P0M1           DATA 0xe7
+0000             81   _P1M0           DATA 0xd6
+0000             82   _P1M1           DATA 0xd7
+0000             83   _P2M0           DATA 0xce
+0000             84   _P2M1           DATA 0xcf
+0000             85   _P3M0           DATA 0xc6
+0000             86   _P3M1           DATA 0xc7
+0000             87   _P4M0           DATA 0xbe
+0000             88   _P4M1           DATA 0xbf
+0000             89   _SCON           DATA 0x98
+0000             90   _SBUF           DATA 0x99
+0000             91   _SADEN          DATA 0xb9
+0000             92   _SADDR          DATA 0xa9
+0000             93   _BDRCON         DATA 0x9b
+0000             94   _BRL            DATA 0x9a
+0000             95   _TCON           DATA 0x88
+0000             96   _TMOD           DATA 0x89
+0000             97   _TCONB          DATA 0x91
+0000             98   _TL0            DATA 0x8a
+0000             99   _TH0            DATA 0x8c
+0000            100   _TL1            DATA 0x8b
+0000            101   _TH1            DATA 0x8d
+0000            102   _RL0            DATA 0xf2
+0000            103   _RH0            DATA 0xf4
+0000            104   _RL1            DATA 0xf3
+0000            105   _RH1            DATA 0xf5
+0000            106   _WDTRST         DATA 0xa6
+0000            107   _WDTPRG         DATA 0xa7
+0000            108   _T2CON          DATA 0xc8
+0000            109   _T2MOD          DATA 0xc9
+0000            110   _RCAP2H         DATA 0xcb
+0000            111   _RCAP2L         DATA 0xca
+0000            112   _TH2            DATA 0xcd
+0000            113   _TL2            DATA 0xcc
+0000            114   _SPCON          DATA 0xc3
+0000            115   _SPSTA          DATA 0xc4
+0000            116   _SPDAT          DATA 0xc5
+0000            117   _SSCON          DATA 0x93
+0000            118   _SSCS           DATA 0x94
+0000            119   _SSDAT          DATA 0x95
+0000            120   _SSADR          DATA 0x96
+0000            121   _KBLS           DATA 0x9c
+0000            122   _KBE            DATA 0x9d
+0000            123   _KBF            DATA 0x9e
+0000            124   _KBMOD          DATA 0x9f
+0000            125   _BMSEL          DATA 0x92
+0000            126   _FCON           DATA 0xd2
+0000            127   _EECON          DATA 0xd2
+0000            128   _ACSRA          DATA 0xa3
+0000            129   _ACSRB          DATA 0xab
+0000            130   _AREF           DATA 0xbd
+0000            131   _DADC           DATA 0xa4
+0000            132   _DADI           DATA 0xa5
+0000            133   _DADL           DATA 0xac
+0000            134   _DADH           DATA 0xad
+0000            135   _CCON           DATA 0xd8
+0000            136   _CMOD           DATA 0xd9
+0000            137   _CL             DATA 0xe9
+0000            138   _CH             DATA 0xf9
+0000            139   _CCAPM0         DATA 0xda
+0000            140   _CCAPM1         DATA 0xdb
+0000            141   _CCAPM2         DATA 0xdc
+0000            142   _CCAPM3         DATA 0xdd
+0000            143   _CCAPM4         DATA 0xde
+0000            144   _CCAP0H         DATA 0xfa
+0000            145   _CCAP1H         DATA 0xfb
+0000            146   _CCAP2H         DATA 0xfc
+0000            147   _CCAP3H         DATA 0xfd
+0000            148   _CCAP4H         DATA 0xfe
+0000            149   _CCAP0L         DATA 0xea
+0000            150   _CCAP1L         DATA 0xeb
+0000            151   _CCAP2L         DATA 0xec
+0000            152   _CCAP3L         DATA 0xed
+0000            153   _CCAP4L         DATA 0xee
+0000            154   ;--------------------------------------------------------
+0000            155   ; special function bits
+0000            156   ;--------------------------------------------------------
+0000            157   _ACC_0          BIT 0xe0
+0000            158   _ACC_1          BIT 0xe1
+0000            159   _ACC_2          BIT 0xe2
+0000            160   _ACC_3          BIT 0xe3
+0000            161   _ACC_4          BIT 0xe4
+0000            162   _ACC_5          BIT 0xe5
+0000            163   _ACC_6          BIT 0xe6
+0000            164   _ACC_7          BIT 0xe7
+0000            165   _B_0            BIT 0xf0
+0000            166   _B_1            BIT 0xf1
+0000            167   _B_2            BIT 0xf2
+0000            168   _B_3            BIT 0xf3
+0000            169   _B_4            BIT 0xf4
+0000            170   _B_5            BIT 0xf5
+0000            171   _B_6            BIT 0xf6
+0000            172   _B_7            BIT 0xf7
+0000            173   _P              BIT 0xd0
+0000            174   _F1             BIT 0xd1
+0000            175   _OV             BIT 0xd2
+0000            176   _RS0            BIT 0xd3
+0000            177   _RS1            BIT 0xd4
+0000            178   _F0             BIT 0xd5
+0000            179   _AC             BIT 0xd6
+0000            180   _CY             BIT 0xd7
+0000            181   _EX0            BIT 0xa8
+0000            182   _ET0            BIT 0xa9
+0000            183   _EX1            BIT 0xaa
+0000            184   _ET1            BIT 0xab
+0000            185   _ES             BIT 0xac
+0000            186   _ET2            BIT 0xad
+0000            187   _EC             BIT 0xae
+0000            188   _EA             BIT 0xaf
+0000            189   _PX0            BIT 0xb8
+0000            190   _PT0            BIT 0xb9
+0000            191   _PX1            BIT 0xba
+0000            192   _PT1            BIT 0xbb
+0000            193   _PS             BIT 0xbc
+0000            194   _PT2            BIT 0xbd
+0000            195   _IP0D           BIT 0xbf
+0000            196   _PPCL           BIT 0xbe
+0000            197   _PT2L           BIT 0xbd
+0000            198   _PLS            BIT 0xbc
+0000            199   _PT1L           BIT 0xbb
+0000            200   _PX1L           BIT 0xba
+0000            201   _PT0L           BIT 0xb9
+0000            202   _PX0L           BIT 0xb8
+0000            203   _P0_0           BIT 0x80
+0000            204   _P0_1           BIT 0x81
+0000            205   _P0_2           BIT 0x82
+0000            206   _P0_3           BIT 0x83
+0000            207   _P0_4           BIT 0x84
+0000            208   _P0_5           BIT 0x85
+0000            209   _P0_6           BIT 0x86
+0000            210   _P0_7           BIT 0x87
+0000            211   _P1_0           BIT 0x90
+0000            212   _P1_1           BIT 0x91
+0000            213   _P1_2           BIT 0x92
+0000            214   _P1_3           BIT 0x93
+0000            215   _P1_4           BIT 0x94
+0000            216   _P1_5           BIT 0x95
+0000            217   _P1_6           BIT 0x96
+0000            218   _P1_7           BIT 0x97
+0000            219   _P2_0           BIT 0xa0
+0000            220   _P2_1           BIT 0xa1
+0000            221   _P2_2           BIT 0xa2
+0000            222   _P2_3           BIT 0xa3
+0000            223   _P2_4           BIT 0xa4
+0000            224   _P2_5           BIT 0xa5
+0000            225   _P2_6           BIT 0xa6
+0000            226   _P2_7           BIT 0xa7
+0000            227   _P3_0           BIT 0xb0
+0000            228   _P3_1           BIT 0xb1
+0000            229   _P3_2           BIT 0xb2
+0000            230   _P3_3           BIT 0xb3
+0000            231   _P3_4           BIT 0xb4
+0000            232   _P3_5           BIT 0xb5
+0000            233   _P3_6           BIT 0xb6
+0000            234   _P3_7           BIT 0xb7
+0000            235   _RXD            BIT 0xb0
+0000            236   _TXD            BIT 0xb1
+0000            237   _INT0           BIT 0xb2
+0000            238   _INT1           BIT 0xb3
+0000            239   _T0             BIT 0xb4
+0000            240   _T1             BIT 0xb5
+0000            241   _WR             BIT 0xb6
+0000            242   _RD             BIT 0xb7
+0000            243   _P4_0           BIT 0xc0
+0000            244   _P4_1           BIT 0xc1
+0000            245   _P4_2           BIT 0xc2
+0000            246   _P4_3           BIT 0xc3
+0000            247   _P4_4           BIT 0xc4
+0000            248   _P4_5           BIT 0xc5
+0000            249   _P4_6           BIT 0xc6
+0000            250   _P4_7           BIT 0xc7
+0000            251   _RI             BIT 0x98
+0000            252   _TI             BIT 0x99
+0000            253   _RB8            BIT 0x9a
+0000            254   _TB8            BIT 0x9b
+0000            255   _REN            BIT 0x9c
+0000            256   _SM2            BIT 0x9d
+0000            257   _SM1            BIT 0x9e
+0000            258   _SM0            BIT 0x9f
+0000            259   _IT0            BIT 0x88
+0000            260   _IE0            BIT 0x89
+0000            261   _IT1            BIT 0x8a
+0000            262   _IE1            BIT 0x8b
+0000            263   _TR0            BIT 0x8c
+0000            264   _TF0            BIT 0x8d
+0000            265   _TR1            BIT 0x8e
+0000            266   _TF1            BIT 0x8f
+0000            267   _CP_RL2         BIT 0xc8
+0000            268   _C_T2           BIT 0xc9
+0000            269   _TR2            BIT 0xca
+0000            270   _EXEN2          BIT 0xcb
+0000            271   _TCLK           BIT 0xcc
+0000            272   _RCLK           BIT 0xcd
+0000            273   _EXF2           BIT 0xce
+0000            274   _TF2            BIT 0xcf
+0000            275   _CF             BIT 0xdf
+0000            276   _CR             BIT 0xde
+0000            277   _CCF4           BIT 0xdc
+0000            278   _CCF3           BIT 0xdb
+0000            279   _CCF2           BIT 0xda
+0000            280   _CCF1           BIT 0xd9
+0000            281   _CCF0           BIT 0xd8
+0000            282   ;--------------------------------------------------------
+0000            283   ; overlayable register banks
+0000            284   ;--------------------------------------------------------
+0000            285            rbank0 segment data overlay
+0000            286   ;--------------------------------------------------------
+0000            287   ; internal ram data
+0000            288   ;--------------------------------------------------------
+0000            289            rseg R_DSEG
+0000            290   _pwmcount:
+0000            291            ds 1
+0001            292   _pwm1:
+0001            293            ds 1
+0002            294   _direction:
+0002            295            ds 2
+0004            296   _updateUI_s_1_58:
+0004            297            ds 56
+003C            298   _main_input_1_61:
+003C            299            ds 2
+003E            300   ;--------------------------------------------------------
+003E            301   ; overlayable items in internal ram 
+003E            302   ;--------------------------------------------------------
+0000            303            rseg R_OSEG
+0000            304   ;--------------------------------------------------------
+0000            305   ; indirectly addressable internal ram data
+0000            306   ;--------------------------------------------------------
+0000            307            rseg R_ISEG
+0000            308   ;--------------------------------------------------------
+0000            309   ; absolute internal ram data
+0000            310   ;--------------------------------------------------------
+0000            311            DSEG
+0000            312   ;--------------------------------------------------------
+0000            313   ; bit data
+0000            314   ;--------------------------------------------------------
+0000            315            rseg R_BSEG
+0000            316   ;--------------------------------------------------------
+0000            317   ; paged external ram data
+0000            318   ;--------------------------------------------------------
+0000            319            rseg R_PSEG
+0000            320   ;--------------------------------------------------------
+0000            321   ; external ram data
+0000            322   ;--------------------------------------------------------
+0000            323            rseg R_XSEG
+0000            324   ;--------------------------------------------------------
+0000            325   ; absolute external ram data
+0000            326   ;--------------------------------------------------------
+0000            327            XSEG
+0000            328   ;--------------------------------------------------------
+0000            329   ; external initialized ram data
+0000            330   ;--------------------------------------------------------
+0000            331            rseg R_IXSEG
+0000            332            rseg R_HOME
+0000            333            rseg R_GSINIT
+0000            334            rseg R_CSEG
+0000            335   ;--------------------------------------------------------
+0000            336   ; Reset entry point and interrupt vectors
+0000            337   ;--------------------------------------------------------
+0000            338            CSEG at 0x0000
+0000 020100     339            ljmp    _crt0
+000B            340            CSEG at 0x000b
+000B 020100     341            ljmp    _pwmcounter
+000E            342   ;--------------------------------------------------------
+000E            343   ; global & static initialisations
+000E            344   ;--------------------------------------------------------
+0000            345            rseg R_HOME
+0000            346            rseg R_GSINIT
+0000            347            rseg R_GSINIT
+0000            348   ;--------------------------------------------------------
+0000            349   ; data variables initialization
+0000            350   ;--------------------------------------------------------
+0000            351            rseg R_DINIT
+0000            352            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            353   ;--------------------------------------------------------
+0000            354   ; code
+0000            355   ;--------------------------------------------------------
+0000            356            rseg R_CSEG
+0000            357   ;------------------------------------------------------------
+0000            358   ;Allocation info for local variables in function 'LCD_LongDelay'
+0000            359   ;------------------------------------------------------------
+0000            360   ;------------------------------------------------------------
+0000            361   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:36: void LCD_LongDelay(void){
+0000            362   ;        -----------------------------------------
+0000            363   ;         function LCD_LongDelay
+0000            364   ;        -----------------------------------------
+0000            365   _LCD_LongDelay:
+0000            366            using   0
+0000            367   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:45: _endasm;
+0000            368            
+0000            369     ;For a 22.1184MHz crystal one machine cycle
+0000            370     ;takes 12/22.1184MHz=0.5425347us
+0000 7907       371              mov R1, #7
+0002            372              L2_50:
+0002 78B8       373            mov R0, #184
+0004            374              L1_50:
+0004 D8F0       375            djnz R0, L1_50 ; 2 machine cycles-> 2*0.5425347us*184=200us
+0006 D9B0       376              djnz R1, L2_50 ; 200us*25=0.005s
+0008 22         377              ret
+0009            378             
+0009 22         379            ret
+000A            380   ;------------------------------------------------------------
+000A            381   ;Allocation info for local variables in function 'LCD_ShortDelay'
+000A            382   ;------------------------------------------------------------
+000A            383   ;------------------------------------------------------------
+000A            384   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:52: void LCD_ShortDelay(void){
+000A            385   ;        -----------------------------------------
+000A            386   ;         function LCD_ShortDelay
+000A            387   ;        -----------------------------------------
+000A            388   _LCD_ShortDelay:
+000A            389   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:59: _endasm;
+000A            390            
+000A            391     ;For a 22.1184MHz crystal one machine cycle
+000A            392     ;takes 12/22.1184MHz=0.5425347us
+000A 782E       393              mov R0, #46
+000C            394              shortL1:
+000C D870       395            djnz R0,shortL1 ; 2 machine cycles-> 2*0.5425347us*184=49.9us
+000E 22         396              ret
+000F            397             
+000F 22         398            ret
+0010            399   ;------------------------------------------------------------
+0010            400   ;Allocation info for local variables in function 'LCD_Clear'
+0010            401   ;------------------------------------------------------------
+0010            402   ;------------------------------------------------------------
+0010            403   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:67: void LCD_Clear(){
+0010            404   ;        -----------------------------------------
+0010            405   ;         function LCD_Clear
+0010            406   ;        -----------------------------------------
+0010            407   _LCD_Clear:
+0010            408   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:68: LCD_RS = 0;
+0010 C2C1       409            clr     _P4_1
+0012            410   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:69: LCD_E = LCD_ENABLE;
+0012 D2B2       411            setb    _P3_2
+0014            412   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:70: LCD_ShortDelay();
+0014 120100     413            lcall   _LCD_ShortDelay
+0017            414   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:71: LCD_D = 1;
+0017 759001     415            mov     _P1,#0x01
+001A            416   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:72: LCD_ShortDelay();
+001A 120100     417            lcall   _LCD_ShortDelay
+001D            418   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:73: LCD_E = LCD_DISABLE;
+001D C2B2       419            clr     _P3_2
+001F            420   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:74: LCD_LongDelay();
+001F 020100     421            ljmp    _LCD_LongDelay
+0022            422   ;------------------------------------------------------------
+0022            423   ;Allocation info for local variables in function 'LCD_Put'
+0022            424   ;------------------------------------------------------------
+0022            425   ;c                         Allocated to registers r2 
+0022            426   ;------------------------------------------------------------
+0022            427   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:83: void LCD_Put(unsigned char c){
+0022            428   ;        -----------------------------------------
+0022            429   ;         function LCD_Put
+0022            430   ;        -----------------------------------------
+0022            431   _LCD_Put:
+0022 AA82       432            mov     r2,dpl
+0024            433   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:84: LCD_E = LCD_ENABLE;
+0024 D2B2       434            setb    _P3_2
+0026            435   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:85: LCD_ShortDelay();
+0026 C002       436            push    ar2
+0028 120100     437            lcall   _LCD_ShortDelay
+002B D002       438            pop     ar2
+002D            439   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:86: LCD_D = c;
+002D 8A90       440            mov     _P1,r2
+002F            441   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:87: LCD_ShortDelay();
+002F 120100     442            lcall   _LCD_ShortDelay
+0032            443   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:88: LCD_E = LCD_DISABLE;
+0032 C2B2       444            clr     _P3_2
+0034            445   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:89: LCD_ShortDelay();
+0034 020100     446            ljmp    _LCD_ShortDelay
+0037            447   ;------------------------------------------------------------
+0037            448   ;Allocation info for local variables in function 'LCD_WriteString'
+0037            449   ;------------------------------------------------------------
+0037            450   ;c                         Allocated to registers r2 r3 r4 
+0037            451   ;------------------------------------------------------------
+0037            452   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:97: void LCD_WriteString(unsigned char *c){
+0037            453   ;        -----------------------------------------
+0037            454   ;         function LCD_WriteString
+0037            455   ;        -----------------------------------------
+0037            456   _LCD_WriteString:
+0037 AA82       457            mov     r2,dpl
+0039 AB83       458            mov     r3,dph
+003B ACF0       459            mov     r4,b
+003D            460   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:98: LCD_RS = 1;
+003D D2C1       461            setb    _P4_1
+003F            462   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:99: while(*c != '\0'){
+003F            463   L006001?:
+003F 8A82       464            mov     dpl,r2
+0041 8B83       465            mov     dph,r3
+0043 8CF0       466            mov     b,r4
+0045 120100     467            lcall   __gptrget
+0048 FD         468            mov     r5,a
+0049 6001       469            jz      L006004?
+004B            470   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:100: LCD_Put(*c);
+004B 8D82       471            mov     dpl,r5
+004D C002       472            push    ar2
+004F C003       473            push    ar3
+0051 C004       474            push    ar4
+0053 120100     475            lcall   _LCD_Put
+0056 D004       476            pop     ar4
+0058 D003       477            pop     ar3
+005A D002       478            pop     ar2
+005C            479   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:101: printf("%c",*c); 
+005C 8A82       480            mov     dpl,r2
+005E 8B83       481            mov     dph,r3
+0060 8CF0       482            mov     b,r4
+0062 120100     483            lcall   __gptrget
+0065 FD         484            mov     r5,a
+0066 A3         485            inc     dptr
+0067 AA82       486            mov     r2,dpl
+0069 AB83       487            mov     r3,dph
+006B 7E00       488            mov     r6,#0x00
+006D C002       489            push    ar2
+006F C003       490            push    ar3
+0071 C004       491            push    ar4
+0073 C005       492            push    ar5
+0075 C006       493            push    ar6
+0077 7430       494            mov     a,#__str_0
+0079 C0E0       495            push    acc
+007B 7482       496            mov     a,#(__str_0 >> 8)
+007D C0E0       497            push    acc
+007F 7480       498            mov     a,#0x80
+0081 C0E0       499            push    acc
+0083 120100     500            lcall   _printf
+0086 E581       501            mov     a,sp
+0088 24FB       502            add     a,#0xfb
+008A F581       503            mov     sp,a
+008C D004       504            pop     ar4
+008E D003       505            pop     ar3
+0090 D002       506            pop     ar2
+0092            507   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:102: c++;
+0092 8001       508            sjmp    L006001?
+0094            509   L006004?:
+0094 22         510            ret
+0095            511   ;------------------------------------------------------------
+0095            512   ;Allocation info for local variables in function 'LCD_Init'
+0095            513   ;------------------------------------------------------------
+0095            514   ;------------------------------------------------------------
+0095            515   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:113: void LCD_Init(){
+0095            516   ;        -----------------------------------------
+0095            517   ;         function LCD_Init
+0095            518   ;        -----------------------------------------
+0095            519   _LCD_Init:
+0095            520   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:114: LCD_E = 0;
+0095 C2B2       521            clr     _P3_2
+0097            522   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:115: LCD_Clear();
+0097 120100     523            lcall   _LCD_Clear
+009A            524   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:116: LCD_Put(((unsigned char)0b00111000));   //Function set, 8 bit, 2 lines, 5ื7
+009A 758238     525            mov     dpl,#0x38
+009D 120100     526            lcall   _LCD_Put
+00A0            527   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:117: LCD_Put(((unsigned char)0b00001111));   //Display ON, Cursor On, Cursor Blinking
+00A0 75820F     528            mov     dpl,#0x0F
+00A3 120100     529            lcall   _LCD_Put
+00A6            530   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:118: LCD_Put(((unsigned char)0b00000011));   //Entry Mode, Increment cursor position, No display shift
+00A6 758203     531            mov     dpl,#0x03
+00A9            532   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:119: return;
+00A9 020100     533            ljmp    _LCD_Put
+00AC            534   ;------------------------------------------------------------
+00AC            535   ;Allocation info for local variables in function '_c51_external_startup'
+00AC            536   ;------------------------------------------------------------
+00AC            537   ;------------------------------------------------------------
+00AC            538   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:39: unsigned char _c51_external_startup(void)
+00AC            539   ;        -----------------------------------------
+00AC            540   ;         function _c51_external_startup
+00AC            541   ;        -----------------------------------------
+00AC            542   __c51_external_startup:
+00AC            543   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:42: P0M0=0;         P0M1=0;
+00AC 75E600     544            mov     _P0M0,#0x00
+00AF 75E700     545            mov     _P0M1,#0x00
+00B2            546   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:43: P1M0=0;         P1M1=0;
+00B2 75D600     547            mov     _P1M0,#0x00
+00B5 75D700     548            mov     _P1M1,#0x00
+00B8            549   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:44: P2M0=0;         P2M1=0;
+00B8 75CE00     550            mov     _P2M0,#0x00
+00BB 75CF00     551            mov     _P2M1,#0x00
+00BE            552   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:45: P3M0=0;         P3M1=0;
+00BE 75C600     553            mov     _P3M0,#0x00
+00C1 75C700     554            mov     _P3M1,#0x00
+00C4            555   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:46: AUXR=0B_0001_0001; // 1152 bytes of internal XDATA, P4.4 is a general purpose I/O
+00C4 758E11     556            mov     _AUXR,#0x11
+00C7            557   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:47: P4M0=0;         P4M1=0;
+00C7 75BE00     558            mov     _P4M0,#0x00
+00CA 75BF00     559            mov     _P4M1,#0x00
+00CD            560   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:50: PCON|=0x80;
+00CD 438780     561            orl     _PCON,#0x80
+00D0            562   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:51: SCON = 0x52;
+00D0 759852     563            mov     _SCON,#0x52
+00D3            564   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:52: BDRCON=0;
+00D3 759B00     565            mov     _BDRCON,#0x00
+00D6            566   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:53: BRL=BRG_VAL;
+00D6 759AFA     567            mov     _BRL,#0xFA
+00D9            568   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:54: BDRCON=BRR|TBCK|RBCK|SPD;
+00D9 759B1E     569            mov     _BDRCON,#0x1E
+00DC            570   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:57: TR0=0; // Stop timer 0
+00DC C28C       571            clr     _TR0
+00DE            572   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:58: TMOD=0x01; // 16-bit timer
+00DE 758901     573            mov     _TMOD,#0x01
+00E1            574   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:63: TH0=RH0=TIMER0_RELOAD_VALUE/0x100;
+00E1 75F4FF     575            mov     _RH0,#0xFF
+00E4 758CFF     576            mov     _TH0,#0xFF
+00E7            577   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:64: TL0=RL0=TIMER0_RELOAD_VALUE%0x100;
+00E7 75F248     578            mov     _RL0,#0x48
+00EA 758A48     579            mov     _TL0,#0x48
+00ED            580   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:65: TR0=1; // Start timer 0 (bit 4 in TCON)
+00ED D28C       581            setb    _TR0
+00EF            582   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:66: ET0=1; // Enable timer 0 interrupt
+00EF D2A9       583            setb    _ET0
+00F1            584   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:67: EA=1;  // Enable global interrupts
+00F1 D2AF       585            setb    _EA
+00F3            586   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:69: pwmcount=0;
+00F3            587   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:71: direction = 0;
+00F3 E4         588            clr     a
+00F4 F580       589            mov     _pwmcount,a
+00F6 F500       590            mov     _direction,a
+00F8 F501       591            mov     (_direction + 1),a
+00FA            592   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:72: LCD_Init();
+00FA 120100     593            lcall   _LCD_Init
+00FD            594   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:74: return 0;
+00FD 758200     595            mov     dpl,#0x00
+0100 22         596            ret
+0101            597   ;------------------------------------------------------------
+0101            598   ;Allocation info for local variables in function 'pwmcounter'
+0101            599   ;------------------------------------------------------------
+0101            600   ;------------------------------------------------------------
+0101            601   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:79: void pwmcounter (void) interrupt 1
+0101            602   ;        -----------------------------------------
+0101            603   ;         function pwmcounter
+0101            604   ;        -----------------------------------------
+0101            605   _pwmcounter:
+0101 C0E0       606            push    acc
+0103 C0D0       607            push    psw
+0105 75D000     608            mov     psw,#0x00
+0108            609   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:81: if(++pwmcount>99){
+0108 0580       610            inc     _pwmcount
+010A E580       611            mov     a,_pwmcount
+010C 249C       612            add     a,#0xff - 0x63
+010E 5001       613            jnc     L009002?
+0110            614   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:82: pwmcount=0;
+0110 758000     615            mov     _pwmcount,#0x00
+0113            616   L009002?:
+0113            617   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:84: if(direction){
+0113 E500       618            mov     a,_direction
+0115 4501       619            orl     a,(_direction + 1)
+0117 6001       620            jz      L009004?
+0119            621   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:85: PWM_OUTPUT1=(pwm1>pwmcount)?1:0;
+0119 C3         622            clr     c
+011A E580       623            mov     a,_pwmcount
+011C 9540       624            subb    a,_pwm1
+011E 92C3       625            mov     _P4_3,c
+0120            626   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:86: PWM_OUTPUT2= 0;
+0120 C2B7       627            clr     _P3_7
+0122 8001       628            sjmp    L009006?
+0124            629   L009004?:
+0124            630   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:89: PWM_OUTPUT2=(pwm1>pwmcount)?1:0;
+0124 C3         631            clr     c
+0125 E580       632            mov     a,_pwmcount
+0127 9540       633            subb    a,_pwm1
+0129 92B7       634            mov     _P3_7,c
+012B            635   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:90: PWM_OUTPUT1 = 0;
+012B C2C3       636            clr     _P4_3
+012D            637   L009006?:
+012D D0D0       638            pop     psw
+012F D0E0       639            pop     acc
+0131 32         640            reti
+0132            641   ;        eliminated unneeded push/pop dpl
+0132            642   ;        eliminated unneeded push/pop dph
+0132            643   ;        eliminated unneeded push/pop b
+0132            644   ;------------------------------------------------------------
+0132            645   ;Allocation info for local variables in function 'updateUI'
+0132            646   ;------------------------------------------------------------
+0132            647   ;input                     Allocated to registers r2 r3 
+0132            648   ;k                         Allocated to registers r2 r3 
+0132            649   ;s                         Allocated with name '_updateUI_s_1_58'
+0132            650   ;------------------------------------------------------------
+0132            651   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:123: void updateUI(int input){
+0132            652   ;        -----------------------------------------
+0132            653   ;         function updateUI
+0132            654   ;        -----------------------------------------
+0132            655   _updateUI:
+0132 AA82       656            mov     r2,dpl
+0134 AB83       657            mov     r3,dph
+0136            658   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:127: printf( CLEAR_SCREEN );
+0136 C002       659            push    ar2
+0138 C003       660            push    ar3
+013A 7430       661            mov     a,#__str_1
+013C C0E0       662            push    acc
+013E 7484       663            mov     a,#(__str_1 >> 8)
+0140 C0E0       664            push    acc
+0142 7480       665            mov     a,#0x80
+0144 C0E0       666            push    acc
+0146 120100     667            lcall   _printf
+0149 1581       668            dec     sp
+014B 1581       669            dec     sp
+014D 1581       670            dec     sp
+014F            671   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:128: printf( FORE_BACK , COLOR_BLACK, COLOR_WHITE );
+014F 7407       672            mov     a,#0x07
+0151 C0E0       673            push    acc
+0153 E4         674            clr     a
+0154 C0E0       675            push    acc
+0156 E4         676            clr     a
+0157 C0E0       677            push    acc
+0159 C0E0       678            push    acc
+015B 7470       679            mov     a,#__str_2
+015D C0E0       680            push    acc
+015F 7484       681            mov     a,#(__str_2 >> 8)
+0161 C0E0       682            push    acc
+0163 7480       683            mov     a,#0x80
+0165 C0E0       684            push    acc
+0167 120100     685            lcall   _printf
+016A E581       686            mov     a,sp
+016C 24F9       687            add     a,#0xf9
+016E F581       688            mov     sp,a
+0170            689   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:129: printf("ษออออออออออออหออออออออออออป\n");
+0170 74B0       690            mov     a,#__str_3
+0172 C0E0       691            push    acc
+0174 7484       692            mov     a,#(__str_3 >> 8)
+0176 C0E0       693            push    acc
+0178 7480       694            mov     a,#0x80
+017A C0E0       695            push    acc
+017C 120100     696            lcall   _printf
+017F 1581       697            dec     sp
+0181 1581       698            dec     sp
+0183 1581       699            dec     sp
+0185            700   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:130: printf("บ Speed:     บ            บ\n");
+0185 74F0       701            mov     a,#__str_4
+0187 C0E0       702            push    acc
+0189 7484       703            mov     a,#(__str_4 >> 8)
+018B C0E0       704            push    acc
+018D 7480       705            mov     a,#0x80
+018F C0E0       706            push    acc
+0191 120100     707            lcall   _printf
+0194 1581       708            dec     sp
+0196 1581       709            dec     sp
+0198 1581       710            dec     sp
+019A            711   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:131: printf("ฬออออออออออออฮออออออออออออน\n");
+019A 7430       712            mov     a,#__str_5
+019C C0E0       713            push    acc
+019E 7485       714            mov     a,#(__str_5 >> 8)
+01A0 C0E0       715            push    acc
+01A2 7480       716            mov     a,#0x80
+01A4 C0E0       717            push    acc
+01A6 120100     718            lcall   _printf
+01A9 1581       719            dec     sp
+01AB 1581       720            dec     sp
+01AD 1581       721            dec     sp
+01AF            722   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:132: printf("บ Direction: บ            บ\n");
+01AF 7470       723            mov     a,#__str_6
+01B1 C0E0       724            push    acc
+01B3 7485       725            mov     a,#(__str_6 >> 8)
+01B5 C0E0       726            push    acc
+01B7 7480       727            mov     a,#0x80
+01B9 C0E0       728            push    acc
+01BB 120100     729            lcall   _printf
+01BE 1581       730            dec     sp
+01C0 1581       731            dec     sp
+01C2 1581       732            dec     sp
+01C4            733   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:133: printf("ฬออออออออออออฮออออออออออออน\n");
+01C4 7430       734            mov     a,#__str_5
+01C6 C0E0       735            push    acc
+01C8 7485       736            mov     a,#(__str_5 >> 8)
+01CA C0E0       737            push    acc
+01CC 7480       738            mov     a,#0x80
+01CE C0E0       739            push    acc
+01D0 120100     740            lcall   _printf
+01D3 1581       741            dec     sp
+01D5 1581       742            dec     sp
+01D7 1581       743            dec     sp
+01D9            744   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:134: printf("บ            บ            บ\n");
+01D9 74B0       745            mov     a,#__str_7
+01DB C0E0       746            push    acc
+01DD 7485       747            mov     a,#(__str_7 >> 8)
+01DF C0E0       748            push    acc
+01E1 7480       749            mov     a,#0x80
+01E3 C0E0       750            push    acc
+01E5 120100     751            lcall   _printf
+01E8 1581       752            dec     sp
+01EA 1581       753            dec     sp
+01EC 1581       754            dec     sp
+01EE            755   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:135: printf("ศออออออออออออสออออออออออออผ\n");
+01EE 74F0       756            mov     a,#__str_8
+01F0 C0E0       757            push    acc
+01F2 7485       758            mov     a,#(__str_8 >> 8)
+01F4 C0E0       759            push    acc
+01F6 7480       760            mov     a,#0x80
+01F8 C0E0       761            push    acc
+01FA 120100     762            lcall   _printf
+01FD 1581       763            dec     sp
+01FF 1581       764            dec     sp
+0201 1581       765            dec     sp
+0203            766   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:136: printf( GOTO_YX , 2, 18);
+0203 7412       767            mov     a,#0x12
+0205 C0E0       768            push    acc
+0207 E4         769            clr     a
+0208 C0E0       770            push    acc
+020A 7402       771            mov     a,#0x02
+020C C0E0       772            push    acc
+020E E4         773            clr     a
+020F C0E0       774            push    acc
+0211 7430       775            mov     a,#__str_9
+0213 C0E0       776            push    acc
+0215 7486       777            mov     a,#(__str_9 >> 8)
+0217 C0E0       778            push    acc
+0219 7480       779            mov     a,#0x80
+021B C0E0       780            push    acc
+021D 120100     781            lcall   _printf
+0220 E581       782            mov     a,sp
+0222 24F9       783            add     a,#0xf9
+0224 F581       784            mov     sp,a
+0226            785   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:137: printf( FORE_BACK , COLOR_RED, COLOR_WHITE );
+0226 7407       786            mov     a,#0x07
+0228 C0E0       787            push    acc
+022A E4         788            clr     a
+022B C0E0       789            push    acc
+022D 7401       790            mov     a,#0x01
+022F C0E0       791            push    acc
+0231 E4         792            clr     a
+0232 C0E0       793            push    acc
+0234 7470       794            mov     a,#__str_2
+0236 C0E0       795            push    acc
+0238 7484       796            mov     a,#(__str_2 >> 8)
+023A C0E0       797            push    acc
+023C 7480       798            mov     a,#0x80
+023E C0E0       799            push    acc
+0240 120100     800            lcall   _printf
+0243 E581       801            mov     a,sp
+0245 24F9       802            add     a,#0xf9
+0247 F581       803            mov     sp,a
+0249 D003       804            pop     ar3
+024B D002       805            pop     ar2
+024D            806   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:138: printf("%d", input);
+024D C002       807            push    ar2
+024F C003       808            push    ar3
+0251 C002       809            push    ar2
+0253 C003       810            push    ar3
+0255 7470       811            mov     a,#__str_10
+0257 C0E0       812            push    acc
+0259 7486       813            mov     a,#(__str_10 >> 8)
+025B C0E0       814            push    acc
+025D 7480       815            mov     a,#0x80
+025F C0E0       816            push    acc
+0261 120100     817            lcall   _printf
+0264 E581       818            mov     a,sp
+0266 24FB       819            add     a,#0xfb
+0268 F581       820            mov     sp,a
+026A            821   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:139: printf( GOTO_YX , 4, 18);
+026A 7412       822            mov     a,#0x12
+026C C0E0       823            push    acc
+026E E4         824            clr     a
+026F C0E0       825            push    acc
+0271 7404       826            mov     a,#0x04
+0273 C0E0       827            push    acc
+0275 E4         828            clr     a
+0276 C0E0       829            push    acc
+0278 7430       830            mov     a,#__str_9
+027A C0E0       831            push    acc
+027C 7486       832            mov     a,#(__str_9 >> 8)
+027E C0E0       833            push    acc
+0280 7480       834            mov     a,#0x80
+0282 C0E0       835            push    acc
+0284 120100     836            lcall   _printf
+0287 E581       837            mov     a,sp
+0289 24F9       838            add     a,#0xf9
+028B F581       839            mov     sp,a
+028D            840   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:140: printf( FORE_BACK , COLOR_RED, COLOR_WHITE );
+028D 7407       841            mov     a,#0x07
+028F C0E0       842            push    acc
+0291 E4         843            clr     a
+0292 C0E0       844            push    acc
+0294 7401       845            mov     a,#0x01
+0296 C0E0       846            push    acc
+0298 E4         847            clr     a
+0299 C0E0       848            push    acc
+029B 7470       849            mov     a,#__str_2
+029D C0E0       850            push    acc
+029F 7484       851            mov     a,#(__str_2 >> 8)
+02A1 C0E0       852            push    acc
+02A3 7480       853            mov     a,#0x80
+02A5 C0E0       854            push    acc
+02A7 120100     855            lcall   _printf
+02AA E581       856            mov     a,sp
+02AC 24F9       857            add     a,#0xf9
+02AE F581       858            mov     sp,a
+02B0 D003       859            pop     ar3
+02B2 D002       860            pop     ar2
+02B4            861   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:141: printf("%s", (direction ? "CW ":"CCW"));
+02B4 E500       862            mov     a,_direction
+02B6 4501       863            orl     a,(_direction + 1)
+02B8 6001       864            jz      L010007?
+02BA 7CF0       865            mov     r4,#__str_12
+02BC 7D86       866            mov     r5,#(__str_12 >> 8)
+02BE 8001       867            sjmp    L010008?
+02C0            868   L010007?:
+02C0 7C70       869            mov     r4,#__str_13
+02C2 7D87       870            mov     r5,#(__str_13 >> 8)
+02C4            871   L010008?:
+02C4 7E80       872            mov     r6,#0x80
+02C6 C002       873            push    ar2
+02C8 C003       874            push    ar3
+02CA C004       875            push    ar4
+02CC C005       876            push    ar5
+02CE C006       877            push    ar6
+02D0 74B0       878            mov     a,#__str_11
+02D2 C0E0       879            push    acc
+02D4 7487       880            mov     a,#(__str_11 >> 8)
+02D6 C0E0       881            push    acc
+02D8 7480       882            mov     a,#0x80
+02DA C0E0       883            push    acc
+02DC 120100     884            lcall   _printf
+02DF E581       885            mov     a,sp
+02E1 24FA       886            add     a,#0xfa
+02E3 F581       887            mov     sp,a
+02E5 D003       888            pop     ar3
+02E7 D002       889            pop     ar2
+02E9            890   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:144: sprintf(s, "spd: %d%% %s                                     ", input, (direction ? "CW ":"CCW"));
+02E9 E500       891            mov     a,_direction
+02EB 4501       892            orl     a,(_direction + 1)
+02ED 6001       893            jz      L010009?
+02EF 7CF0       894            mov     r4,#__str_12
+02F1 7D86       895            mov     r5,#(__str_12 >> 8)
+02F3 8001       896            sjmp    L010010?
+02F5            897   L010009?:
+02F5 7C70       898            mov     r4,#__str_13
+02F7 7D87       899            mov     r5,#(__str_13 >> 8)
+02F9            900   L010010?:
+02F9 7E80       901            mov     r6,#0x80
+02FB C004       902            push    ar4
+02FD C005       903            push    ar5
+02FF C006       904            push    ar6
+0301 C002       905            push    ar2
+0303 C003       906            push    ar3
+0305 7470       907            mov     a,#__str_14
+0307 C0E0       908            push    acc
+0309 7488       909            mov     a,#(__str_14 >> 8)
+030B C0E0       910            push    acc
+030D 7480       911            mov     a,#0x80
+030F C0E0       912            push    acc
+0311 74A0       913            mov     a,#_updateUI_s_1_58
+0313 C0E0       914            push    acc
+0315 747E       915            mov     a,#(_updateUI_s_1_58 >> 8)
+0317 C0E0       916            push    acc
+0319 7440       917            mov     a,#0x40
+031B C0E0       918            push    acc
+031D 120100     919            lcall   _sprintf
+0320 E581       920            mov     a,sp
+0322 24F5       921            add     a,#0xf5
+0324 F581       922            mov     sp,a
+0326            923   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:146: s[42] = '|';                   //2nd row of display starts at index 40
+0326 75CA7C     924            mov     (_updateUI_s_1_58 + 0x002a),#0x7C
+0329            925   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:147: for(k = 1; k <= 10; k++){
+0329 7A01       926            mov     r2,#0x01
+032B 7B00       927            mov     r3,#0x00
+032D 7C0A       928            mov     r4,#0x0A
+032F 7D00       929            mov     r5,#0x00
+0331            930   L010001?:
+0331 C3         931            clr     c
+0332 740A       932            mov     a,#0x0A
+0334 9A         933            subb    a,r2
+0335 E4         934            clr     a
+0336 6480       935            xrl     a,#0x80
+0338 8BF0       936            mov     b,r3
+033A 63F080     937            xrl     b,#0x80
+033D 95F0       938            subb    a,b
+033F 4001       939            jc      L010004?
+0341            940   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:148: s[42+k] = (pwm1 >= 10*k ? '-':' ');    //boolean expression determines if - or _
+0341 8A06       941            mov     ar6,r2
+0343 742A       942            mov     a,#0x2A
+0345 2E         943            add     a,r6
+0346 24A0       944            add     a,#_updateUI_s_1_58
+0348 F8         945            mov     r0,a
+0349 AE40       946            mov     r6,_pwm1
+034B 7F00       947            mov     r7,#0x00
+034D C3         948            clr     c
+034E EE         949            mov     a,r6
+034F 9C         950            subb    a,r4
+0350 EF         951            mov     a,r7
+0351 6480       952            xrl     a,#0x80
+0353 8DF0       953            mov     b,r5
+0355 63F080     954            xrl     b,#0x80
+0358 95F0       955            subb    a,b
+035A B3         956            cpl     c
+035B E4         957            clr     a
+035C 33         958            rlc     a
+035D FE         959            mov     r6,a
+035E 6001       960            jz      L010011?
+0360 7E2D       961            mov     r6,#0x2D
+0362 8001       962            sjmp    L010012?
+0364            963   L010011?:
+0364 7E20       964            mov     r6,#0x20
+0366            965   L010012?:
+0366 A606       966            mov     @r0,ar6
+0368            967   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:147: for(k = 1; k <= 10; k++){
+0368 740A       968            mov     a,#0x0A
+036A 2C         969            add     a,r4
+036B FC         970            mov     r4,a
+036C E4         971            clr     a
+036D 3D         972            addc    a,r5
+036E FD         973            mov     r5,a
+036F 0A         974            inc     r2
+0370 BA00F0     975            cjne    r2,#0x00,L010001?
+0373 0B         976            inc     r3
+0374 8001       977            sjmp    L010001?
+0376            978   L010004?:
+0376            979   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:150: sprintf(&s[53], "|   \0");
+0376 74F0       980            mov     a,#__str_15
+0378 C0E0       981            push    acc
+037A 7489       982            mov     a,#(__str_15 >> 8)
+037C C0E0       983            push    acc
+037E 7480       984            mov     a,#0x80
+0380 C0E0       985            push    acc
+0382 74D5       986            mov     a,#(_updateUI_s_1_58 + 0x0035)
+0384 C0E0       987            push    acc
+0386 747E       988            mov     a,#((_updateUI_s_1_58 + 0x0035) >> 8)
+0388 C0E0       989            push    acc
+038A 7440       990            mov     a,#0x40
+038C C0E0       991            push    acc
+038E 120100     992            lcall   _sprintf
+0391 E581       993            mov     a,sp
+0393 24FA       994            add     a,#0xfa
+0395 F581       995            mov     sp,a
+0397            996   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:151: LCD_WriteString(s);
+0397 907EA0     997            mov     dptr,#_updateUI_s_1_58
+039A 75F040     998            mov     b,#0x40
+039D 020100     999            ljmp    _LCD_WriteString
+03A0           1000   ;------------------------------------------------------------
+03A0           1001   ;Allocation info for local variables in function 'main'
+03A0           1002   ;------------------------------------------------------------
+03A0           1003   ;input                     Allocated with name '_main_input_1_61'
+03A0           1004   ;oldinput                  Allocated to registers r2 r3 
+03A0           1005   ;------------------------------------------------------------
+03A0           1006   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:154: void main (void)
+03A0           1007   ;        -----------------------------------------
+03A0           1008   ;         function main
+03A0           1009   ;        -----------------------------------------
+03A0           1010   _main:
+03A0           1011   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:157: pwm1=50;
+03A0 754032    1012            mov     _pwm1,#0x32
+03A3           1013   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:158: input = 50;
+03A3 75F032    1014            mov     _main_input_1_61,#0x32
+03A6 E4        1015            clr     a
+03A7 F5F1      1016            mov     (_main_input_1_61 + 1),a
+03A9           1017   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:159: LCD_WriteString("Hi");
+03A9 908A30    1018            mov     dptr,#__str_16
+03AC 75F080    1019            mov     b,#0x80
+03AF 120100    1020            lcall   _LCD_WriteString
+03B2           1021   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:160: while(1){
+03B2           1022   L011002?:
+03B2           1023   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:161: updateUI(input);               
+03B2 85F082    1024            mov     dpl,_main_input_1_61
+03B5 85F183    1025            mov     dph,(_main_input_1_61 + 1)
+03B8 120100    1026            lcall   _updateUI
+03BB           1027   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:164: printf( FORE_BACK , COLOR_BLACK, COLOR_WHITE );
+03BB 7407      1028            mov     a,#0x07
+03BD C0E0      1029            push    acc
+03BF E4        1030            clr     a
+03C0 C0E0      1031            push    acc
+03C2 E4        1032            clr     a
+03C3 C0E0      1033            push    acc
+03C5 C0E0      1034            push    acc
+03C7 7470      1035            mov     a,#__str_2
+03C9 C0E0      1036            push    acc
+03CB 7484      1037            mov     a,#(__str_2 >> 8)
+03CD C0E0      1038            push    acc
+03CF 7480      1039            mov     a,#0x80
+03D1 C0E0      1040            push    acc
+03D3 120100    1041            lcall   _printf
+03D6 E581      1042            mov     a,sp
+03D8 24F9      1043            add     a,#0xf9
+03DA F581      1044            mov     sp,a
+03DC           1045   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:165: printf( GOTO_YX , 6, 3);
+03DC 7403      1046            mov     a,#0x03
+03DE C0E0      1047            push    acc
+03E0 E4        1048            clr     a
+03E1 C0E0      1049            push    acc
+03E3 7406      1050            mov     a,#0x06
+03E5 C0E0      1051            push    acc
+03E7 E4        1052            clr     a
+03E8 C0E0      1053            push    acc
+03EA 7430      1054            mov     a,#__str_9
+03EC C0E0      1055            push    acc
+03EE 7486      1056            mov     a,#(__str_9 >> 8)
+03F0 C0E0      1057            push    acc
+03F2 7480      1058            mov     a,#0x80
+03F4 C0E0      1059            push    acc
+03F6 120100    1060            lcall   _printf
+03F9 E581      1061            mov     a,sp
+03FB 24F9      1062            add     a,#0xf9
+03FD F581      1063            mov     sp,a
+03FF           1064   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:166: printf("New Speed:");
+03FF 74B0      1065            mov     a,#__str_17
+0401 C0E0      1066            push    acc
+0403 748A      1067            mov     a,#(__str_17 >> 8)
+0405 C0E0      1068            push    acc
+0407 7480      1069            mov     a,#0x80
+0409 C0E0      1070            push    acc
+040B 120100    1071            lcall   _printf
+040E 1581      1072            dec     sp
+0410 1581      1073            dec     sp
+0412 1581      1074            dec     sp
+0414           1075   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:167: printf( FORE_BACK , COLOR_BLUE, COLOR_WHITE );
+0414 7407      1076            mov     a,#0x07
+0416 C0E0      1077            push    acc
+0418 E4        1078            clr     a
+0419 C0E0      1079            push    acc
+041B 7404      1080            mov     a,#0x04
+041D C0E0      1081            push    acc
+041F E4        1082            clr     a
+0420 C0E0      1083            push    acc
+0422 7470      1084            mov     a,#__str_2
+0424 C0E0      1085            push    acc
+0426 7484      1086            mov     a,#(__str_2 >> 8)
+0428 C0E0      1087            push    acc
+042A 7480      1088            mov     a,#0x80
+042C C0E0      1089            push    acc
+042E 120100    1090            lcall   _printf
+0431 E581      1091            mov     a,sp
+0433 24F9      1092            add     a,#0xf9
+0435 F581      1093            mov     sp,a
+0437           1094   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:168: printf( GOTO_YX , 6, 18);
+0437 7412      1095            mov     a,#0x12
+0439 C0E0      1096            push    acc
+043B E4        1097            clr     a
+043C C0E0      1098            push    acc
+043E 7406      1099            mov     a,#0x06
+0440 C0E0      1100            push    acc
+0442 E4        1101            clr     a
+0443 C0E0      1102            push    acc
+0445 7430      1103            mov     a,#__str_9
+0447 C0E0      1104            push    acc
+0449 7486      1105            mov     a,#(__str_9 >> 8)
+044B C0E0      1106            push    acc
+044D 7480      1107            mov     a,#0x80
+044F C0E0      1108            push    acc
+0451 120100    1109            lcall   _printf
+0454 E581      1110            mov     a,sp
+0456 24F9      1111            add     a,#0xf9
+0458 F581      1112            mov     sp,a
+045A           1113   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:169: scanf("%d", &input);
+045A 74F0      1114            mov     a,#_main_input_1_61
+045C C0E0      1115            push    acc
+045E 747E      1116            mov     a,#(_main_input_1_61 >> 8)
+0460 C0E0      1117            push    acc
+0462 7440      1118            mov     a,#0x40
+0464 C0E0      1119            push    acc
+0466 7470      1120            mov     a,#__str_10
+0468 C0E0      1121            push    acc
+046A 7486      1122            mov     a,#(__str_10 >> 8)
+046C C0E0      1123            push    acc
+046E 7480      1124            mov     a,#0x80
+0470 C0E0      1125            push    acc
+0472 120100    1126            lcall   _scanf
+0475 E581      1127            mov     a,sp
+0477 24FA      1128            add     a,#0xfa
+0479 F581      1129            mov     sp,a
+047B           1130   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:170: pwm1 = ((unsigned char)input);
+047B 85F040    1131            mov     _pwm1,_main_input_1_61
+047E           1132   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:172: oldinput = input;
+047E AAF0      1133            mov     r2,_main_input_1_61
+0480 ABF1      1134            mov     r3,(_main_input_1_61 + 1)
+0482           1135   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:173: updateUI(input);
+0482 8A82      1136            mov     dpl,r2
+0484 8B83      1137            mov     dph,r3
+0486 C002      1138            push    ar2
+0488 C003      1139            push    ar3
+048A 120100    1140            lcall   _updateUI
+048D           1141   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:176: printf( GOTO_YX , 8, 28);
+048D 741C      1142            mov     a,#0x1C
+048F C0E0      1143            push    acc
+0491 E4        1144            clr     a
+0492 C0E0      1145            push    acc
+0494 7408      1146            mov     a,#0x08
+0496 C0E0      1147            push    acc
+0498 E4        1148            clr     a
+0499 C0E0      1149            push    acc
+049B 7430      1150            mov     a,#__str_9
+049D C0E0      1151            push    acc
+049F 7486      1152            mov     a,#(__str_9 >> 8)
+04A1 C0E0      1153            push    acc
+04A3 7480      1154            mov     a,#0x80
+04A5 C0E0      1155            push    acc
+04A7 120100    1156            lcall   _printf
+04AA E581      1157            mov     a,sp
+04AC 24F9      1158            add     a,#0xf9
+04AE F581      1159            mov     sp,a
+04B0           1160   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:177: printf( FORE_BACK , COLOR_GREEN, COLOR_WHITE );
+04B0 7407      1161            mov     a,#0x07
+04B2 C0E0      1162            push    acc
+04B4 E4        1163            clr     a
+04B5 C0E0      1164            push    acc
+04B7 7402      1165            mov     a,#0x02
+04B9 C0E0      1166            push    acc
+04BB E4        1167            clr     a
+04BC C0E0      1168            push    acc
+04BE 7470      1169            mov     a,#__str_2
+04C0 C0E0      1170            push    acc
+04C2 7484      1171            mov     a,#(__str_2 >> 8)
+04C4 C0E0      1172            push    acc
+04C6 7480      1173            mov     a,#0x80
+04C8 C0E0      1174            push    acc
+04CA 120100    1175            lcall   _printf
+04CD E581      1176            mov     a,sp
+04CF 24F9      1177            add     a,#0xf9
+04D1 F581      1178            mov     sp,a
+04D3           1179   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:178: printf("(0 for CCW, 1 for CW)");
+04D3 7430      1180            mov     a,#__str_18
+04D5 C0E0      1181            push    acc
+04D7 748B      1182            mov     a,#(__str_18 >> 8)
+04D9 C0E0      1183            push    acc
+04DB 7480      1184            mov     a,#0x80
+04DD C0E0      1185            push    acc
+04DF 120100    1186            lcall   _printf
+04E2 1581      1187            dec     sp
+04E4 1581      1188            dec     sp
+04E6 1581      1189            dec     sp
+04E8           1190   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:179: printf( FORE_BACK , COLOR_BLACK, COLOR_WHITE );
+04E8 7407      1191            mov     a,#0x07
+04EA C0E0      1192            push    acc
+04EC E4        1193            clr     a
+04ED C0E0      1194            push    acc
+04EF E4        1195            clr     a
+04F0 C0E0      1196            push    acc
+04F2 C0E0      1197            push    acc
+04F4 7470      1198            mov     a,#__str_2
+04F6 C0E0      1199            push    acc
+04F8 7484      1200            mov     a,#(__str_2 >> 8)
+04FA C0E0      1201            push    acc
+04FC 7480      1202            mov     a,#0x80
+04FE C0E0      1203            push    acc
+0500 120100    1204            lcall   _printf
+0503 E581      1205            mov     a,sp
+0505 24F9      1206            add     a,#0xf9
+0507 F581      1207            mov     sp,a
+0509           1208   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:180: printf( GOTO_YX , 6, 3);
+0509 7403      1209            mov     a,#0x03
+050B C0E0      1210            push    acc
+050D E4        1211            clr     a
+050E C0E0      1212            push    acc
+0510 7406      1213            mov     a,#0x06
+0512 C0E0      1214            push    acc
+0514 E4        1215            clr     a
+0515 C0E0      1216            push    acc
+0517 7430      1217            mov     a,#__str_9
+0519 C0E0      1218            push    acc
+051B 7486      1219            mov     a,#(__str_9 >> 8)
+051D C0E0      1220            push    acc
+051F 7480      1221            mov     a,#0x80
+0521 C0E0      1222            push    acc
+0523 120100    1223            lcall   _printf
+0526 E581      1224            mov     a,sp
+0528 24F9      1225            add     a,#0xf9
+052A F581      1226            mov     sp,a
+052C           1227   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:181: printf("New Dir:");
+052C 7470      1228            mov     a,#__str_19
+052E C0E0      1229            push    acc
+0530 748B      1230            mov     a,#(__str_19 >> 8)
+0532 C0E0      1231            push    acc
+0534 7480      1232            mov     a,#0x80
+0536 C0E0      1233            push    acc
+0538 120100    1234            lcall   _printf
+053B 1581      1235            dec     sp
+053D 1581      1236            dec     sp
+053F 1581      1237            dec     sp
+0541           1238   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:182: printf( FORE_BACK , COLOR_BLUE, COLOR_WHITE );
+0541 7407      1239            mov     a,#0x07
+0543 C0E0      1240            push    acc
+0545 E4        1241            clr     a
+0546 C0E0      1242            push    acc
+0548 7404      1243            mov     a,#0x04
+054A C0E0      1244            push    acc
+054C E4        1245            clr     a
+054D C0E0      1246            push    acc
+054F 7470      1247            mov     a,#__str_2
+0551 C0E0      1248            push    acc
+0553 7484      1249            mov     a,#(__str_2 >> 8)
+0555 C0E0      1250            push    acc
+0557 7480      1251            mov     a,#0x80
+0559 C0E0      1252            push    acc
+055B 120100    1253            lcall   _printf
+055E E581      1254            mov     a,sp
+0560 24F9      1255            add     a,#0xf9
+0562 F581      1256            mov     sp,a
+0564           1257   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:183: printf( GOTO_YX , 6, 18);
+0564 7412      1258            mov     a,#0x12
+0566 C0E0      1259            push    acc
+0568 E4        1260            clr     a
+0569 C0E0      1261            push    acc
+056B 7406      1262            mov     a,#0x06
+056D C0E0      1263            push    acc
+056F E4        1264            clr     a
+0570 C0E0      1265            push    acc
+0572 7430      1266            mov     a,#__str_9
+0574 C0E0      1267            push    acc
+0576 7486      1268            mov     a,#(__str_9 >> 8)
+0578 C0E0      1269            push    acc
+057A 7480      1270            mov     a,#0x80
+057C C0E0      1271            push    acc
+057E 120100    1272            lcall   _printf
+0581 E581      1273            mov     a,sp
+0583 24F9      1274            add     a,#0xf9
+0585 F581      1275            mov     sp,a
+0587           1276   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:184: scanf("%d", &direction);               
+0587 7400      1277            mov     a,#_direction
+0589 C0E0      1278            push    acc
+058B 7415      1279            mov     a,#(_direction >> 8)
+058D C0E0      1280            push    acc
+058F 7440      1281            mov     a,#0x40
+0591 C0E0      1282            push    acc
+0593 7470      1283            mov     a,#__str_10
+0595 C0E0      1284            push    acc
+0597 7486      1285            mov     a,#(__str_10 >> 8)
+0599 C0E0      1286            push    acc
+059B 7480      1287            mov     a,#0x80
+059D C0E0      1288            push    acc
+059F 120100    1289            lcall   _scanf
+05A2 E581      1290            mov     a,sp
+05A4 24FA      1291            add     a,#0xfa
+05A6 F581      1292            mov     sp,a
+05A8 D003      1293            pop     ar3
+05AA D002      1294            pop     ar2
+05AC           1295   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Motor.c:186: input = oldinput;
+05AC 8AF0      1296            mov     _main_input_1_61,r2
+05AE 8BF1      1297            mov     (_main_input_1_61 + 1),r3
+05B0 020100    1298            ljmp    L011002?
+05B3           1299            rseg R_CSEG
+05B3           1300   
+0000           1301            rseg R_XINIT
+0000           1302   
+0000           1303            rseg R_CONST
+0000           1304   __str_0:
+0000 2563      1305            db '%c'
+0002 00        1306            db 0x00
+0003           1307   __str_1:
+0003 1B        1308            db 0x1B
+0004 5B324A    1309            db '[2J'
+0007 00        1310            db 0x00
+0008           1311   __str_2:
+0008 1B        1312            db 0x1B
+0009 5B303B33  1313            db '[0;3%d;4%dm'
+     25643B34
+     25646D
+0014 00        1314            db 0x00
+0015           1315   __str_3:
+0015 C9        1316            db 0xC9
+0016 CD        1317            db 0xCD
+0017 CD        1318            db 0xCD
+0018 CD        1319            db 0xCD
+0019 CD        1320            db 0xCD
+001A CD        1321            db 0xCD
+001B CD        1322            db 0xCD
+001C CD        1323            db 0xCD
+001D CD        1324            db 0xCD
+001E CD        1325            db 0xCD
+001F CD        1326            db 0xCD
+0020 CD        1327            db 0xCD
+0021 CD        1328            db 0xCD
+0022 CB        1329            db 0xCB
+0023 CD        1330            db 0xCD
+0024 CD        1331            db 0xCD
+0025 CD        1332            db 0xCD
+0026 CD        1333            db 0xCD
+0027 CD        1334            db 0xCD
+0028 CD        1335            db 0xCD
+0029 CD        1336            db 0xCD
+002A CD        1337            db 0xCD
+002B CD        1338            db 0xCD
+002C CD        1339            db 0xCD
+002D CD        1340            db 0xCD
+002E CD        1341            db 0xCD
+002F BB        1342            db 0xBB
+0030 0A        1343            db 0x0A
+0031 00        1344            db 0x00
+0032           1345   __str_4:
+0032 BA        1346            db 0xBA
+0033 20537065  1347            db ' Speed:     '
+     65643A20
+     20202020
+003F BA        1348            db 0xBA
+0040 20202020  1349            db '            '
+     20202020
+     20202020
+004C BA        1350            db 0xBA
+004D 0A        1351            db 0x0A
+004E 00        1352            db 0x00
+004F           1353   __str_5:
+004F CC        1354            db 0xCC
+0050 CD        1355            db 0xCD
+0051 CD        1356            db 0xCD
+0052 CD        1357            db 0xCD
+0053 CD        1358            db 0xCD
+0054 CD        1359            db 0xCD
+0055 CD        1360            db 0xCD
+0056 CD        1361            db 0xCD
+0057 CD        1362            db 0xCD
+0058 CD        1363            db 0xCD
+0059 CD        1364            db 0xCD
+005A CD        1365            db 0xCD
+005B CD        1366            db 0xCD
+005C CE        1367            db 0xCE
+005D CD        1368            db 0xCD
+005E CD        1369            db 0xCD
+005F CD        1370            db 0xCD
+0060 CD        1371            db 0xCD
+0061 CD        1372            db 0xCD
+0062 CD        1373            db 0xCD
+0063 CD        1374            db 0xCD
+0064 CD        1375            db 0xCD
+0065 CD        1376            db 0xCD
+0066 CD        1377            db 0xCD
+0067 CD        1378            db 0xCD
+0068 CD        1379            db 0xCD
+0069 B9        1380            db 0xB9
+006A 0A        1381            db 0x0A
+006B 00        1382            db 0x00
+006C           1383   __str_6:
+006C BA        1384            db 0xBA
+006D 20446972  1385            db ' Direction: '
+     65637469
+     6F6E3A20
+0079 BA        1386            db 0xBA
+007A 20202020  1387            db '            '
+     20202020
+     20202020
+0086 BA        1388            db 0xBA
+0087 0A        1389            db 0x0A
+0088 00        1390            db 0x00
+0089           1391   __str_7:
+0089 BA        1392            db 0xBA
+008A 20202020  1393            db '            '
+     20202020
+     20202020
+0096 BA        1394            db 0xBA
+0097 20202020  1395            db '            '
+     20202020
+     20202020
+00A3 BA        1396            db 0xBA
+00A4 0A        1397            db 0x0A
+00A5 00        1398            db 0x00
+00A6           1399   __str_8:
+00A6 C8        1400            db 0xC8
+00A7 CD        1401            db 0xCD
+00A8 CD        1402            db 0xCD
+00A9 CD        1403            db 0xCD
+00AA CD        1404            db 0xCD
+00AB CD        1405            db 0xCD
+00AC CD        1406            db 0xCD
+00AD CD        1407            db 0xCD
+00AE CD        1408            db 0xCD
+00AF CD        1409            db 0xCD
+00B0 CD        1410            db 0xCD
+00B1 CD        1411            db 0xCD
+00B2 CD        1412            db 0xCD
+00B3 CA        1413            db 0xCA
+00B4 CD        1414            db 0xCD
+00B5 CD        1415            db 0xCD
+00B6 CD        1416            db 0xCD
+00B7 CD        1417            db 0xCD
+00B8 CD        1418            db 0xCD
+00B9 CD        1419            db 0xCD
+00BA CD        1420            db 0xCD
+00BB CD        1421            db 0xCD
+00BC CD        1422            db 0xCD
+00BD CD        1423            db 0xCD
+00BE CD        1424            db 0xCD
+00BF CD        1425            db 0xCD
+00C0 BC        1426            db 0xBC
+00C1 0A        1427            db 0x0A
+00C2 00        1428            db 0x00
+00C3           1429   __str_9:
+00C3 1B        1430            db 0x1B
+00C4 5B25643B  1431            db '[%d;%dH'
+     256448
+00CB 00        1432            db 0x00
+00CC           1433   __str_10:
+00CC 2564      1434            db '%d'
+00CE 00        1435            db 0x00
+00CF           1436   __str_11:
+00CF 2573      1437            db '%s'
+00D1 00        1438            db 0x00
+00D2           1439   __str_12:
+00D2 435720    1440            db 'CW '
+00D5 00        1441            db 0x00
+00D6           1442   __str_13:
+00D6 434357    1443            db 'CCW'
+00D9 00        1444            db 0x00
+00DA           1445   __str_14:
+00DA 7370643A  1446            db 'spd: %d%% %s                                     '
+     20256425
+     25202573
+     20202020
+     20202020
+     20202020
+     20202020
+     20202020
+     20202020
+     20202020
+     20202020
+     20202020
+     20
+010B 00        1447            db 0x00
+010C           1448   __str_15:
+010C 7C202020  1449            db '|   '
+0110 00        1450            db 0x00
+0111 00        1451            db 0x00
+0112           1452   __str_16:
+0112 4869      1453            db 'Hi'
+0114 00        1454            db 0x00
+0115           1455   __str_17:
+0115 4E657720  1456            db 'New Speed:'
+     53706565
+     643A
+011F 00        1457            db 0x00
+0120           1458   __str_18:
+0120 28302066  1459            db '(0 for CCW, 1 for CW)'
+     6F722043
+     43572C20
+     3120666F
+     72204357
+     29
+0135 00        1460            db 0x00
+0136           1461   __str_19:
+0136 4E657720  1462            db 'New Dir:'
+     4469723A
+013E 00        1463            db 0x00
+013F           1464   
+000E           1465            CSEG
+000E           1466   
+000E           1467   end

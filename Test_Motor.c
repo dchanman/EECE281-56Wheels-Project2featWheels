@@ -3,10 +3,16 @@
 
 unsigned char _c51_external_startup(void)
 {
+	General_Init();
 	Motor_Init();    
     return 0;
 }
 
+/**
+*Prints the interface to the screen
+*
+*DOES NOT WORK YET
+*/
 void updateUI(){
 //Print interface onto HyperTerminal
 		printf( CLEAR_SCREEN );
@@ -38,7 +44,76 @@ void main (void)
 	int input;
 		
 	while(1){
-		updateUI();		
+		printf( CLEAR_SCREEN);
+	
+		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
+		printf("Nothing is moving (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Set(MOTOR_LEFT, 100, MOTOR_FORWARD);
+		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
+		printf("left motor moving forward at 100 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Set(MOTOR_LEFT, 100, MOTOR_BACKWARD);
+		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);		
+		printf("left motor moving backward at 100 speed (Enter anything please) \n");
+		scanf("%d", &input);
+	
+		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+		Motor_Set(MOTOR_RIGHT, 100, MOTOR_FORWARD);
+		printf("right motor moving forward at 100 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+		Motor_Set(MOTOR_RIGHT, 100, MOTOR_BACKWARD);
+		printf("right motor moving backward at 100 speed (Enter anything please) \n");
+		scanf("%d", &input);
+
+		Motor_Set(MOTOR_LEFT, 50, MOTOR_FORWARD);
+		Motor_Set(MOTOR_RIGHT, 50, MOTOR_BACKWARD);		
+		printf("left forward, right backward at 50 speed (Enter anything please) \n");
+		scanf("%d", &input);
+
+		Motor_Set(MOTOR_RIGHT, 50, MOTOR_FORWARD);
+		Motor_Set(MOTOR_LEFT, 50, MOTOR_BACKWARD);		
+		printf("left backward, right forward at 50 speed (Enter anything please) \n");
+		scanf("%d", &input);
+
+		Motor_Forward(25);	
+		printf("both forward at 25 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Forward(50);	
+		printf("both forward at 50 speed (Enter anything please) \n");
+		scanf("%d", &input);
+
+		Motor_Forward(75);	
+		printf("both forward at 75 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Forward(100);	
+		printf("both forward at 75 speed (Enter anything please) \n");
+		scanf("%d", &input);
+
+		Motor_Backward(25);	
+		printf("both backward at 25 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Backward(50);
+		printf("both backward at 50 speed (Enter anything please) \n");
+		scanf("%d", &input);
+
+		Motor_Backward(75);	
+		printf("both backward at 75 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		Motor_Backward(100);	
+		printf("both backward at 75 speed (Enter anything please) \n");
+		scanf("%d", &input);
+		
+		/*
 		
 		//Get next speed value from HyperTerminal	
 		printf( FORE_BACK , COLOR_BLACK, COLOR_WHITE );
@@ -85,6 +160,7 @@ void main (void)
 		printf( GOTO_YX , 10, 18);
 		scanf("%d", &input);				
 		motor_l_direction = input;
+		*/
 		
 	}
 }

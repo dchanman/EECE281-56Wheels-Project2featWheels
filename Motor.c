@@ -6,6 +6,7 @@
 */
 void Motor_Init()
 {
+	printf("Motor Init\n");
 
 	// Initialize timer 0 for ISR 'pwmcounter()' below
 	TR0=0; // Stop timer 0
@@ -68,7 +69,7 @@ void pwmcounter (void) interrupt 1
 *@param: speed - speed that the motor will move (0-100)
 *@param: direction - direction the motor will move (MOTOR_FORWARD or MOTOR_BACKWARD)
 */
-void Motor_set(int motor, unsigned char speed, int direction){
+void Motor_Set(int motor, unsigned char speed, int direction){
 	if(motor == MOTOR_LEFT){
 		motor_l_speed = speed;
 		motor_l_direction = direction;
@@ -80,3 +81,16 @@ void Motor_set(int motor, unsigned char speed, int direction){
 }
 
 
+void Motor_Forward(unsigned char speed){
+	motor_l_speed = speed;
+	motor_r_speed = speed;
+	motor_l_direction = MOTOR_FORWARD;
+	motor_r_direction = MOTOR_FORWARD;
+}
+
+void Motor_Backward(unsigned char speed){
+	motor_l_speed = speed;
+	motor_r_speed = speed;
+	motor_l_direction = MOTOR_BACKWARD;
+	motor_r_direction = MOTOR_BACKWARD;
+}

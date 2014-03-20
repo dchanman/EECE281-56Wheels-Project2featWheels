@@ -28,6 +28,8 @@ volatile int motor_r_direction;
 
 void Motor_Init();
 void Motor_Set(int motor, unsigned char speed, int direction);
+void Motor_Forward(unsigned char speed);
+void Motor_Backward(unsigned char speed);
 
 #include "Motor.c"
 

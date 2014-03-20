@@ -1,35 +1,5 @@
 /**
-*LCD.c
-*
-*@author: 	Derek Chan
-*@date:		12 March, 2014
-*
-*Provides basic writing functions to a 
-*16-pin Liquid Crystal Display.
-*
-*/
-
-#include <stdio.h>
-#include <at89lp51rd2.h>
-
-#define CLK 22118400L
-#define BAUD 115200L
-#define TIMER_2_RELOAD (0x10000L-(CLK/(32L*BAUD)))
-
-#define LCD_D P1
-#define LCD_RS	P4_1
-#define LCD_E	P3_2
-
-#define LCD_ENABLE 1
-#define LCD_DISABLE 0
-
-void LCD_Delay(void);
-void LCD_Clear(void);
-void LCD_Put(unsigned char);
-void LCD_WriteSring(unsigned char*);
-void LCD_init(void);
-
-/**
+LCD_LongDelay
 Stalls the processor for 1.4ms, which 
 is required for calls to LCD_Clear
 */
@@ -46,6 +16,7 @@ void LCD_LongDelay(void){
 }
 
 /**
+LCD_ShortDelay
 Stalls the processor so that the LCD
 has enough time to do its work
 */
@@ -72,6 +43,7 @@ void LCD_Clear(){
 	LCD_ShortDelay();
 	LCD_E = LCD_DISABLE;
 	LCD_LongDelay();
+	
 }
 
 /**
@@ -105,6 +77,20 @@ void LCD_WriteString(unsigned char *c){
 }
 
 
+
+void LCD_Print(unsigned char *line1, unsigned char *line2, unsigned char buffer[]){
+	int k;
+	
+	for(k = 0; k < 16; k++){
+		buffer[k] = line1[k];
+		buffer[40+k] = line2[k];
+	}
+	
+	LCD_WriteString(buffer);
+
+}
+
+
 /**
 Initializes the LCD to be 8-bit, 2 lines, 5x7, 
 Display ON, Cursor ON, Cursor Blinking
@@ -118,3 +104,4 @@ void LCD_Init(){
     LCD_Put(((unsigned char)0b00000011));   //Entry Mode, Increment cursor position, No display shift
     return;
 }
+

@@ -80,7 +80,12 @@ void Motor_Set(int motor, unsigned char speed, int direction){
 	}
 }
 
-
+/**
+*Motor_Forward
+*
+*Turns both motors forward at the same speed
+*@param: speed - speed the motors will move (0-100)
+*/
 void Motor_Forward(unsigned char speed){
 	motor_l_speed = speed;
 	motor_r_speed = speed;
@@ -88,9 +93,44 @@ void Motor_Forward(unsigned char speed){
 	motor_r_direction = MOTOR_FORWARD;
 }
 
+/**
+*Motor_Backward
+*
+*Turns both motors backwards at the same speed
+*@param: speed - speed the motors will move (0-100)
+*/
 void Motor_Backward(unsigned char speed){
 	motor_l_speed = speed;
 	motor_r_speed = speed;
 	motor_l_direction = MOTOR_BACKWARD;
 	motor_r_direction = MOTOR_BACKWARD;
+}
+
+
+/**
+*Motor_TurnRight
+*
+*Turns both motors in opposite directions at the same speed.
+*The vehicle should remain stationary while turning right.
+*@param: speed - speed the motors will move (0-100)
+*/
+void Motor_TurnRight(unsigned char speed){
+	motor_l_speed = speed;
+	motor_r_speed = speed;
+	motor_r_direction = MOTOR_BACKWARD;
+	motor_l_direction = MOTOR_FORWARD;
+}
+
+/**
+*Motor_TurnLeft
+*
+*Turns both motors in opposite directions at the same speed.
+*The vehicle should remain stationary while turning left.
+*@param: speed - speed the motors will move (0-100)
+*/
+void Motor_TurnLeft(unsigned char speed){
+	motor_l_speed = speed;
+	motor_r_speed = speed;
+	motor_l_direction = MOTOR_BACKWARD;
+	motor_r_direction = MOTOR_FORWARD;
 }

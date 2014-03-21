@@ -1,0 +1,186 @@
+/**
+*Signal_SPIWrite
+*
+*Writes a value for SPI
+*/
+void Signal_SPIWrite(unsigned char value){
+	SPSTA&=(~SPIF); // Clear the SPIF flag in SPSTA
+	SPDAT=value;
+	while((SPSTA & SPIF)!=SPIF); //Wait for transmission to end
+}
+
+/**
+*Signal_GetADC
+*
+*Reads 10 bits from the MCP3004 ADC converter
+*@param: channel - the channel to be read
+*@returns: the value from the ADC (0-1023)
+*/
+unsigned int Signal_GetADC(unsigned char channel){
+	unsigned int adc;
+
+	// initialize the SPI port to read the MCP3004 ADC attached to it.
+	SPCON&=(~SPEN); // Disable SPI
+	SPCON=MSTR|CPOL|CPHA|SPR1|SPR0|SSDIS;
+	SPCON|=SPEN; // Enable SPI
+	
+	ADC_CE=0; // Activate the MCP3004 ADC.
+	Signal_SPIWrite(channel|0x18);	// Send start bit, single/diff* bit, D2, D1, and D0 bits.
+	for(adc=0; adc<10; adc++); // Wait for S/H to setup
+	Signal_SPIWrite(0x55); // Read bits 9 down to 4
+	adc=((SPDAT&0x3f)*0x100);
+	Signal_SPIWrite(0x55);// Read bits 3 down to 0
+	ADC_CE=1; // Deactivate the MCP3004 ADC.
+	adc+=(SPDAT&0xf0); // SPDR contains the low part of the result. 
+	adc>>=4;
+		
+	return adc;
+}
+
+/**
+*Signal_Voltage
+*
+*Gets the voltage read by the ADC in a specified channel
+*@param: channel - the channel to read
+*@return:	The voltage read from the specified channel
+*/
+float Signal_Voltage (unsigned char channel)
+{
+	//return ( (GetADC(channel)*4.88)/1023.0 ); // VCC=4.88V (measured)
+	if( channel == 2)
+		return( ( ((GetADC(channel)*ADC_VCC)/1023.0 ) + VDIODEL) / SQRT2 );
+	else
+		return( ( ((GetADC(channel)*ADC_VCC)/1023.0 ) + VDIODER) / SQRT2 );
+}
+
+/**
+*Signal_GetPhase
+*
+*Prints the difference in phase between signals
+*
+*(Unverified function. What does P2_0 and 2_1 do?)
+*@param: period - the period of the signal
+*/
+void Signal_GetPhase( float period )
+{
+	float timeDiff;
+	float phaseDiff;
+	
+	// Time difference between reference and test
+	TH0=0; TL0=0;	// Reset the timer
+	
+	// Reference signal
+	while(P2_0==1); //Wait for the signal to be zero
+	while(P2_0==0); //Wait for the signal to be one
+	TR0=1;	// Start timing
+	// Test signal
+	while(P2_1==1);	//Wait for the signal to be zero
+	while(P2_1==0); //Wait for the signal to be one
+	TR0=0;	// Stop timer 
+
+	// Calculate time difference
+	timeDiff = (TH0*256.0+TL0)*(12.0/CLK);
+	printf( "Time difference = %.4fs\n\r", timeDiff );
+	
+	// Calculate phase difference
+	phaseDiff = timeDiff / period * 360;
+	if(phaseDiff < 400 )
+	{
+
+		if( timeDiff > ( period / 2 ) )
+		{	
+			phaseDiff = 360 - phaseDiff;	
+			printf( "Phase difference = -%.1f degrees\n\n\r", phaseDiff ); 
+		}
+		else
+			printf( "Phase difference =  %.1f degrees\n\n\r", phaseDiff ); 
+	}
+}
+
+/**
+*Signal_Wait1s
+*
+*Stalls the processor for 1 second
+*@modifies: R2, R1, R0
+*/
+void Signal_Wait1s(void)
+{
+	_asm	
+		;For a 22.1184MHz crystal one machine cycle 
+		;takes 12/22.1184MHz=0.5425347us
+	    mov R2, #10
+	L3:	mov R1, #248
+	L2:	mov R0, #184
+	L1:	djnz R0, L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
+	    djnz R1, L2 ; 200us*250=0.05s
+	    djnz R2, L3 ; 0.05s*20=1s
+	    ret
+    _endasm;
+}
+
+/**
+*Signal_GetPeriod
+*
+*Gets the period of the signal
+*(This function has not been verified. 
+*	What does P2_0 do?)
+*
+*@return:	The period of the signal
+*/
+float Signal_GetPeriod(){
+	float period;
+	
+	// Measure period at P1.0 using timer 0
+	TH0=0; TL0=0;	// Reset the timer
+	
+	while(P2_0==1); //Wait for the signal to be zero	
+	while(P2_0==0); //Wait for the signal to be one
+	
+	TR0=1;	// Start timing
+	
+	while(P2_0==1);	//Wait for the signal to be zero
+	
+	TR0=0;	// Stop timer 0
+	
+	// [TH0, TL0] is half the period in multiples of 12/CLK, so:
+	period=(TH0*256.0+TL0)*(24.0/CLK);
+	
+	return period;
+}
+
+/**
+*Signal_GetFrequency
+*
+*Gets the frequency of the signal. The
+*frequency must be above 25Hz.
+*
+*(This function has not been verified. 
+*	What does P2_0 do?)
+*
+*@returns: The frequency of the signal, or -1 if 
+*			the frequency is less than 25Hz.
+*/
+float Signal_GetFrequency(){
+	float period, frequency;
+	
+	// Measure period at P1.0 using timer 0
+	TH0=0; TL0=0;	// Reset the timer
+	
+	while(P2_0==1); //Wait for the signal to be zero	
+	while(P2_0==0); //Wait for the signal to be one
+	
+	TR0=1;	// Start timing
+	
+	while(P2_0==1);	//Wait for the signal to be zero
+	
+	TR0=0;	// Stop timer 0
+	
+	// [TH0, TL0] is half the period in multiples of 12/CLK, so:
+	period=(TH0*256.0+TL0)*(24.0/CLK);
+	
+	if(TH0 != 0){
+		return (1.0/period);
+	}
+	return -1;
+}
+

@@ -1,5 +1,18 @@
+
 #include "General.h"
 #include "Motor.h"
+
+#define SW	P4_4
+
+void debounce(void){
+	_asm
+		;For a 22.1184MHz crystal one machine cycle 
+		;takes 12/22.1184MHz=0.5425347us
+		mov R0, #46
+		shortL1: djnz R0,shortL1  ; 2 machine cycles-> 2*0.5425347us*184=49.9us
+		ret
+	_endasm;
+}
 
 unsigned char _c51_external_startup(void)
 {
@@ -40,78 +53,106 @@ void updateUI(){
 }
 
 void main (void)
-{
-	int input;
-		
+{		
 	while(1){
 		printf( CLEAR_SCREEN);
 	
 		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
 		printf("Nothing is moving (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Set(MOTOR_LEFT, 100, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
 		printf("left motor moving forward at 100 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Set(MOTOR_LEFT, 100, MOTOR_BACKWARD);
 		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);		
 		printf("left motor moving backward at 100 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 	
 		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 100, MOTOR_FORWARD);
 		printf("right motor moving forward at 100 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 100, MOTOR_BACKWARD);
 		printf("right motor moving backward at 100 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 
 		Motor_Set(MOTOR_LEFT, 50, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 50, MOTOR_BACKWARD);		
 		printf("left forward, right backward at 50 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 
 		Motor_Set(MOTOR_RIGHT, 50, MOTOR_FORWARD);
 		Motor_Set(MOTOR_LEFT, 50, MOTOR_BACKWARD);		
 		printf("left backward, right forward at 50 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 
 		Motor_Forward(25);	
 		printf("both forward at 25 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Forward(50);	
 		printf("both forward at 50 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 
 		Motor_Forward(75);	
 		printf("both forward at 75 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Forward(100);	
-		printf("both forward at 75 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		printf("both forward at 100 speed (Enter anything please) \n");
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 
 		Motor_Backward(25);	
 		printf("both backward at 25 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Backward(50);
 		printf("both backward at 50 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 
 		Motor_Backward(75);	
 		printf("both backward at 75 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		Motor_Backward(100);	
-		printf("both backward at 75 speed (Enter anything please) \n");
-		scanf("%d", &input);
+		printf("both backward at 100 speed (Enter anything please) \n");
+		while(SW == 0);
+		debounce();
+		while(SW == 1);
 		
 		/*
 		

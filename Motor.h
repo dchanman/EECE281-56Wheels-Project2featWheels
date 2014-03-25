@@ -1,9 +1,9 @@
 #ifndef MOTOR_H_
 #define MOTOR_H_ 0
 
-//We want timer 0 to interrupt every 100 microseconds ((1/10000Hz)=100 us)
+//We want timer 1 to interrupt every 100 microseconds ((1/10000Hz)=100 us)
 #define FREQ 10000L
-#define TIMER0_RELOAD_VALUE (65536L-(CLK/(12L*FREQ)))
+#define TIMER1_RELOAD_VALUE (65536L-(CLK/(12L*FREQ)))
 
 //Output for our PWM
 #define MOTOR_L_FORWARD		P4_3

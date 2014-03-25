@@ -2,23 +2,23 @@
 *Motor_Init
 *
 *Initializes the variables for the motor.
-*Sets up Timer 0 and enables interrupts.
+*Sets up Timer 1 and enables interrupts.
 */
 void Motor_Init()
 {
 	printf("Motor Init\n");
 
-	// Initialize timer 0 for ISR 'pwmcounter()' below
-	TR0=0; // Stop timer 0
-	TMOD=0x01; // 16-bit timer
+	// Initialize timer 1 for ISR 'pwmcounter()' below
+	TR1=0; // Stop timer 1
+	TMOD |= 0x10; // 16-bit timer
 	// Use the autoreload feature available in the AT89LP51RB2
 	// WARNING: There was an error in at89lp51rd2.h that prevents the
 	// autoreload feature to work.  Please download a newer at89lp51rd2.h
 	// file and copy it to the crosside\call51\include folder.
-	TH0=RH0=TIMER0_RELOAD_VALUE/0x100;
-	TL0=RL0=TIMER0_RELOAD_VALUE%0x100;
-	TR0=1; // Start timer 0 (bit 4 in TCON)
-	ET0=1; // Enable timer 0 interrupt
+	TH1=RH1=TIMER1_RELOAD_VALUE/0x100;
+	TL1=RL1=TIMER1_RELOAD_VALUE%0x100;
+	TR1=1; // Start timer 1 (bit 4 in TCON)
+	ET1=1; // Enable timer 1 interrupt
 	EA=1;  // Enable global interrupts
 	
 	pwmcount=0;
@@ -32,11 +32,11 @@ void Motor_Init()
 /**
 *pwmcounter
 *
-*Timer 0 interrupt function. This function is executed
+*Timer 1 interrupt function. This function is executed
 *every 100us. This function causes the motors to turn
 *according to the motor variables
 */
-void pwmcounter (void) interrupt 1
+void pwmcounter (void) interrupt 3
 {
 	if(++pwmcount>99){
 		pwmcount=0;

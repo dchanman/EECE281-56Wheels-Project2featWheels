@@ -13,10 +13,6 @@
 #ifndef LCD_H_
 #define LCD_H_ 0 
 
-#define LCD_D P1
-#define LCD_RS	P4_1
-#define LCD_E	P3_2
-
 #define LCD_ENABLE 1
 #define LCD_DISABLE 0
 

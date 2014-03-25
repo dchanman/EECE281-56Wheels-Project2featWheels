@@ -19,6 +19,42 @@
 #define BAUD 115200L
 #define BRG_VAL (0x100-(CLK/(32L*BAUD)))
 
+//Pin assignments
+	//LCD pins
+#define LCD_D P1
+#define LCD_RS	P4_1
+#define LCD_E	P3_2
+
+	//Motor pins
+#define MOTOR_L_FORWARD		P4_3
+#define MOTOR_L_BACKWARD	P3_7
+#define MOTOR_R_FORWARD		P3_6
+#define	MOTOR_R_BACKWARD	P3_5
+
+	//ADC pins
+#define ADC_MISO	P0_5
+#define ADC_MOSI	P0_7
+#define ADC_SCK		P0_6
+#define ADC_CE		P0_4	//active low
+
+	//Analog IR pins
+#define IR_ANALOG_ON 		P2_0
+#define IR_ANALOG_OUTPUT	P2_1
+
+/*
+		P0			P1			P2			P3			P4
+.0					LCD			IR_ANALOG
+.1					LCD			IR_ANALOG				LCD		
+.2					LCD						LCD
+.3					LCD									MOTOR
+.4		ADC			LCD
+.5		ADC			LCD						MOTOR
+.6		ADC			LCD						MOTOR
+.7		ADC			LCD						MOTOR
+
+*/
+
+
 /* ANSI colors */
 #define	COLOR_BLACK		0
 #define	COLOR_RED		1

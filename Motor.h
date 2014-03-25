@@ -5,12 +5,6 @@
 #define FREQ 10000L
 #define TIMER1_RELOAD_VALUE (65536L-(CLK/(12L*FREQ)))
 
-//Output for our PWM
-#define MOTOR_L_FORWARD		P4_3
-#define MOTOR_L_BACKWARD	P3_7
-#define MOTOR_R_FORWARD		P3_6
-#define	MOTOR_R_BACKWARD	P3_5
-
 //Wheel select
 #define MOTOR_LEFT	0
 #define MOTOR_RIGHT	1

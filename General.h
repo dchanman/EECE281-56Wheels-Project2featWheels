@@ -12,6 +12,7 @@
 #define GENERAL_H_ 0
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <at89lp51rd2.h>
 
 #define CLK 22118400L

@@ -38,7 +38,13 @@ void Motor_Init()
 */
 void pwmcounter (void) interrupt 3
 {
-	if(++pwmcount>99){
+	if(IR_DETECT == IR_SOMETHING){
+		MOTOR_L_FORWARD		=	0;
+		MOTOR_L_BACKWARD	= 	0;
+		MOTOR_R_FORWARD		=	0;
+		MOTOR_R_BACKWARD	= 	0;
+	}
+	else if(++pwmcount>99){
 		pwmcount=0;
 	}
 	if(motor_l_direction == MOTOR_FORWARD){

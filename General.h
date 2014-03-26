@@ -38,13 +38,12 @@
 #define ADC_CE		P0_4	//active low
 
 	//Analog IR pins
-#define IR_ANALOG_ON 		P2_0
-#define IR_ANALOG_OUTPUT	P2_1
+#define IR_DETECT			P2_0
 
 /*
 		P0			P1			P2			P3			P4
 .0					LCD			IR_ANALOG
-.1					LCD			IR_ANALOG				LCD		
+.1					LCD			 						LCD		
 .2					LCD						LCD
 .3					LCD									MOTOR
 .4		ADC			LCD

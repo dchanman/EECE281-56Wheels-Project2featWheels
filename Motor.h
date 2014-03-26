@@ -13,6 +13,10 @@
 #define MOTOR_FORWARD 	1
 #define MOTOR_BACKWARD 	0
 
+//IR Sensor
+#define IR_SOMETHING 0
+#define IR_NOTHING 1
+
 //These variables are used in the ISR
 volatile unsigned char pwmcount;
 volatile unsigned char motor_l_speed;

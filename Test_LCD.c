@@ -1,35 +1,14 @@
-#include <stdio.h>
-#include <at89lp51rd2.h>
+#include "General.h"
 #include "LCD.h"
 //#include "LCD.c"
 
-#define CLK 22118400L
-#define BAUD 115200L
-#define BRG_VAL (0x100-(CLK/(32L*BAUD)))
 
 
 unsigned char _c51_external_startup(void)
 {
-	// Configure ports as a bidirectional with internal pull-ups.
-	P0M0=0;	P0M1=0;
-	P1M0=0;	P1M1=0;
-	P2M0=0;	P2M1=0;
-	P3M0=0;	P3M1=0;
-	AUXR=0B_0001_0001; // 1152 bytes of internal XDATA, P4.4 is a general purpose I/O
-	P4M0=0;	P4M1=0;
-    
-    // Initialize the serial port and baud rate generator
-    PCON|=0x80;
-	SCON = 0x52;
-    BDRCON=0;
-    BRL=BRG_VAL;
-    BDRCON=BRR|TBCK|RBCK|SPD;
-	
-	
-	printf("hi\n");
-	
-	LCD_Init();
-	
+	General_Init();		
+	printf("hi\n");	
+	LCD_Init();	
 	printf("ho\n");
     
     return 0;
@@ -49,6 +28,7 @@ void main(){
 		sprintf(row, "0123456789ABCDEF");
 		
 		LCD_WriteString(buffer);
+		//LCD_WriteString("12345678901234567890ABCDEFGHIJKLMNOPqrstuvwxyz1234");
 		for(k = 0; k < 1000; k++){
 			LCD_LongDelay();
 			

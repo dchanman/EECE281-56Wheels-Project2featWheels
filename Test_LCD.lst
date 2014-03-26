@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1034 (Dec 12 2012) (MSVC)
-0000              4   ; This file was generated Tue Mar 18 17:05:00 2014
+0000              4   ; This file was generated Tue Mar 25 20:02:53 2014
 0000              5   ;--------------------------------------------------------
                   5   $name Test_LCD
                   6   $optc51 --model-small
@@ -30,770 +30,783 @@
 0000             30            public _LCD_Clear
 0000             31            public _LCD_LongDelay
 0000             32            public _LCD_Print
-0000             33            public _LCD_Print_PARM_3
-0000             34            public _LCD_Print_PARM_2
-0000             35   ;--------------------------------------------------------
-0000             36   ; Special Function Registers
-0000             37   ;--------------------------------------------------------
-0000             38   _ACC            DATA 0xe0
-0000             39   _B              DATA 0xf0
-0000             40   _PSW            DATA 0xd0
-0000             41   _SP             DATA 0x81
-0000             42   _SPX            DATA 0xef
-0000             43   _DPL            DATA 0x82
-0000             44   _DPH            DATA 0x83
-0000             45   _DPLB           DATA 0xd4
-0000             46   _DPHB           DATA 0xd5
-0000             47   _PAGE           DATA 0xf6
-0000             48   _AX             DATA 0xe1
-0000             49   _BX             DATA 0xf7
-0000             50   _DSPR           DATA 0xe2
-0000             51   _FIRD           DATA 0xe3
-0000             52   _MACL           DATA 0xe4
-0000             53   _MACH           DATA 0xe5
-0000             54   _PCON           DATA 0x87
-0000             55   _AUXR           DATA 0x8e
-0000             56   _AUXR1          DATA 0xa2
-0000             57   _DPCF           DATA 0xa1
-0000             58   _CKRL           DATA 0x97
-0000             59   _CKCKON0        DATA 0x8f
-0000             60   _CKCKON1        DATA 0xaf
-0000             61   _CKSEL          DATA 0x85
-0000             62   _CLKREG         DATA 0xae
-0000             63   _OSCCON         DATA 0x85
-0000             64   _IE             DATA 0xa8
-0000             65   _IEN0           DATA 0xa8
-0000             66   _IEN1           DATA 0xb1
-0000             67   _IPH0           DATA 0xb7
-0000             68   _IP             DATA 0xb8
-0000             69   _IPL0           DATA 0xb8
-0000             70   _IPH1           DATA 0xb3
-0000             71   _IPL1           DATA 0xb2
-0000             72   _P0             DATA 0x80
-0000             73   _P1             DATA 0x90
-0000             74   _P2             DATA 0xa0
-0000             75   _P3             DATA 0xb0
-0000             76   _P4             DATA 0xc0
-0000             77   _P0M0           DATA 0xe6
-0000             78   _P0M1           DATA 0xe7
-0000             79   _P1M0           DATA 0xd6
-0000             80   _P1M1           DATA 0xd7
-0000             81   _P2M0           DATA 0xce
-0000             82   _P2M1           DATA 0xcf
-0000             83   _P3M0           DATA 0xc6
-0000             84   _P3M1           DATA 0xc7
-0000             85   _P4M0           DATA 0xbe
-0000             86   _P4M1           DATA 0xbf
-0000             87   _SCON           DATA 0x98
-0000             88   _SBUF           DATA 0x99
-0000             89   _SADEN          DATA 0xb9
-0000             90   _SADDR          DATA 0xa9
-0000             91   _BDRCON         DATA 0x9b
-0000             92   _BRL            DATA 0x9a
-0000             93   _TCON           DATA 0x88
-0000             94   _TMOD           DATA 0x89
-0000             95   _TCONB          DATA 0x91
-0000             96   _TL0            DATA 0x8a
-0000             97   _TH0            DATA 0x8c
-0000             98   _TL1            DATA 0x8b
-0000             99   _TH1            DATA 0x8d
-0000            100   _RL0            DATA 0xf2
-0000            101   _RH0            DATA 0xf4
-0000            102   _RL1            DATA 0xf3
-0000            103   _RH1            DATA 0xf5
-0000            104   _WDTRST         DATA 0xa6
-0000            105   _WDTPRG         DATA 0xa7
-0000            106   _T2CON          DATA 0xc8
-0000            107   _T2MOD          DATA 0xc9
-0000            108   _RCAP2H         DATA 0xcb
-0000            109   _RCAP2L         DATA 0xca
-0000            110   _TH2            DATA 0xcd
-0000            111   _TL2            DATA 0xcc
-0000            112   _SPCON          DATA 0xc3
-0000            113   _SPSTA          DATA 0xc4
-0000            114   _SPDAT          DATA 0xc5
-0000            115   _SSCON          DATA 0x93
-0000            116   _SSCS           DATA 0x94
-0000            117   _SSDAT          DATA 0x95
-0000            118   _SSADR          DATA 0x96
-0000            119   _KBLS           DATA 0x9c
-0000            120   _KBE            DATA 0x9d
-0000            121   _KBF            DATA 0x9e
-0000            122   _KBMOD          DATA 0x9f
-0000            123   _BMSEL          DATA 0x92
-0000            124   _FCON           DATA 0xd2
-0000            125   _EECON          DATA 0xd2
-0000            126   _ACSRA          DATA 0xa3
-0000            127   _ACSRB          DATA 0xab
-0000            128   _AREF           DATA 0xbd
-0000            129   _DADC           DATA 0xa4
-0000            130   _DADI           DATA 0xa5
-0000            131   _DADL           DATA 0xac
-0000            132   _DADH           DATA 0xad
-0000            133   _CCON           DATA 0xd8
-0000            134   _CMOD           DATA 0xd9
-0000            135   _CL             DATA 0xe9
-0000            136   _CH             DATA 0xf9
-0000            137   _CCAPM0         DATA 0xda
-0000            138   _CCAPM1         DATA 0xdb
-0000            139   _CCAPM2         DATA 0xdc
-0000            140   _CCAPM3         DATA 0xdd
-0000            141   _CCAPM4         DATA 0xde
-0000            142   _CCAP0H         DATA 0xfa
-0000            143   _CCAP1H         DATA 0xfb
-0000            144   _CCAP2H         DATA 0xfc
-0000            145   _CCAP3H         DATA 0xfd
-0000            146   _CCAP4H         DATA 0xfe
-0000            147   _CCAP0L         DATA 0xea
-0000            148   _CCAP1L         DATA 0xeb
-0000            149   _CCAP2L         DATA 0xec
-0000            150   _CCAP3L         DATA 0xed
-0000            151   _CCAP4L         DATA 0xee
-0000            152   ;--------------------------------------------------------
-0000            153   ; special function bits
-0000            154   ;--------------------------------------------------------
-0000            155   _ACC_0          BIT 0xe0
-0000            156   _ACC_1          BIT 0xe1
-0000            157   _ACC_2          BIT 0xe2
-0000            158   _ACC_3          BIT 0xe3
-0000            159   _ACC_4          BIT 0xe4
-0000            160   _ACC_5          BIT 0xe5
-0000            161   _ACC_6          BIT 0xe6
-0000            162   _ACC_7          BIT 0xe7
-0000            163   _B_0            BIT 0xf0
-0000            164   _B_1            BIT 0xf1
-0000            165   _B_2            BIT 0xf2
-0000            166   _B_3            BIT 0xf3
-0000            167   _B_4            BIT 0xf4
-0000            168   _B_5            BIT 0xf5
-0000            169   _B_6            BIT 0xf6
-0000            170   _B_7            BIT 0xf7
-0000            171   _P              BIT 0xd0
-0000            172   _F1             BIT 0xd1
-0000            173   _OV             BIT 0xd2
-0000            174   _RS0            BIT 0xd3
-0000            175   _RS1            BIT 0xd4
-0000            176   _F0             BIT 0xd5
-0000            177   _AC             BIT 0xd6
-0000            178   _CY             BIT 0xd7
-0000            179   _EX0            BIT 0xa8
-0000            180   _ET0            BIT 0xa9
-0000            181   _EX1            BIT 0xaa
-0000            182   _ET1            BIT 0xab
-0000            183   _ES             BIT 0xac
-0000            184   _ET2            BIT 0xad
-0000            185   _EC             BIT 0xae
-0000            186   _EA             BIT 0xaf
-0000            187   _PX0            BIT 0xb8
-0000            188   _PT0            BIT 0xb9
-0000            189   _PX1            BIT 0xba
-0000            190   _PT1            BIT 0xbb
-0000            191   _PS             BIT 0xbc
-0000            192   _PT2            BIT 0xbd
-0000            193   _IP0D           BIT 0xbf
-0000            194   _PPCL           BIT 0xbe
-0000            195   _PT2L           BIT 0xbd
-0000            196   _PLS            BIT 0xbc
-0000            197   _PT1L           BIT 0xbb
-0000            198   _PX1L           BIT 0xba
-0000            199   _PT0L           BIT 0xb9
-0000            200   _PX0L           BIT 0xb8
-0000            201   _P0_0           BIT 0x80
-0000            202   _P0_1           BIT 0x81
-0000            203   _P0_2           BIT 0x82
-0000            204   _P0_3           BIT 0x83
-0000            205   _P0_4           BIT 0x84
-0000            206   _P0_5           BIT 0x85
-0000            207   _P0_6           BIT 0x86
-0000            208   _P0_7           BIT 0x87
-0000            209   _P1_0           BIT 0x90
-0000            210   _P1_1           BIT 0x91
-0000            211   _P1_2           BIT 0x92
-0000            212   _P1_3           BIT 0x93
-0000            213   _P1_4           BIT 0x94
-0000            214   _P1_5           BIT 0x95
-0000            215   _P1_6           BIT 0x96
-0000            216   _P1_7           BIT 0x97
-0000            217   _P2_0           BIT 0xa0
-0000            218   _P2_1           BIT 0xa1
-0000            219   _P2_2           BIT 0xa2
-0000            220   _P2_3           BIT 0xa3
-0000            221   _P2_4           BIT 0xa4
-0000            222   _P2_5           BIT 0xa5
-0000            223   _P2_6           BIT 0xa6
-0000            224   _P2_7           BIT 0xa7
-0000            225   _P3_0           BIT 0xb0
-0000            226   _P3_1           BIT 0xb1
-0000            227   _P3_2           BIT 0xb2
-0000            228   _P3_3           BIT 0xb3
-0000            229   _P3_4           BIT 0xb4
-0000            230   _P3_5           BIT 0xb5
-0000            231   _P3_6           BIT 0xb6
-0000            232   _P3_7           BIT 0xb7
-0000            233   _RXD            BIT 0xb0
-0000            234   _TXD            BIT 0xb1
-0000            235   _INT0           BIT 0xb2
-0000            236   _INT1           BIT 0xb3
-0000            237   _T0             BIT 0xb4
-0000            238   _T1             BIT 0xb5
-0000            239   _WR             BIT 0xb6
-0000            240   _RD             BIT 0xb7
-0000            241   _P4_0           BIT 0xc0
-0000            242   _P4_1           BIT 0xc1
-0000            243   _P4_2           BIT 0xc2
-0000            244   _P4_3           BIT 0xc3
-0000            245   _P4_4           BIT 0xc4
-0000            246   _P4_5           BIT 0xc5
-0000            247   _P4_6           BIT 0xc6
-0000            248   _P4_7           BIT 0xc7
-0000            249   _RI             BIT 0x98
-0000            250   _TI             BIT 0x99
-0000            251   _RB8            BIT 0x9a
-0000            252   _TB8            BIT 0x9b
-0000            253   _REN            BIT 0x9c
-0000            254   _SM2            BIT 0x9d
-0000            255   _SM1            BIT 0x9e
-0000            256   _SM0            BIT 0x9f
-0000            257   _IT0            BIT 0x88
-0000            258   _IE0            BIT 0x89
-0000            259   _IT1            BIT 0x8a
-0000            260   _IE1            BIT 0x8b
-0000            261   _TR0            BIT 0x8c
-0000            262   _TF0            BIT 0x8d
-0000            263   _TR1            BIT 0x8e
-0000            264   _TF1            BIT 0x8f
-0000            265   _CP_RL2         BIT 0xc8
-0000            266   _C_T2           BIT 0xc9
-0000            267   _TR2            BIT 0xca
-0000            268   _EXEN2          BIT 0xcb
-0000            269   _TCLK           BIT 0xcc
-0000            270   _RCLK           BIT 0xcd
-0000            271   _EXF2           BIT 0xce
-0000            272   _TF2            BIT 0xcf
-0000            273   _CF             BIT 0xdf
-0000            274   _CR             BIT 0xde
-0000            275   _CCF4           BIT 0xdc
-0000            276   _CCF3           BIT 0xdb
-0000            277   _CCF2           BIT 0xda
-0000            278   _CCF1           BIT 0xd9
-0000            279   _CCF0           BIT 0xd8
-0000            280   ;--------------------------------------------------------
-0000            281   ; overlayable register banks
-0000            282   ;--------------------------------------------------------
-0000            283            rbank0 segment data overlay
-0000            284   ;--------------------------------------------------------
-0000            285   ; internal ram data
-0000            286   ;--------------------------------------------------------
-0000            287            rseg R_DSEG
-0000            288   _LCD_Print_PARM_2:
-0000            289            ds 3
-0003            290   _LCD_Print_PARM_3:
-0003            291            ds 3
-0006            292   _LCD_Print_line1_1_33:
-0006            293            ds 3
-0009            294   _main_buffer_1_45:
-0009            295            ds 56
-0041            296   ;--------------------------------------------------------
-0041            297   ; overlayable items in internal ram 
-0041            298   ;--------------------------------------------------------
-0000            299            rseg R_OSEG
-0000            300   ;--------------------------------------------------------
-0000            301   ; indirectly addressable internal ram data
-0000            302   ;--------------------------------------------------------
-0000            303            rseg R_ISEG
-0000            304   ;--------------------------------------------------------
-0000            305   ; absolute internal ram data
-0000            306   ;--------------------------------------------------------
-0000            307            DSEG
-0000            308   ;--------------------------------------------------------
-0000            309   ; bit data
-0000            310   ;--------------------------------------------------------
-0000            311            rseg R_BSEG
-0000            312   ;--------------------------------------------------------
-0000            313   ; paged external ram data
-0000            314   ;--------------------------------------------------------
-0000            315            rseg R_PSEG
-0000            316   ;--------------------------------------------------------
-0000            317   ; external ram data
-0000            318   ;--------------------------------------------------------
-0000            319            rseg R_XSEG
-0000            320   ;--------------------------------------------------------
-0000            321   ; absolute external ram data
-0000            322   ;--------------------------------------------------------
-0000            323            XSEG
-0000            324   ;--------------------------------------------------------
-0000            325   ; external initialized ram data
-0000            326   ;--------------------------------------------------------
-0000            327            rseg R_IXSEG
-0000            328            rseg R_HOME
-0000            329            rseg R_GSINIT
-0000            330            rseg R_CSEG
-0000            331   ;--------------------------------------------------------
-0000            332   ; Reset entry point and interrupt vectors
-0000            333   ;--------------------------------------------------------
-0000            334            CSEG at 0x0000
-0000 020100     335            ljmp    _crt0
-0003            336   ;--------------------------------------------------------
-0003            337   ; global & static initialisations
-0003            338   ;--------------------------------------------------------
-0000            339            rseg R_HOME
-0000            340            rseg R_GSINIT
+0000             33            public _General_Init
+0000             34            public _LCD_Print_PARM_3
+0000             35            public _LCD_Print_PARM_2
+0000             36   ;--------------------------------------------------------
+0000             37   ; Special Function Registers
+0000             38   ;--------------------------------------------------------
+0000             39   _ACC            DATA 0xe0
+0000             40   _B              DATA 0xf0
+0000             41   _PSW            DATA 0xd0
+0000             42   _SP             DATA 0x81
+0000             43   _SPX            DATA 0xef
+0000             44   _DPL            DATA 0x82
+0000             45   _DPH            DATA 0x83
+0000             46   _DPLB           DATA 0xd4
+0000             47   _DPHB           DATA 0xd5
+0000             48   _PAGE           DATA 0xf6
+0000             49   _AX             DATA 0xe1
+0000             50   _BX             DATA 0xf7
+0000             51   _DSPR           DATA 0xe2
+0000             52   _FIRD           DATA 0xe3
+0000             53   _MACL           DATA 0xe4
+0000             54   _MACH           DATA 0xe5
+0000             55   _PCON           DATA 0x87
+0000             56   _AUXR           DATA 0x8e
+0000             57   _AUXR1          DATA 0xa2
+0000             58   _DPCF           DATA 0xa1
+0000             59   _CKRL           DATA 0x97
+0000             60   _CKCKON0        DATA 0x8f
+0000             61   _CKCKON1        DATA 0xaf
+0000             62   _CKSEL          DATA 0x85
+0000             63   _CLKREG         DATA 0xae
+0000             64   _OSCCON         DATA 0x85
+0000             65   _IE             DATA 0xa8
+0000             66   _IEN0           DATA 0xa8
+0000             67   _IEN1           DATA 0xb1
+0000             68   _IPH0           DATA 0xb7
+0000             69   _IP             DATA 0xb8
+0000             70   _IPL0           DATA 0xb8
+0000             71   _IPH1           DATA 0xb3
+0000             72   _IPL1           DATA 0xb2
+0000             73   _P0             DATA 0x80
+0000             74   _P1             DATA 0x90
+0000             75   _P2             DATA 0xa0
+0000             76   _P3             DATA 0xb0
+0000             77   _P4             DATA 0xc0
+0000             78   _P0M0           DATA 0xe6
+0000             79   _P0M1           DATA 0xe7
+0000             80   _P1M0           DATA 0xd6
+0000             81   _P1M1           DATA 0xd7
+0000             82   _P2M0           DATA 0xce
+0000             83   _P2M1           DATA 0xcf
+0000             84   _P3M0           DATA 0xc6
+0000             85   _P3M1           DATA 0xc7
+0000             86   _P4M0           DATA 0xbe
+0000             87   _P4M1           DATA 0xbf
+0000             88   _SCON           DATA 0x98
+0000             89   _SBUF           DATA 0x99
+0000             90   _SADEN          DATA 0xb9
+0000             91   _SADDR          DATA 0xa9
+0000             92   _BDRCON         DATA 0x9b
+0000             93   _BRL            DATA 0x9a
+0000             94   _TCON           DATA 0x88
+0000             95   _TMOD           DATA 0x89
+0000             96   _TCONB          DATA 0x91
+0000             97   _TL0            DATA 0x8a
+0000             98   _TH0            DATA 0x8c
+0000             99   _TL1            DATA 0x8b
+0000            100   _TH1            DATA 0x8d
+0000            101   _RL0            DATA 0xf2
+0000            102   _RH0            DATA 0xf4
+0000            103   _RL1            DATA 0xf3
+0000            104   _RH1            DATA 0xf5
+0000            105   _WDTRST         DATA 0xa6
+0000            106   _WDTPRG         DATA 0xa7
+0000            107   _T2CON          DATA 0xc8
+0000            108   _T2MOD          DATA 0xc9
+0000            109   _RCAP2H         DATA 0xcb
+0000            110   _RCAP2L         DATA 0xca
+0000            111   _TH2            DATA 0xcd
+0000            112   _TL2            DATA 0xcc
+0000            113   _SPCON          DATA 0xc3
+0000            114   _SPSTA          DATA 0xc4
+0000            115   _SPDAT          DATA 0xc5
+0000            116   _SSCON          DATA 0x93
+0000            117   _SSCS           DATA 0x94
+0000            118   _SSDAT          DATA 0x95
+0000            119   _SSADR          DATA 0x96
+0000            120   _KBLS           DATA 0x9c
+0000            121   _KBE            DATA 0x9d
+0000            122   _KBF            DATA 0x9e
+0000            123   _KBMOD          DATA 0x9f
+0000            124   _BMSEL          DATA 0x92
+0000            125   _FCON           DATA 0xd2
+0000            126   _EECON          DATA 0xd2
+0000            127   _ACSRA          DATA 0xa3
+0000            128   _ACSRB          DATA 0xab
+0000            129   _AREF           DATA 0xbd
+0000            130   _DADC           DATA 0xa4
+0000            131   _DADI           DATA 0xa5
+0000            132   _DADL           DATA 0xac
+0000            133   _DADH           DATA 0xad
+0000            134   _CCON           DATA 0xd8
+0000            135   _CMOD           DATA 0xd9
+0000            136   _CL             DATA 0xe9
+0000            137   _CH             DATA 0xf9
+0000            138   _CCAPM0         DATA 0xda
+0000            139   _CCAPM1         DATA 0xdb
+0000            140   _CCAPM2         DATA 0xdc
+0000            141   _CCAPM3         DATA 0xdd
+0000            142   _CCAPM4         DATA 0xde
+0000            143   _CCAP0H         DATA 0xfa
+0000            144   _CCAP1H         DATA 0xfb
+0000            145   _CCAP2H         DATA 0xfc
+0000            146   _CCAP3H         DATA 0xfd
+0000            147   _CCAP4H         DATA 0xfe
+0000            148   _CCAP0L         DATA 0xea
+0000            149   _CCAP1L         DATA 0xeb
+0000            150   _CCAP2L         DATA 0xec
+0000            151   _CCAP3L         DATA 0xed
+0000            152   _CCAP4L         DATA 0xee
+0000            153   ;--------------------------------------------------------
+0000            154   ; special function bits
+0000            155   ;--------------------------------------------------------
+0000            156   _ACC_0          BIT 0xe0
+0000            157   _ACC_1          BIT 0xe1
+0000            158   _ACC_2          BIT 0xe2
+0000            159   _ACC_3          BIT 0xe3
+0000            160   _ACC_4          BIT 0xe4
+0000            161   _ACC_5          BIT 0xe5
+0000            162   _ACC_6          BIT 0xe6
+0000            163   _ACC_7          BIT 0xe7
+0000            164   _B_0            BIT 0xf0
+0000            165   _B_1            BIT 0xf1
+0000            166   _B_2            BIT 0xf2
+0000            167   _B_3            BIT 0xf3
+0000            168   _B_4            BIT 0xf4
+0000            169   _B_5            BIT 0xf5
+0000            170   _B_6            BIT 0xf6
+0000            171   _B_7            BIT 0xf7
+0000            172   _P              BIT 0xd0
+0000            173   _F1             BIT 0xd1
+0000            174   _OV             BIT 0xd2
+0000            175   _RS0            BIT 0xd3
+0000            176   _RS1            BIT 0xd4
+0000            177   _F0             BIT 0xd5
+0000            178   _AC             BIT 0xd6
+0000            179   _CY             BIT 0xd7
+0000            180   _EX0            BIT 0xa8
+0000            181   _ET0            BIT 0xa9
+0000            182   _EX1            BIT 0xaa
+0000            183   _ET1            BIT 0xab
+0000            184   _ES             BIT 0xac
+0000            185   _ET2            BIT 0xad
+0000            186   _EC             BIT 0xae
+0000            187   _EA             BIT 0xaf
+0000            188   _PX0            BIT 0xb8
+0000            189   _PT0            BIT 0xb9
+0000            190   _PX1            BIT 0xba
+0000            191   _PT1            BIT 0xbb
+0000            192   _PS             BIT 0xbc
+0000            193   _PT2            BIT 0xbd
+0000            194   _IP0D           BIT 0xbf
+0000            195   _PPCL           BIT 0xbe
+0000            196   _PT2L           BIT 0xbd
+0000            197   _PLS            BIT 0xbc
+0000            198   _PT1L           BIT 0xbb
+0000            199   _PX1L           BIT 0xba
+0000            200   _PT0L           BIT 0xb9
+0000            201   _PX0L           BIT 0xb8
+0000            202   _P0_0           BIT 0x80
+0000            203   _P0_1           BIT 0x81
+0000            204   _P0_2           BIT 0x82
+0000            205   _P0_3           BIT 0x83
+0000            206   _P0_4           BIT 0x84
+0000            207   _P0_5           BIT 0x85
+0000            208   _P0_6           BIT 0x86
+0000            209   _P0_7           BIT 0x87
+0000            210   _P1_0           BIT 0x90
+0000            211   _P1_1           BIT 0x91
+0000            212   _P1_2           BIT 0x92
+0000            213   _P1_3           BIT 0x93
+0000            214   _P1_4           BIT 0x94
+0000            215   _P1_5           BIT 0x95
+0000            216   _P1_6           BIT 0x96
+0000            217   _P1_7           BIT 0x97
+0000            218   _P2_0           BIT 0xa0
+0000            219   _P2_1           BIT 0xa1
+0000            220   _P2_2           BIT 0xa2
+0000            221   _P2_3           BIT 0xa3
+0000            222   _P2_4           BIT 0xa4
+0000            223   _P2_5           BIT 0xa5
+0000            224   _P2_6           BIT 0xa6
+0000            225   _P2_7           BIT 0xa7
+0000            226   _P3_0           BIT 0xb0
+0000            227   _P3_1           BIT 0xb1
+0000            228   _P3_2           BIT 0xb2
+0000            229   _P3_3           BIT 0xb3
+0000            230   _P3_4           BIT 0xb4
+0000            231   _P3_5           BIT 0xb5
+0000            232   _P3_6           BIT 0xb6
+0000            233   _P3_7           BIT 0xb7
+0000            234   _RXD            BIT 0xb0
+0000            235   _TXD            BIT 0xb1
+0000            236   _INT0           BIT 0xb2
+0000            237   _INT1           BIT 0xb3
+0000            238   _T0             BIT 0xb4
+0000            239   _T1             BIT 0xb5
+0000            240   _WR             BIT 0xb6
+0000            241   _RD             BIT 0xb7
+0000            242   _P4_0           BIT 0xc0
+0000            243   _P4_1           BIT 0xc1
+0000            244   _P4_2           BIT 0xc2
+0000            245   _P4_3           BIT 0xc3
+0000            246   _P4_4           BIT 0xc4
+0000            247   _P4_5           BIT 0xc5
+0000            248   _P4_6           BIT 0xc6
+0000            249   _P4_7           BIT 0xc7
+0000            250   _RI             BIT 0x98
+0000            251   _TI             BIT 0x99
+0000            252   _RB8            BIT 0x9a
+0000            253   _TB8            BIT 0x9b
+0000            254   _REN            BIT 0x9c
+0000            255   _SM2            BIT 0x9d
+0000            256   _SM1            BIT 0x9e
+0000            257   _SM0            BIT 0x9f
+0000            258   _IT0            BIT 0x88
+0000            259   _IE0            BIT 0x89
+0000            260   _IT1            BIT 0x8a
+0000            261   _IE1            BIT 0x8b
+0000            262   _TR0            BIT 0x8c
+0000            263   _TF0            BIT 0x8d
+0000            264   _TR1            BIT 0x8e
+0000            265   _TF1            BIT 0x8f
+0000            266   _CP_RL2         BIT 0xc8
+0000            267   _C_T2           BIT 0xc9
+0000            268   _TR2            BIT 0xca
+0000            269   _EXEN2          BIT 0xcb
+0000            270   _TCLK           BIT 0xcc
+0000            271   _RCLK           BIT 0xcd
+0000            272   _EXF2           BIT 0xce
+0000            273   _TF2            BIT 0xcf
+0000            274   _CF             BIT 0xdf
+0000            275   _CR             BIT 0xde
+0000            276   _CCF4           BIT 0xdc
+0000            277   _CCF3           BIT 0xdb
+0000            278   _CCF2           BIT 0xda
+0000            279   _CCF1           BIT 0xd9
+0000            280   _CCF0           BIT 0xd8
+0000            281   ;--------------------------------------------------------
+0000            282   ; overlayable register banks
+0000            283   ;--------------------------------------------------------
+0000            284            rbank0 segment data overlay
+0000            285   ;--------------------------------------------------------
+0000            286   ; internal ram data
+0000            287   ;--------------------------------------------------------
+0000            288            rseg R_DSEG
+0000            289   _LCD_Print_PARM_2:
+0000            290            ds 3
+0003            291   _LCD_Print_PARM_3:
+0003            292            ds 3
+0006            293   _LCD_Print_line1_1_53:
+0006            294            ds 3
+0009            295   _main_buffer_1_65:
+0009            296            ds 56
+0041            297   ;--------------------------------------------------------
+0041            298   ; overlayable items in internal ram 
+0041            299   ;--------------------------------------------------------
+0000            300            rseg R_OSEG
+0000            301   ;--------------------------------------------------------
+0000            302   ; indirectly addressable internal ram data
+0000            303   ;--------------------------------------------------------
+0000            304            rseg R_ISEG
+0000            305   ;--------------------------------------------------------
+0000            306   ; absolute internal ram data
+0000            307   ;--------------------------------------------------------
+0000            308            DSEG
+0000            309   ;--------------------------------------------------------
+0000            310   ; bit data
+0000            311   ;--------------------------------------------------------
+0000            312            rseg R_BSEG
+0000            313   ;--------------------------------------------------------
+0000            314   ; paged external ram data
+0000            315   ;--------------------------------------------------------
+0000            316            rseg R_PSEG
+0000            317   ;--------------------------------------------------------
+0000            318   ; external ram data
+0000            319   ;--------------------------------------------------------
+0000            320            rseg R_XSEG
+0000            321   ;--------------------------------------------------------
+0000            322   ; absolute external ram data
+0000            323   ;--------------------------------------------------------
+0000            324            XSEG
+0000            325   ;--------------------------------------------------------
+0000            326   ; external initialized ram data
+0000            327   ;--------------------------------------------------------
+0000            328            rseg R_IXSEG
+0000            329            rseg R_HOME
+0000            330            rseg R_GSINIT
+0000            331            rseg R_CSEG
+0000            332   ;--------------------------------------------------------
+0000            333   ; Reset entry point and interrupt vectors
+0000            334   ;--------------------------------------------------------
+0000            335            CSEG at 0x0000
+0000 020100     336            ljmp    _crt0
+0003            337   ;--------------------------------------------------------
+0003            338   ; global & static initialisations
+0003            339   ;--------------------------------------------------------
+0000            340            rseg R_HOME
 0000            341            rseg R_GSINIT
-0000            342   ;--------------------------------------------------------
-0000            343   ; data variables initialization
-0000            344   ;--------------------------------------------------------
-0000            345            rseg R_DINIT
-0000            346            ; The linker places a 'ret' at the end of segment R_DINIT.
-0000            347   ;--------------------------------------------------------
-0000            348   ; code
-0000            349   ;--------------------------------------------------------
-0000            350            rseg R_CSEG
-0000            351   ;------------------------------------------------------------
-0000            352   ;Allocation info for local variables in function 'LCD_LongDelay'
-0000            353   ;------------------------------------------------------------
+0000            342            rseg R_GSINIT
+0000            343   ;--------------------------------------------------------
+0000            344   ; data variables initialization
+0000            345   ;--------------------------------------------------------
+0000            346            rseg R_DINIT
+0000            347            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            348   ;--------------------------------------------------------
+0000            349   ; code
+0000            350   ;--------------------------------------------------------
+0000            351            rseg R_CSEG
+0000            352   ;------------------------------------------------------------
+0000            353   ;Allocation info for local variables in function 'General_Init'
 0000            354   ;------------------------------------------------------------
-0000            355   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:6: void LCD_LongDelay(void){
-0000            356   ;        -----------------------------------------
-0000            357   ;         function LCD_LongDelay
-0000            358   ;        -----------------------------------------
-0000            359   _LCD_LongDelay:
-0000            360            using   0
-0000            361   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:15: _endasm;
-0000            362            
-0000            363     ;For a 22.1184MHz crystal one machine cycle
-0000            364     ;takes 12/22.1184MHz=0.5425347us
-0000 7907       365              mov R1, #7
-0002            366              L2_50:
-0002 78B8       367            mov R0, #184
-0004            368              L1_50:
-0004 D848       369            djnz R0, L1_50 ; 2 machine cycles-> 2*0.5425347us*184=200us
-0006 D908       370              djnz R1, L2_50 ; 200us*25=0.005s
-0008 22         371              ret
-0009            372             
-0009 22         373            ret
-000A            374   ;------------------------------------------------------------
-000A            375   ;Allocation info for local variables in function 'LCD_ShortDelay'
-000A            376   ;------------------------------------------------------------
-000A            377   ;------------------------------------------------------------
-000A            378   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:23: void LCD_ShortDelay(void){
-000A            379   ;        -----------------------------------------
-000A            380   ;         function LCD_ShortDelay
-000A            381   ;        -----------------------------------------
-000A            382   _LCD_ShortDelay:
-000A            383   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:30: _endasm;
-000A            384            
-000A            385     ;For a 22.1184MHz crystal one machine cycle
-000A            386     ;takes 12/22.1184MHz=0.5425347us
-000A 782E       387              mov R0, #46
-000C            388              shortL1:
-000C D8C8       389            djnz R0,shortL1 ; 2 machine cycles-> 2*0.5425347us*184=49.9us
-000E 22         390              ret
-000F            391             
-000F 22         392            ret
-0010            393   ;------------------------------------------------------------
-0010            394   ;Allocation info for local variables in function 'LCD_Clear'
-0010            395   ;------------------------------------------------------------
-0010            396   ;------------------------------------------------------------
-0010            397   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:38: void LCD_Clear(){
-0010            398   ;        -----------------------------------------
-0010            399   ;         function LCD_Clear
-0010            400   ;        -----------------------------------------
-0010            401   _LCD_Clear:
-0010            402   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:39: LCD_RS = 0;
-0010 C2C1       403            clr     _P4_1
-0012            404   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:40: LCD_E = LCD_ENABLE;
-0012 D2B2       405            setb    _P3_2
-0014            406   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:41: LCD_ShortDelay();
-0014 120100     407            lcall   _LCD_ShortDelay
-0017            408   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:42: LCD_D = 1;
-0017 759001     409            mov     _P1,#0x01
-001A            410   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:43: LCD_ShortDelay();
-001A 120100     411            lcall   _LCD_ShortDelay
-001D            412   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:44: LCD_E = LCD_DISABLE;
-001D C2B2       413            clr     _P3_2
-001F            414   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:45: LCD_LongDelay();
-001F 020100     415            ljmp    _LCD_LongDelay
-0022            416   ;------------------------------------------------------------
-0022            417   ;Allocation info for local variables in function 'LCD_Put'
-0022            418   ;------------------------------------------------------------
-0022            419   ;c                         Allocated to registers r2 
-0022            420   ;------------------------------------------------------------
-0022            421   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:55: void LCD_Put(unsigned char c){
-0022            422   ;        -----------------------------------------
-0022            423   ;         function LCD_Put
-0022            424   ;        -----------------------------------------
-0022            425   _LCD_Put:
-0022 AA82       426            mov     r2,dpl
-0024            427   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:56: LCD_E = LCD_ENABLE;
-0024 D2B2       428            setb    _P3_2
-0026            429   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:57: LCD_ShortDelay();
-0026 C002       430            push    ar2
-0028 120100     431            lcall   _LCD_ShortDelay
-002B D002       432            pop     ar2
-002D            433   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:58: LCD_D = c;
-002D 8A90       434            mov     _P1,r2
-002F            435   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:59: LCD_ShortDelay();
-002F 120100     436            lcall   _LCD_ShortDelay
-0032            437   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:60: LCD_E = LCD_DISABLE;
-0032 C2B2       438            clr     _P3_2
-0034            439   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:61: LCD_ShortDelay();
-0034 020100     440            ljmp    _LCD_ShortDelay
-0037            441   ;------------------------------------------------------------
-0037            442   ;Allocation info for local variables in function 'LCD_WriteString'
-0037            443   ;------------------------------------------------------------
-0037            444   ;c                         Allocated to registers r2 r3 r4 
-0037            445   ;------------------------------------------------------------
-0037            446   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:69: void LCD_WriteString(unsigned char *c){
-0037            447   ;        -----------------------------------------
-0037            448   ;         function LCD_WriteString
-0037            449   ;        -----------------------------------------
-0037            450   _LCD_WriteString:
-0037 AA82       451            mov     r2,dpl
-0039 AB83       452            mov     r3,dph
-003B ACF0       453            mov     r4,b
-003D            454   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:70: LCD_RS = 1;
-003D D2C1       455            setb    _P4_1
-003F            456   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:71: while(*c != '\0'){
-003F            457   L006001?:
-003F 8A82       458            mov     dpl,r2
-0041 8B83       459            mov     dph,r3
-0043 8CF0       460            mov     b,r4
-0045 120100     461            lcall   __gptrget
-0048 FD         462            mov     r5,a
-0049 6001       463            jz      L006004?
-004B            464   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:72: LCD_Put(*c);
-004B 8D82       465            mov     dpl,r5
-004D C002       466            push    ar2
-004F C003       467            push    ar3
-0051 C004       468            push    ar4
-0053 120100     469            lcall   _LCD_Put
-0056 D004       470            pop     ar4
-0058 D003       471            pop     ar3
-005A D002       472            pop     ar2
-005C            473   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:73: printf("%c",*c); 
-005C 8A82       474            mov     dpl,r2
-005E 8B83       475            mov     dph,r3
-0060 8CF0       476            mov     b,r4
-0062 120100     477            lcall   __gptrget
-0065 FD         478            mov     r5,a
-0066 A3         479            inc     dptr
-0067 AA82       480            mov     r2,dpl
-0069 AB83       481            mov     r3,dph
-006B 7E00       482            mov     r6,#0x00
-006D C002       483            push    ar2
-006F C003       484            push    ar3
-0071 C004       485            push    ar4
-0073 C005       486            push    ar5
-0075 C006       487            push    ar6
-0077 74C8       488            mov     a,#__str_0
-0079 C0E0       489            push    acc
-007B 7481       490            mov     a,#(__str_0 >> 8)
-007D C0E0       491            push    acc
-007F 7480       492            mov     a,#0x80
-0081 C0E0       493            push    acc
-0083 120100     494            lcall   _printf
-0086 E581       495            mov     a,sp
-0088 24FB       496            add     a,#0xfb
-008A F581       497            mov     sp,a
-008C D004       498            pop     ar4
-008E D003       499            pop     ar3
-0090 D002       500            pop     ar2
-0092            501   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:74: c++;
-0092 8001       502            sjmp    L006001?
-0094            503   L006004?:
-0094 22         504            ret
-0095            505   ;------------------------------------------------------------
-0095            506   ;Allocation info for local variables in function 'LCD_Print'
-0095            507   ;------------------------------------------------------------
-0095            508   ;line2                     Allocated with name '_LCD_Print_PARM_2'
-0095            509   ;buffer                    Allocated with name '_LCD_Print_PARM_3'
-0095            510   ;line1                     Allocated with name '_LCD_Print_line1_1_33'
-0095            511   ;k                         Allocated to registers r5 r6 
-0095            512   ;------------------------------------------------------------
-0095            513   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:81: void LCD_Print(unsigned char *line1, unsigned char *line2, unsigned char buffer[]){
-0095            514   ;        -----------------------------------------
-0095            515   ;         function LCD_Print
-0095            516   ;        -----------------------------------------
-0095            517   _LCD_Print:
-0095 858238     518            mov     _LCD_Print_line1_1_33,dpl
-0098 858339     519            mov     (_LCD_Print_line1_1_33 + 1),dph
-009B 85F03A     520            mov     (_LCD_Print_line1_1_33 + 2),b
-009E            521   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:84: for(k = 0; k < 16; k++){
-009E 7D00       522            mov     r5,#0x00
-00A0 7E00       523            mov     r6,#0x00
-00A2            524   L007001?:
-00A2 C3         525            clr     c
-00A3 ED         526            mov     a,r5
-00A4 9410       527            subb    a,#0x10
-00A6 EE         528            mov     a,r6
-00A7 6480       529            xrl     a,#0x80
-00A9 9480       530            subb    a,#0x80
-00AB 5001       531            jnc     L007004?
-00AD            532   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:85: buffer[k] = line1[k];
-00AD ED         533            mov     a,r5
-00AE 2550       534            add     a,_LCD_Print_PARM_3
-00B0 FF         535            mov     r7,a
-00B1 EE         536            mov     a,r6
-00B2 3551       537            addc    a,(_LCD_Print_PARM_3 + 1)
-00B4 F8         538            mov     r0,a
-00B5 A952       539            mov     r1,(_LCD_Print_PARM_3 + 2)
-00B7 ED         540            mov     a,r5
-00B8 2538       541            add     a,_LCD_Print_line1_1_33
-00BA FA         542            mov     r2,a
-00BB EE         543            mov     a,r6
-00BC 3539       544            addc    a,(_LCD_Print_line1_1_33 + 1)
-00BE FB         545            mov     r3,a
-00BF AC3A       546            mov     r4,(_LCD_Print_line1_1_33 + 2)
-00C1 8A82       547            mov     dpl,r2
-00C3 8B83       548            mov     dph,r3
-00C5 8CF0       549            mov     b,r4
-00C7 120100     550            lcall   __gptrget
-00CA 8F82       551            mov     dpl,r7
-00CC 8883       552            mov     dph,r0
-00CE 89F0       553            mov     b,r1
-00D0 120100     554            lcall   __gptrput
-00D3            555   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:86: buffer[40+k] = line2[k];
-00D3 7428       556            mov     a,#0x28
-00D5 2D         557            add     a,r5
-00D6 FA         558            mov     r2,a
-00D7 E4         559            clr     a
-00D8 3E         560            addc    a,r6
-00D9 FB         561            mov     r3,a
-00DA EA         562            mov     a,r2
-00DB 2550       563            add     a,_LCD_Print_PARM_3
-00DD FA         564            mov     r2,a
-00DE EB         565            mov     a,r3
-00DF 3551       566            addc    a,(_LCD_Print_PARM_3 + 1)
-00E1 FB         567            mov     r3,a
-00E2 AC52       568            mov     r4,(_LCD_Print_PARM_3 + 2)
-00E4 ED         569            mov     a,r5
-00E5 25A0       570            add     a,_LCD_Print_PARM_2
-00E7 FF         571            mov     r7,a
-00E8 EE         572            mov     a,r6
-00E9 35A1       573            addc    a,(_LCD_Print_PARM_2 + 1)
-00EB F8         574            mov     r0,a
-00EC A9A2       575            mov     r1,(_LCD_Print_PARM_2 + 2)
-00EE 8F82       576            mov     dpl,r7
-00F0 8883       577            mov     dph,r0
-00F2 89F0       578            mov     b,r1
-00F4 120100     579            lcall   __gptrget
-00F7 FF         580            mov     r7,a
-00F8 8A82       581            mov     dpl,r2
-00FA 8B83       582            mov     dph,r3
-00FC 8CF0       583            mov     b,r4
-00FE 120100     584            lcall   __gptrput
-0101            585   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:84: for(k = 0; k < 16; k++){
-0101 0D         586            inc     r5
-0102 BD00C8     587            cjne    r5,#0x00,L007001?
-0105 0E         588            inc     r6
-0106 8001       589            sjmp    L007001?
-0108            590   L007004?:
-0108            591   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:89: LCD_WriteString(buffer);
-0108 855082     592            mov     dpl,_LCD_Print_PARM_3
-010B 855183     593            mov     dph,(_LCD_Print_PARM_3 + 1)
-010E 8552F0     594            mov     b,(_LCD_Print_PARM_3 + 2)
-0111 020100     595            ljmp    _LCD_WriteString
-0114            596   ;------------------------------------------------------------
-0114            597   ;Allocation info for local variables in function 'LCD_Init'
-0114            598   ;------------------------------------------------------------
-0114            599   ;------------------------------------------------------------
-0114            600   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:99: void LCD_Init(){
-0114            601   ;        -----------------------------------------
-0114            602   ;         function LCD_Init
-0114            603   ;        -----------------------------------------
-0114            604   _LCD_Init:
-0114            605   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:100: LCD_E = 0;
-0114 C2B2       606            clr     _P3_2
-0116            607   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:101: LCD_Clear();
-0116 120100     608            lcall   _LCD_Clear
-0119            609   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:102: LCD_Put(((unsigned char)0b00111000));   //Function set, 8 bit, 2 lines, 5×7
-0119 758238     610            mov     dpl,#0x38
-011C 120100     611            lcall   _LCD_Put
-011F            612   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:103: LCD_Put(((unsigned char)0b00001111));   //Display ON, Cursor On, Cursor Blinking
-011F 75820F     613            mov     dpl,#0x0F
-0122 120100     614            lcall   _LCD_Put
-0125            615   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:104: LCD_Put(((unsigned char)0b00000011));   //Entry Mode, Increment cursor position, No display shift
-0125 758203     616            mov     dpl,#0x03
-0128            617   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:105: return;
-0128 020100     618            ljmp    _LCD_Put
-012B            619   ;------------------------------------------------------------
-012B            620   ;Allocation info for local variables in function '_c51_external_startup'
-012B            621   ;------------------------------------------------------------
-012B            622   ;------------------------------------------------------------
-012B            623   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:11: unsigned char _c51_external_startup(void)
-012B            624   ;        -----------------------------------------
-012B            625   ;         function _c51_external_startup
-012B            626   ;        -----------------------------------------
-012B            627   __c51_external_startup:
-012B            628   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:14: P0M0=0;      P0M1=0;
-012B 75E600     629            mov     _P0M0,#0x00
-012E 75E700     630            mov     _P0M1,#0x00
-0131            631   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:15: P1M0=0;      P1M1=0;
-0131 75D600     632            mov     _P1M0,#0x00
-0134 75D700     633            mov     _P1M1,#0x00
-0137            634   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:16: P2M0=0;      P2M1=0;
-0137 75CE00     635            mov     _P2M0,#0x00
-013A 75CF00     636            mov     _P2M1,#0x00
-013D            637   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:17: P3M0=0;      P3M1=0;
-013D 75C600     638            mov     _P3M0,#0x00
-0140 75C700     639            mov     _P3M1,#0x00
-0143            640   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:18: AUXR=0B_0001_0001; // 1152 bytes of internal XDATA, P4.4 is a general purpose I/O
-0143 758E11     641            mov     _AUXR,#0x11
-0146            642   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:19: P4M0=0;      P4M1=0;
-0146 75BE00     643            mov     _P4M0,#0x00
-0149 75BF00     644            mov     _P4M1,#0x00
-014C            645   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:22: PCON|=0x80;
-014C 438780     646            orl     _PCON,#0x80
-014F            647   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:23: SCON = 0x52;
-014F 759852     648            mov     _SCON,#0x52
-0152            649   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:24: BDRCON=0;
-0152 759B00     650            mov     _BDRCON,#0x00
-0155            651   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:25: BRL=BRG_VAL;
-0155 759AFA     652            mov     _BRL,#0xFA
-0158            653   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:26: BDRCON=BRR|TBCK|RBCK|SPD;
-0158 759B1E     654            mov     _BDRCON,#0x1E
-015B            655   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:29: printf("hi\n");
-015B 7488       656            mov     a,#__str_1
-015D C0E0       657            push    acc
-015F 7483       658            mov     a,#(__str_1 >> 8)
-0161 C0E0       659            push    acc
-0163 7480       660            mov     a,#0x80
-0165 C0E0       661            push    acc
-0167 120100     662            lcall   _printf
-016A 1581       663            dec     sp
-016C 1581       664            dec     sp
-016E 1581       665            dec     sp
-0170            666   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:31: LCD_Init();
-0170 120100     667            lcall   _LCD_Init
-0173            668   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:33: printf("ho\n");
-0173 74C8       669            mov     a,#__str_2
-0175 C0E0       670            push    acc
-0177 7483       671            mov     a,#(__str_2 >> 8)
-0179 C0E0       672            push    acc
-017B 7480       673            mov     a,#0x80
-017D C0E0       674            push    acc
-017F 120100     675            lcall   _printf
-0182 1581       676            dec     sp
-0184 1581       677            dec     sp
-0186 1581       678            dec     sp
-0188            679   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:35: return 0;
-0188 758200     680            mov     dpl,#0x00
-018B 22         681            ret
-018C            682   ;------------------------------------------------------------
-018C            683   ;Allocation info for local variables in function 'main'
-018C            684   ;------------------------------------------------------------
-018C            685   ;k                         Allocated to registers r4 r5 
-018C            686   ;count                     Allocated to registers 
-018C            687   ;buffer                    Allocated with name '_main_buffer_1_45'
-018C            688   ;row                       Allocated to registers r4 r5 r6 
-018C            689   ;------------------------------------------------------------
-018C            690   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:38: void main(){
-018C            691   ;        -----------------------------------------
-018C            692   ;         function main
-018C            693   ;        -----------------------------------------
-018C            694   _main:
-018C            695   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:44: while(1){
-018C 7A00       696            mov     r2,#0x00
-018E 7B00       697            mov     r3,#0x00
-0190            698   L010002?:
-0190            699   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:45: LCD_Clear();
-0190 C002       700            push    ar2
-0192 C003       701            push    ar3
-0194 120100     702            lcall   _LCD_Clear
-0197 D003       703            pop     ar3
-0199 D002       704            pop     ar2
-019B            705   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:46: row = &buffer[LCD_ROW1];
-019B 7C88       706            mov     r4,#_main_buffer_1_45
-019D 7D00       707            mov     r5,#0x00
-019F 7E40       708            mov     r6,#0x40
-01A1            709   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:47: sprintf(row , "%d                                       ", count);
-01A1 C002       710            push    ar2
-01A3 C003       711            push    ar3
-01A5 C002       712            push    ar2
-01A7 C003       713            push    ar3
-01A9 7448       714            mov     a,#__str_3
-01AB C0E0       715            push    acc
-01AD 7484       716            mov     a,#(__str_3 >> 8)
-01AF C0E0       717            push    acc
-01B1 7480       718            mov     a,#0x80
-01B3 C0E0       719            push    acc
-01B5 C004       720            push    ar4
-01B7 C005       721            push    ar5
-01B9 C006       722            push    ar6
-01BB 120100     723            lcall   _sprintf
-01BE E581       724            mov     a,sp
-01C0 24F8       725            add     a,#0xf8
-01C2 F581       726            mov     sp,a
-01C4            727   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:48: row = &buffer[LCD_ROW2];
-01C4 7CB0       728            mov     r4,#(_main_buffer_1_45 + 0x0028)
-01C6 7D00       729            mov     r5,#0x00
-01C8 7E40       730            mov     r6,#0x40
-01CA            731   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:49: sprintf(row, "0123456789ABCDEF");
-01CA 74C8       732            mov     a,#__str_4
-01CC C0E0       733            push    acc
-01CE 7484       734            mov     a,#(__str_4 >> 8)
-01D0 C0E0       735            push    acc
-01D2 7480       736            mov     a,#0x80
-01D4 C0E0       737            push    acc
-01D6 C004       738            push    ar4
-01D8 C005       739            push    ar5
-01DA C006       740            push    ar6
-01DC 120100     741            lcall   _sprintf
-01DF E581       742            mov     a,sp
-01E1 24FA       743            add     a,#0xfa
-01E3 F581       744            mov     sp,a
-01E5            745   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:51: LCD_WriteString(buffer);
-01E5 907E88     746            mov     dptr,#_main_buffer_1_45
-01E8 75F040     747            mov     b,#0x40
-01EB 120100     748            lcall   _LCD_WriteString
-01EE D003       749            pop     ar3
-01F0 D002       750            pop     ar2
-01F2            751   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:52: for(k = 0; k < 1000; k++){
-01F2 7CE8       752            mov     r4,#0xE8
-01F4 7D03       753            mov     r5,#0x03
-01F6            754   L010006?:
-01F6            755   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:53: LCD_LongDelay();
-01F6 C002       756            push    ar2
-01F8 C003       757            push    ar3
-01FA C004       758            push    ar4
-01FC C005       759            push    ar5
-01FE 120100     760            lcall   _LCD_LongDelay
-0201 D005       761            pop     ar5
-0203 D004       762            pop     ar4
-0205 D003       763            pop     ar3
-0207 D002       764            pop     ar2
-0209 1C         765            dec     r4
-020A BCFF48     766            cjne    r4,#0xff,L010013?
-020D 1D         767            dec     r5
-020E            768   L010013?:
-020E            769   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:52: for(k = 0; k < 1000; k++){
-020E EC         770            mov     a,r4
-020F 4D         771            orl     a,r5
-0210 7001       772            jnz     L010006?
-0212            773   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:56: count++;
-0212 0A         774            inc     r2
-0213 BA0088     775            cjne    r2,#0x00,L010015?
-0216 0B         776            inc     r3
-0217            777   L010015?:
-0217 020100     778            ljmp    L010002?
-021A            779            rseg R_CSEG
-021A            780   
-0000            781            rseg R_XINIT
-0000            782   
-0000            783            rseg R_CONST
-0000            784   __str_0:
-0000 2563       785            db '%c'
-0002 00         786            db 0x00
-0003            787   __str_1:
-0003 6869       788            db 'hi'
-0005 0A         789            db 0x0A
-0006 00         790            db 0x00
-0007            791   __str_2:
-0007 686F       792            db 'ho'
-0009 0A         793            db 0x0A
-000A 00         794            db 0x00
-000B            795   __str_3:
-000B 25642020   796            db '%d                                       '
+0000            355   ;------------------------------------------------------------
+0000            356   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:1: void General_Init(){
+0000            357   ;        -----------------------------------------
+0000            358   ;         function General_Init
+0000            359   ;        -----------------------------------------
+0000            360   _General_Init:
+0000            361            using   0
+0000            362   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:3: P0M0=0;       P0M1=0;
+0000 75E600     363            mov     _P0M0,#0x00
+0003 75E700     364            mov     _P0M1,#0x00
+0006            365   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:4: P1M0=0;       P1M1=0;
+0006 75D600     366            mov     _P1M0,#0x00
+0009 75D700     367            mov     _P1M1,#0x00
+000C            368   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:5: P2M0=0;       P2M1=0;
+000C 75CE00     369            mov     _P2M0,#0x00
+000F 75CF00     370            mov     _P2M1,#0x00
+0012            371   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:6: P3M0=0;       P3M1=0;
+0012 75C600     372            mov     _P3M0,#0x00
+0015 75C700     373            mov     _P3M1,#0x00
+0018            374   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:7: AUXR=0B_0001_0001; // 1152 bytes of internal XDATA, P4.4 is a general purpose I/O
+0018 758E11     375            mov     _AUXR,#0x11
+001B            376   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:8: P4M0=0;       P4M1=0;
+001B 75BE00     377            mov     _P4M0,#0x00
+001E 75BF00     378            mov     _P4M1,#0x00
+0021            379   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:11: PCON|=0x80;
+0021 438780     380            orl     _PCON,#0x80
+0024            381   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:12: SCON = 0x52;
+0024 759852     382            mov     _SCON,#0x52
+0027            383   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:13: BDRCON=0;
+0027 759B00     384            mov     _BDRCON,#0x00
+002A            385   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:14: BRL=BRG_VAL;
+002A 759AFA     386            mov     _BRL,#0xFA
+002D            387   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:15: BDRCON=BRR|TBCK|RBCK|SPD;
+002D 759B1E     388            mov     _BDRCON,#0x1E
+0030 22         389            ret
+0031            390   ;------------------------------------------------------------
+0031            391   ;Allocation info for local variables in function 'LCD_LongDelay'
+0031            392   ;------------------------------------------------------------
+0031            393   ;------------------------------------------------------------
+0031            394   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:6: void LCD_LongDelay(void){
+0031            395   ;        -----------------------------------------
+0031            396   ;         function LCD_LongDelay
+0031            397   ;        -----------------------------------------
+0031            398   _LCD_LongDelay:
+0031            399   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:15: _endasm;
+0031            400            
+0031            401     ;For a 22.1184MHz crystal one machine cycle
+0031            402     ;takes 12/22.1184MHz=0.5425347us
+0031 7907       403              mov R1, #7
+0033            404              L2_50:
+0033 78B8       405            mov R0, #184
+0035            406              L1_50:
+0035 D888       407            djnz R0, L1_50 ; 2 machine cycles-> 2*0.5425347us*184=200us
+0037 D948       408              djnz R1, L2_50 ; 200us*25=0.005s
+0039 22         409              ret
+003A            410             
+003A 22         411            ret
+003B            412   ;------------------------------------------------------------
+003B            413   ;Allocation info for local variables in function 'LCD_ShortDelay'
+003B            414   ;------------------------------------------------------------
+003B            415   ;------------------------------------------------------------
+003B            416   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:23: void LCD_ShortDelay(void){
+003B            417   ;        -----------------------------------------
+003B            418   ;         function LCD_ShortDelay
+003B            419   ;        -----------------------------------------
+003B            420   _LCD_ShortDelay:
+003B            421   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:30: _endasm;
+003B            422            
+003B            423     ;For a 22.1184MHz crystal one machine cycle
+003B            424     ;takes 12/22.1184MHz=0.5425347us
+003B 782E       425              mov R0, #46
+003D            426              shortL1:
+003D D808       427            djnz R0,shortL1 ; 2 machine cycles-> 2*0.5425347us*184=49.9us
+003F 22         428              ret
+0040            429             
+0040 22         430            ret
+0041            431   ;------------------------------------------------------------
+0041            432   ;Allocation info for local variables in function 'LCD_Clear'
+0041            433   ;------------------------------------------------------------
+0041            434   ;------------------------------------------------------------
+0041            435   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:38: void LCD_Clear(){
+0041            436   ;        -----------------------------------------
+0041            437   ;         function LCD_Clear
+0041            438   ;        -----------------------------------------
+0041            439   _LCD_Clear:
+0041            440   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:39: LCD_RS = 0;
+0041 C2A1       441            clr     _P2_1
+0043            442   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:40: LCD_E = LCD_ENABLE;
+0043 D2A2       443            setb    _P2_2
+0045            444   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:41: LCD_ShortDelay();
+0045 120100     445            lcall   _LCD_ShortDelay
+0048            446   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:42: LCD_D = 1;
+0048 758001     447            mov     _P0,#0x01
+004B            448   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:43: LCD_ShortDelay();
+004B 120100     449            lcall   _LCD_ShortDelay
+004E            450   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:44: LCD_E = LCD_DISABLE;
+004E C2A2       451            clr     _P2_2
+0050            452   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:45: LCD_LongDelay();
+0050 020100     453            ljmp    _LCD_LongDelay
+0053            454   ;------------------------------------------------------------
+0053            455   ;Allocation info for local variables in function 'LCD_Put'
+0053            456   ;------------------------------------------------------------
+0053            457   ;c                         Allocated to registers r2 
+0053            458   ;------------------------------------------------------------
+0053            459   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:55: void LCD_Put(unsigned char c){
+0053            460   ;        -----------------------------------------
+0053            461   ;         function LCD_Put
+0053            462   ;        -----------------------------------------
+0053            463   _LCD_Put:
+0053 AA82       464            mov     r2,dpl
+0055            465   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:56: LCD_E = LCD_ENABLE;
+0055 D2A2       466            setb    _P2_2
+0057            467   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:57: LCD_ShortDelay();
+0057 C002       468            push    ar2
+0059 120100     469            lcall   _LCD_ShortDelay
+005C D002       470            pop     ar2
+005E            471   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:58: LCD_D = c;
+005E 8A80       472            mov     _P0,r2
+0060            473   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:59: LCD_ShortDelay();
+0060 120100     474            lcall   _LCD_ShortDelay
+0063            475   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:60: LCD_E = LCD_DISABLE;
+0063 C2A2       476            clr     _P2_2
+0065            477   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:61: LCD_ShortDelay();
+0065 020100     478            ljmp    _LCD_ShortDelay
+0068            479   ;------------------------------------------------------------
+0068            480   ;Allocation info for local variables in function 'LCD_WriteString'
+0068            481   ;------------------------------------------------------------
+0068            482   ;c                         Allocated to registers r2 r3 r4 
+0068            483   ;------------------------------------------------------------
+0068            484   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:69: void LCD_WriteString(unsigned char *c){
+0068            485   ;        -----------------------------------------
+0068            486   ;         function LCD_WriteString
+0068            487   ;        -----------------------------------------
+0068            488   _LCD_WriteString:
+0068 AA82       489            mov     r2,dpl
+006A AB83       490            mov     r3,dph
+006C ACF0       491            mov     r4,b
+006E            492   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:70: LCD_RS = 1;
+006E D2A1       493            setb    _P2_1
+0070            494   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:71: while(*c != '\0'){
+0070            495   L007001?:
+0070 8A82       496            mov     dpl,r2
+0072 8B83       497            mov     dph,r3
+0074 8CF0       498            mov     b,r4
+0076 120100     499            lcall   __gptrget
+0079 FD         500            mov     r5,a
+007A 6001       501            jz      L007004?
+007C            502   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:72: LCD_Put(*c);
+007C 8D82       503            mov     dpl,r5
+007E C002       504            push    ar2
+0080 C003       505            push    ar3
+0082 C004       506            push    ar4
+0084 120100     507            lcall   _LCD_Put
+0087 D004       508            pop     ar4
+0089 D003       509            pop     ar3
+008B D002       510            pop     ar2
+008D            511   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:73: printf("%c",*c); 
+008D 8A82       512            mov     dpl,r2
+008F 8B83       513            mov     dph,r3
+0091 8CF0       514            mov     b,r4
+0093 120100     515            lcall   __gptrget
+0096 FD         516            mov     r5,a
+0097 A3         517            inc     dptr
+0098 AA82       518            mov     r2,dpl
+009A AB83       519            mov     r3,dph
+009C 7E00       520            mov     r6,#0x00
+009E C002       521            push    ar2
+00A0 C003       522            push    ar3
+00A2 C004       523            push    ar4
+00A4 C005       524            push    ar5
+00A6 C006       525            push    ar6
+00A8 7408       526            mov     a,#__str_0
+00AA C0E0       527            push    acc
+00AC 7482       528            mov     a,#(__str_0 >> 8)
+00AE C0E0       529            push    acc
+00B0 7480       530            mov     a,#0x80
+00B2 C0E0       531            push    acc
+00B4 120100     532            lcall   _printf
+00B7 E581       533            mov     a,sp
+00B9 24FB       534            add     a,#0xfb
+00BB F581       535            mov     sp,a
+00BD D004       536            pop     ar4
+00BF D003       537            pop     ar3
+00C1 D002       538            pop     ar2
+00C3            539   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:74: c++;
+00C3 8001       540            sjmp    L007001?
+00C5            541   L007004?:
+00C5 22         542            ret
+00C6            543   ;------------------------------------------------------------
+00C6            544   ;Allocation info for local variables in function 'LCD_Print'
+00C6            545   ;------------------------------------------------------------
+00C6            546   ;line2                     Allocated with name '_LCD_Print_PARM_2'
+00C6            547   ;buffer                    Allocated with name '_LCD_Print_PARM_3'
+00C6            548   ;line1                     Allocated with name '_LCD_Print_line1_1_53'
+00C6            549   ;k                         Allocated to registers r5 r6 
+00C6            550   ;------------------------------------------------------------
+00C6            551   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:81: void LCD_Print(unsigned char *line1, unsigned char *line2, unsigned char buffer[]){
+00C6            552   ;        -----------------------------------------
+00C6            553   ;         function LCD_Print
+00C6            554   ;        -----------------------------------------
+00C6            555   _LCD_Print:
+00C6 858278     556            mov     _LCD_Print_line1_1_53,dpl
+00C9 858379     557            mov     (_LCD_Print_line1_1_53 + 1),dph
+00CC 85F07A     558            mov     (_LCD_Print_line1_1_53 + 2),b
+00CF            559   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:84: for(k = 0; k < 16; k++){
+00CF 7D00       560            mov     r5,#0x00
+00D1 7E00       561            mov     r6,#0x00
+00D3            562   L008001?:
+00D3 C3         563            clr     c
+00D4 ED         564            mov     a,r5
+00D5 9410       565            subb    a,#0x10
+00D7 EE         566            mov     a,r6
+00D8 6480       567            xrl     a,#0x80
+00DA 9480       568            subb    a,#0x80
+00DC 5001       569            jnc     L008004?
+00DE            570   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:85: buffer[k] = line1[k];
+00DE ED         571            mov     a,r5
+00DF 2590       572            add     a,_LCD_Print_PARM_3
+00E1 FF         573            mov     r7,a
+00E2 EE         574            mov     a,r6
+00E3 3591       575            addc    a,(_LCD_Print_PARM_3 + 1)
+00E5 F8         576            mov     r0,a
+00E6 A992       577            mov     r1,(_LCD_Print_PARM_3 + 2)
+00E8 ED         578            mov     a,r5
+00E9 2578       579            add     a,_LCD_Print_line1_1_53
+00EB FA         580            mov     r2,a
+00EC EE         581            mov     a,r6
+00ED 3579       582            addc    a,(_LCD_Print_line1_1_53 + 1)
+00EF FB         583            mov     r3,a
+00F0 AC7A       584            mov     r4,(_LCD_Print_line1_1_53 + 2)
+00F2 8A82       585            mov     dpl,r2
+00F4 8B83       586            mov     dph,r3
+00F6 8CF0       587            mov     b,r4
+00F8 120100     588            lcall   __gptrget
+00FB 8F82       589            mov     dpl,r7
+00FD 8883       590            mov     dph,r0
+00FF 89F0       591            mov     b,r1
+0101 120100     592            lcall   __gptrput
+0104            593   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:86: buffer[40+k] = line2[k];
+0104 7428       594            mov     a,#0x28
+0106 2D         595            add     a,r5
+0107 FA         596            mov     r2,a
+0108 E4         597            clr     a
+0109 3E         598            addc    a,r6
+010A FB         599            mov     r3,a
+010B EA         600            mov     a,r2
+010C 2590       601            add     a,_LCD_Print_PARM_3
+010E FA         602            mov     r2,a
+010F EB         603            mov     a,r3
+0110 3591       604            addc    a,(_LCD_Print_PARM_3 + 1)
+0112 FB         605            mov     r3,a
+0113 AC92       606            mov     r4,(_LCD_Print_PARM_3 + 2)
+0115 ED         607            mov     a,r5
+0116 25E0       608            add     a,_LCD_Print_PARM_2
+0118 FF         609            mov     r7,a
+0119 EE         610            mov     a,r6
+011A 35E1       611            addc    a,(_LCD_Print_PARM_2 + 1)
+011C F8         612            mov     r0,a
+011D A9E2       613            mov     r1,(_LCD_Print_PARM_2 + 2)
+011F 8F82       614            mov     dpl,r7
+0121 8883       615            mov     dph,r0
+0123 89F0       616            mov     b,r1
+0125 120100     617            lcall   __gptrget
+0128 FF         618            mov     r7,a
+0129 8A82       619            mov     dpl,r2
+012B 8B83       620            mov     dph,r3
+012D 8CF0       621            mov     b,r4
+012F 120100     622            lcall   __gptrput
+0132            623   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:84: for(k = 0; k < 16; k++){
+0132 0D         624            inc     r5
+0133 BD0008     625            cjne    r5,#0x00,L008001?
+0136 0E         626            inc     r6
+0137 8001       627            sjmp    L008001?
+0139            628   L008004?:
+0139            629   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:89: LCD_WriteString(buffer);
+0139 859082     630            mov     dpl,_LCD_Print_PARM_3
+013C 859183     631            mov     dph,(_LCD_Print_PARM_3 + 1)
+013F 8592F0     632            mov     b,(_LCD_Print_PARM_3 + 2)
+0142 020100     633            ljmp    _LCD_WriteString
+0145            634   ;------------------------------------------------------------
+0145            635   ;Allocation info for local variables in function 'LCD_Init'
+0145            636   ;------------------------------------------------------------
+0145            637   ;------------------------------------------------------------
+0145            638   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:99: void LCD_Init(){
+0145            639   ;        -----------------------------------------
+0145            640   ;         function LCD_Init
+0145            641   ;        -----------------------------------------
+0145            642   _LCD_Init:
+0145            643   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:100: LCD_E = 0;
+0145 C2A2       644            clr     _P2_2
+0147            645   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:101: LCD_Clear();
+0147 120100     646            lcall   _LCD_Clear
+014A            647   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:102: LCD_Put(((unsigned char)0b00111000));   //Function set, 8 bit, 2 lines, 5×7
+014A 758238     648            mov     dpl,#0x38
+014D 120100     649            lcall   _LCD_Put
+0150            650   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:103: LCD_Put(((unsigned char)0b00001111));   //Display ON, Cursor On, Cursor Blinking
+0150 75820F     651            mov     dpl,#0x0F
+0153 120100     652            lcall   _LCD_Put
+0156            653   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:104: LCD_Put(((unsigned char)0b00000011));   //Entry Mode, Increment cursor position, No display shift
+0156 758203     654            mov     dpl,#0x03
+0159            655   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:105: return;
+0159 020100     656            ljmp    _LCD_Put
+015C            657   ;------------------------------------------------------------
+015C            658   ;Allocation info for local variables in function '_c51_external_startup'
+015C            659   ;------------------------------------------------------------
+015C            660   ;------------------------------------------------------------
+015C            661   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:7: unsigned char _c51_external_startup(void)
+015C            662   ;        -----------------------------------------
+015C            663   ;         function _c51_external_startup
+015C            664   ;        -----------------------------------------
+015C            665   __c51_external_startup:
+015C            666   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:9: General_Init();               
+015C 120100     667            lcall   _General_Init
+015F            668   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:10: printf("hi\n");      
+015F 74C8       669            mov     a,#__str_1
+0161 C0E0       670            push    acc
+0163 7483       671            mov     a,#(__str_1 >> 8)
+0165 C0E0       672            push    acc
+0167 7480       673            mov     a,#0x80
+0169 C0E0       674            push    acc
+016B 120100     675            lcall   _printf
+016E 1581       676            dec     sp
+0170 1581       677            dec     sp
+0172 1581       678            dec     sp
+0174            679   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:11: LCD_Init();  
+0174 120100     680            lcall   _LCD_Init
+0177            681   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:12: printf("ho\n");
+0177 7408       682            mov     a,#__str_2
+0179 C0E0       683            push    acc
+017B 7484       684            mov     a,#(__str_2 >> 8)
+017D C0E0       685            push    acc
+017F 7480       686            mov     a,#0x80
+0181 C0E0       687            push    acc
+0183 120100     688            lcall   _printf
+0186 1581       689            dec     sp
+0188 1581       690            dec     sp
+018A 1581       691            dec     sp
+018C            692   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:14: return 0;
+018C 758200     693            mov     dpl,#0x00
+018F 22         694            ret
+0190            695   ;------------------------------------------------------------
+0190            696   ;Allocation info for local variables in function 'main'
+0190            697   ;------------------------------------------------------------
+0190            698   ;k                         Allocated to registers r4 r5 
+0190            699   ;count                     Allocated to registers 
+0190            700   ;buffer                    Allocated with name '_main_buffer_1_65'
+0190            701   ;row                       Allocated to registers r4 r5 r6 
+0190            702   ;------------------------------------------------------------
+0190            703   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:17: void main(){
+0190            704   ;        -----------------------------------------
+0190            705   ;         function main
+0190            706   ;        -----------------------------------------
+0190            707   _main:
+0190            708   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:23: while(1){
+0190 7A00       709            mov     r2,#0x00
+0192 7B00       710            mov     r3,#0x00
+0194            711   L011002?:
+0194            712   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:24: LCD_Clear();
+0194 C002       713            push    ar2
+0196 C003       714            push    ar3
+0198 120100     715            lcall   _LCD_Clear
+019B D003       716            pop     ar3
+019D D002       717            pop     ar2
+019F            718   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:25: row = &buffer[LCD_ROW1];
+019F 7CC8       719            mov     r4,#_main_buffer_1_65
+01A1 7D00       720            mov     r5,#0x00
+01A3 7E40       721            mov     r6,#0x40
+01A5            722   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:26: sprintf(row , "%d                                       ", count);
+01A5 C002       723            push    ar2
+01A7 C003       724            push    ar3
+01A9 C002       725            push    ar2
+01AB C003       726            push    ar3
+01AD 7488       727            mov     a,#__str_3
+01AF C0E0       728            push    acc
+01B1 7484       729            mov     a,#(__str_3 >> 8)
+01B3 C0E0       730            push    acc
+01B5 7480       731            mov     a,#0x80
+01B7 C0E0       732            push    acc
+01B9 C004       733            push    ar4
+01BB C005       734            push    ar5
+01BD C006       735            push    ar6
+01BF 120100     736            lcall   _sprintf
+01C2 E581       737            mov     a,sp
+01C4 24F8       738            add     a,#0xf8
+01C6 F581       739            mov     sp,a
+01C8            740   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:27: row = &buffer[LCD_ROW2];
+01C8 7CF0       741            mov     r4,#(_main_buffer_1_65 + 0x0028)
+01CA 7D00       742            mov     r5,#0x00
+01CC 7E40       743            mov     r6,#0x40
+01CE            744   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:28: sprintf(row, "0123456789ABCDEF");
+01CE 7408       745            mov     a,#__str_4
+01D0 C0E0       746            push    acc
+01D2 7485       747            mov     a,#(__str_4 >> 8)
+01D4 C0E0       748            push    acc
+01D6 7480       749            mov     a,#0x80
+01D8 C0E0       750            push    acc
+01DA C004       751            push    ar4
+01DC C005       752            push    ar5
+01DE C006       753            push    ar6
+01E0 120100     754            lcall   _sprintf
+01E3 E581       755            mov     a,sp
+01E5 24FA       756            add     a,#0xfa
+01E7 F581       757            mov     sp,a
+01E9            758   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:30: LCD_WriteString(buffer);
+01E9 907EC8     759            mov     dptr,#_main_buffer_1_65
+01EC 75F040     760            mov     b,#0x40
+01EF 120100     761            lcall   _LCD_WriteString
+01F2 D003       762            pop     ar3
+01F4 D002       763            pop     ar2
+01F6            764   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:32: for(k = 0; k < 1000; k++){
+01F6 7CE8       765            mov     r4,#0xE8
+01F8 7D03       766            mov     r5,#0x03
+01FA            767   L011006?:
+01FA            768   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:33: LCD_LongDelay();
+01FA C002       769            push    ar2
+01FC C003       770            push    ar3
+01FE C004       771            push    ar4
+0200 C005       772            push    ar5
+0202 120100     773            lcall   _LCD_LongDelay
+0205 D005       774            pop     ar5
+0207 D004       775            pop     ar4
+0209 D003       776            pop     ar3
+020B D002       777            pop     ar2
+020D 1C         778            dec     r4
+020E BCFF88     779            cjne    r4,#0xff,L011013?
+0211 1D         780            dec     r5
+0212            781   L011013?:
+0212            782   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:32: for(k = 0; k < 1000; k++){
+0212 EC         783            mov     a,r4
+0213 4D         784            orl     a,r5
+0214 7001       785            jnz     L011006?
+0216            786   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_LCD.c:36: count++;
+0216 0A         787            inc     r2
+0217 BA00C8     788            cjne    r2,#0x00,L011015?
+021A 0B         789            inc     r3
+021B            790   L011015?:
+021B 020100     791            ljmp    L011002?
+021E            792            rseg R_CSEG
+021E            793   
+0000            794            rseg R_XINIT
+0000            795   
+0000            796            rseg R_CONST
+0000            797   __str_0:
+0000 2563       798            db '%c'
+0002 00         799            db 0x00
+0003            800   __str_1:
+0003 6869       801            db 'hi'
+0005 0A         802            db 0x0A
+0006 00         803            db 0x00
+0007            804   __str_2:
+0007 686F       805            db 'ho'
+0009 0A         806            db 0x0A
+000A 00         807            db 0x00
+000B            808   __str_3:
+000B 25642020   809            db '%d                                       '
      20202020
      20202020
      20202020
@@ -804,14 +817,14 @@
      20202020
      20202020
      20
-0034 00         797            db 0x00
-0035            798   __str_4:
-0035 30313233   799            db '0123456789ABCDEF'
+0034 00         810            db 0x00
+0035            811   __str_4:
+0035 30313233   812            db '0123456789ABCDEF'
      34353637
      38394142
      43444546
-0045 00         800            db 0x00
-0046            801   
-0003            802            CSEG
-0003            803   
-0003            804   end
+0045 00         813            db 0x00
+0046            814   
+0003            815            CSEG
+0003            816   
+0003            817   end

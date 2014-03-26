@@ -21,9 +21,9 @@
 
 //Pin assignments
 	//LCD pins
-#define LCD_D P1
-#define LCD_RS	P4_1
-#define LCD_E	P3_2
+#define LCD_D P0
+#define LCD_RS	P2_1
+#define LCD_E	P2_2
 
 	//Motor pins
 #define MOTOR_L_FORWARD		P4_3
@@ -42,14 +42,14 @@
 
 /*
 		P0			P1			P2			P3			P4
-.0					LCD			IR_ANALOG
-.1					LCD			 						LCD		
-.2					LCD						LCD
-.3					LCD									MOTOR
-.4		ADC			LCD
-.5		ADC			LCD						MOTOR
-.6		ADC			LCD						MOTOR
-.7		ADC			LCD						MOTOR
+.0		LCD						IR_ANALOG
+.1		LCD						 						LCD		
+.2		LCD									LCD
+.3		LCD												MOTOR
+.4		LCD			ADC
+.5		LCD			ADC						MOTOR
+.6		LCD			ADC						MOTOR
+.7		LCD			ADC						MOTOR
 
 */
 

@@ -37,16 +37,20 @@
 #define ADC_MOSI	P1_7//P0_6
 #define ADC_CE		P1_4//P0_7	//active low
 
+	//Zero-Cross Detection pins
+#define ZERO_CROSS_0	P2_4
+#define ZERO_CROSS_1	P2_5
+
 	//Analog IR pins
 #define IR_DETECT			P2_0
 
 /*
 		P0			P1			P2			P3			P4
 .0		LCD						IR_ANALOG
-.1		LCD						 						LCD		
-.2		LCD									LCD
-.3		LCD												MOTOR
-.4		LCD			ADC
+.1		LCD						LCD		
+.2		LCD						LCD
+.3		LCD						ZEROCROSS				MOTOR
+.4		LCD			ADC			ZEROCROSS
 .5		LCD			ADC						MOTOR
 .6		LCD			ADC						MOTOR
 .7		LCD			ADC						MOTOR

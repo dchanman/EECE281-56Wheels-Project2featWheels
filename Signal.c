@@ -1,3 +1,9 @@
+volatile int TOV;	//counter for the overflow of TO1
+
+void Signal_TimerOverflow() interrupt 1{
+	TOV ++;
+}
+
 void Signal_Init(){
 	TR0=0; //Stop timer 0
 	TMOD |= 0b_00000001; // Set timer 0 as 16-bit timer
@@ -77,14 +83,15 @@ void Signal_GetPhase( float period )
 	
 	// Time difference between reference and test
 	TH0=0; TL0=0;	// Reset the timer
+	TOV = 0;
 	
 	// Reference signal
-	while(P2_0==1); //Wait for the signal to be zero
-	while(P2_0==0); //Wait for the signal to be one
+	while(ZERO_CROSS_0==1); //Wait for the signal to be zero
+	while(ZERO_CROSS_0==0); //Wait for the signal to be one
 	TR0=1;	// Start timing
 	// Test signal
-	while(P2_1==1);	//Wait for the signal to be zero
-	while(P2_1==0); //Wait for the signal to be one
+	while(ZERO_CROSS_1==1);	//Wait for the signal to be zero
+	while(ZERO_CROSS_1==0); //Wait for the signal to be one
 	TR0=0;	// Stop timer 
 
 	// Calculate time difference
@@ -135,26 +142,61 @@ void Signal_Wait1s(void)
 *	What does P2_0 do?)
 *
 *@return:	The period of the signal
-*/
+/
 float Signal_GetPeriod(){
 	float period;
+	double p2;
 	
 	// Measure period at P1.0 using timer 0
 	TH0=0; TL0=0;	// Reset the timer
 	
-	while(P2_0==1); //Wait for the signal to be zero	
-	while(P2_0==0); //Wait for the signal to be one
+	while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
+	while(ZERO_CROSS_0==0); //Wait for the signal to be one
 	
 	TR0=1;	// Start timing
 	
-	while(P2_0==1);	//Wait for the signal to be zero
+	while(ZERO_CROSS_0==1);	//Wait for the signal to be zero
 	
 	TR0=0;	// Stop timer 0
 	
 	// [TH0, TL0] is half the period in multiples of 12/CLK, so:
 	period=(TH0*256.0+TL0)*(24.0/CLK);
+	p2 = (TOV*65536.0) + (TH0*256.0+TL0)*(24.0/CLK);
 	
 	return period;
+}
+*/
+
+/**
+*Signal_GetPeriod
+*
+*Gets the period of the signal
+*(This function has not been verified. 
+*	What does P2_0 do?)
+*
+*@return:	The period of the signal
+*/
+double Signal_GetPeriod(){
+	float period;
+	double p2;
+	
+	// Measure period at P1.0 using timer 0
+	TH0=0; TL0=0;	// Reset the timer
+	
+	while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
+	while(ZERO_CROSS_0==0); //Wait for the signal to be one
+	
+	TR0=1;	// Start timing
+	
+	while(ZERO_CROSS_0==1);	//Wait for the signal to be zero
+	
+	TR0=0;	// Stop timer 0
+	
+	// [TH0, TL0] is half the period in multiples of 12/CLK, so:
+	period=(TH0*256.0+TL0)*(24.0/CLK);
+	p2 = (TOV*65536.0) + (TH0*256.0+TL0)*(24.0/CLK);
+	
+	return p2;
 }
 
 /**
@@ -168,19 +210,19 @@ float Signal_GetPeriod(){
 *
 *@returns: The frequency of the signal, or -1 if 
 *			the frequency is less than 25Hz.
-*/
+*
 float Signal_GetFrequency(){
 	float period;
 	
 	// Measure period at P1.0 using timer 0
 	TH0=0; TL0=0;	// Reset the timer
 	
-	while(P2_0==1); //Wait for the signal to be zero	
-	while(P2_0==0); //Wait for the signal to be one
+	while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
+	while(ZERO_CROSS_0==0); //Wait for the signal to be one
 	
 	TR0=1;	// Start timing
 	
-	while(P2_0==1);	//Wait for the signal to be zero
+	while(ZERO_CROSS_0==1);	//Wait for the signal to be zero
 	
 	TR0=0;	// Stop timer 0
 	
@@ -191,5 +233,42 @@ float Signal_GetFrequency(){
 		return (1.0/period);
 	}
 	return -1;
+}
+*/
+
+/**
+*Signal_GetFrequency
+*
+*Gets the frequency of the signal. The
+*frequency must be above 25Hz.
+*
+*(This function has not been verified. 
+*	What does P2_0 do?)
+*
+*@returns: The frequency of the signal, or -1 if 
+*			the frequency is less than 25Hz.
+*/
+double Signal_GetFrequency(){
+	double period;
+	
+	// Measure period at P1.0 using timer 0
+	TH0=0; TL0=0;	// Reset the timer
+	
+	while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
+	while(ZERO_CROSS_0==0); //Wait for the signal to be one
+	
+	TR0=1;	// Start timing
+	
+	while(ZERO_CROSS_0==1);	//Wait for the signal to be zero
+	
+	TR0=0;	// Stop timer 0
+	
+	// [TH0, TL0] is half the period in multiples of 12/CLK, so:
+	period=(TOV*65536+TH0*256.0+TL0)*(24.0/CLK);
+	
+	//if(TH0 != 0){
+		return (1.0/period);
+	//}
+	//return -1;
 }
 

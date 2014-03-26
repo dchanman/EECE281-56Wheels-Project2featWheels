@@ -1,4 +1,3 @@
-
 #include "General.h"
 #include "Signal.h"
 
@@ -16,15 +15,21 @@ unsigned char _c51_external_startup(void)
 {
 	General_Init();
 	Signal_Init();    
+	printf(CLEAR_SCREEN);
+	
     return 0;
 }
 
 void main (void)
 {		
 	unsigned char i = 0;
+	float voltage;
+	double frequency, period;
 	while(1){
-	
-		printf("v0: %4.2f", Signal_Voltage(i));
+		voltage = Signal_Voltage(0);
+		frequency = Signal_GetFrequency();
+		period = Signal_GetPeriod();
+		printf("v0: %4.2f | freq: %lf | period: %lf", voltage, frequency, period);
 		printf("\r");			
 	}
 }

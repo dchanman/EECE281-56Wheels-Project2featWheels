@@ -15,8 +15,8 @@ unsigned int Signal_GetADC(unsigned char);
 
 float Signal_Voltage(unsigned char);
 void Signal_GetPhase(float);
-float Signal_GetPeriod();
-float Signal_GetFrequency();
+double Signal_GetPeriod();
+double Signal_GetFrequency();
 
 void Signal_Wait1s();
 

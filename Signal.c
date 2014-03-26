@@ -1,3 +1,8 @@
+void Signal_Init(){
+	TR0=0; //Stop timer 0
+	TMOD |= 0b_00000001; // Set timer 0 as 16-bit timer
+}
+
 /**
 *Signal_SPIWrite
 *
@@ -46,11 +51,15 @@ unsigned int Signal_GetADC(unsigned char channel){
 */
 float Signal_Voltage (unsigned char channel)
 {
-	//return ( (GetADC(channel)*4.88)/1023.0 ); // VCC=4.88V (measured)
+	return ( (Signal_GetADC(channel)*4.792)/1023.0 ); // VCC=4.88V (measured)
+	
+	/*
 	if( channel == 2)
-		return( ( ((GetADC(channel)*ADC_VCC)/1023.0 ) + VDIODEL) / SQRT2 );
+		return( ( ((Signal_GetADC(channel)*ADC_VCC)/1023.0 ) + VDIODEL) / SQRT2 );
 	else
-		return( ( ((GetADC(channel)*ADC_VCC)/1023.0 ) + VDIODER) / SQRT2 );
+		return( ( ((Signal_GetADC(channel)*ADC_VCC)/1023.0 ) + VDIODER) / SQRT2 );
+		
+		*/
 }
 
 /**
@@ -161,7 +170,7 @@ float Signal_GetPeriod(){
 *			the frequency is less than 25Hz.
 */
 float Signal_GetFrequency(){
-	float period, frequency;
+	float period;
 	
 	// Measure period at P1.0 using timer 0
 	TH0=0; TL0=0;	// Reset the timer

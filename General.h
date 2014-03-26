@@ -32,10 +32,10 @@
 #define	MOTOR_R_BACKWARD	P3_5
 
 	//ADC pins
-#define ADC_MISO	P0_5
-#define ADC_MOSI	P0_7
-#define ADC_SCK		P0_6
-#define ADC_CE		P0_4	//active low
+#define ADC_SCK		P1_6//P0_4
+#define ADC_MISO	P1_5//P0_5
+#define ADC_MOSI	P1_7//P0_6
+#define ADC_CE		P1_4//P0_7	//active low
 
 	//Analog IR pins
 #define IR_DETECT			P2_0

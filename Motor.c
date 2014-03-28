@@ -38,15 +38,11 @@ void Motor_Init()
 */
 void pwmcounter (void) interrupt 3
 {
-	if(IR_DETECT == IR_SOMETHING){
-		MOTOR_L_FORWARD		=	0;
-		MOTOR_L_BACKWARD	= 	0;
-		MOTOR_R_FORWARD		=	0;
-		MOTOR_R_BACKWARD	= 	0;
-	}
-	else if(++pwmcount>99){
+	if(++pwmcount>99){
 		pwmcount=0;
 	}
+	
+	//Operate left motor
 	if(motor_l_direction == MOTOR_FORWARD){
 		MOTOR_L_FORWARD		=	(motor_l_speed>pwmcount)?1:0;
 		MOTOR_L_BACKWARD	= 	0;
@@ -55,6 +51,8 @@ void pwmcounter (void) interrupt 3
 		MOTOR_L_BACKWARD	=	(motor_l_speed>pwmcount)?1:0;
 		MOTOR_L_FORWARD		= 	0;
 	}
+	
+	//Operate right motor
 	if(motor_r_direction == MOTOR_FORWARD){
 		MOTOR_R_FORWARD		=	(motor_r_speed>pwmcount)?1:0;
 		MOTOR_R_BACKWARD	= 	0;
@@ -102,10 +100,23 @@ void Motor_Forward(unsigned char speed){
 /**
 *Motor_Backward
 *
-*Turns both motors backwards at the same speed
+*Turns both motors backwards at the same speed.
+*
+*EXTRA FUNCTIONALITY: If the IR sensor detects
+*an object, this function will NOT cause the motors
+*to activate.
+*
 *@param: speed - speed the motors will move (0-100)
 */
 void Motor_Backward(unsigned char speed){
+
+	if(IR_DETECT == IR_SOMETHING){
+		MOTOR_L_FORWARD		=	0;
+		MOTOR_L_BACKWARD	= 	0;
+		MOTOR_R_FORWARD		=	0;
+		MOTOR_R_BACKWARD	= 	0;
+	}
+
 	motor_l_speed = speed;
 	motor_r_speed = speed;
 	motor_l_direction = MOTOR_BACKWARD;
@@ -139,4 +150,16 @@ void Motor_TurnLeft(unsigned char speed){
 	motor_r_speed = speed;
 	motor_l_direction = MOTOR_BACKWARD;
 	motor_r_direction = MOTOR_FORWARD;
+}
+
+/**
+*Motor_Stop
+*
+*Stops all motor movement.
+*/
+void Motor_Stop(){
+		MOTOR_L_FORWARD		=	0;
+		MOTOR_L_BACKWARD	= 	0;
+		MOTOR_R_FORWARD		=	0;
+		MOTOR_R_BACKWARD	= 	0;
 }

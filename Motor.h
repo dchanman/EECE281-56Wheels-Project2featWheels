@@ -31,6 +31,7 @@ void Motor_Forward(unsigned char speed);
 void Motor_Backward(unsigned char speed);
 void Motor_TurnLeft(unsigned char speed);
 void Motor_TurnRight(unsigned char speed);
+void Motor_Stop();
 
 #include "Motor.c"
 

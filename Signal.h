@@ -2,6 +2,7 @@
 #define SIGNAL_H_ 0
 
 #define ADC_VCC 4.7281
+#define ADC_MAXVAL 1023
 
 #define SQRT2 1.41421356237
 #define VDIODER 1.018	//where is this value from?                                            

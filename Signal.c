@@ -125,11 +125,53 @@ void Signal_Wait1s(void)
 		;For a 22.1184MHz crystal one machine cycle 
 		;takes 12/22.1184MHz=0.5425347us
 	    mov R2, #10
-	L3:	mov R1, #248
-	L2:	mov R0, #184
-	L1:	djnz R0, L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
-	    djnz R1, L2 ; 200us*250=0.05s
-	    djnz R2, L3 ; 0.05s*20=1s
+	SW1_L3:	mov R1, #248
+	SW1_L2:	mov R0, #184
+	SW1_L1:	djnz R0, SW1_L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
+	    djnz R1, SW1_L2 ; 200us*250=0.05s
+	    djnz R2, SW1_L3 ; 0.05s*20=1s
+	    ret
+    _endasm;
+}
+
+/**
+*Signal_WaitBitTime
+*
+*Stalls the processor for 20ms.
+*Used to transmit at BAUDRATE 50bits/s
+*@modifies: R2, R1, R0
+*/
+void Signal_WaitBitTime(void)
+{
+	_asm	
+		;For a 22.1184MHz crystal one machine cycle 
+		;takes 12/22.1184MHz=0.5425347us
+	SWBT_L3:	mov R1, #100
+	SWBT_L2:	mov R0, #184
+	SWBT_L1:	djnz R0, SWBT_L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
+	    djnz R1, SWBT_L2 ; 200us*250=0.02s
+	    ret
+    _endasm;
+}
+
+/**
+*Signal_WaitBitTimeAndHalf
+*
+*Stalls the processor for 30 ms
+*Used by the receiver circuit to put itself 
+*a half-signal period "out of phase" with the
+*transmitter when receiving a signal
+*@modifies: R2, R1, R0
+*/
+void Signal_WaitBitTimeAndHalf(void)
+{
+	_asm	
+		;For a 22.1184MHz crystal one machine cycle 
+		;takes 12/22.1184MHz=0.5425347us
+	SWBTAH_L3:	mov R1, #150
+	SWBTAH_L2:	mov R0, #184
+	SWBTAH_L1:	djnz R0, SWBTAH_L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
+	    djnz R1, SWBTAH_L2 ; 200us*150=0.03s
 	    ret
     _endasm;
 }

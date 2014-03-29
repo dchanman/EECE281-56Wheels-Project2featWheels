@@ -6,8 +6,6 @@
 */
 void Motor_Init()
 {
-	printf("Motor Init\n");
-
 	// Initialize timer 1 for ISR 'pwmcounter()' below
 	TR1=0; // Stop timer 1
 	TMOD |= 0x10; // 16-bit timer

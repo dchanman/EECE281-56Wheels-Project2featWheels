@@ -20,6 +20,8 @@ double Signal_GetPeriod();
 double Signal_GetFrequency();
 
 void Signal_Wait1s();
+void Signal_WaitBitTime();
+void Signal_WaitBitTimeAndHalf();
 
 
 //         MCP3004 ADC

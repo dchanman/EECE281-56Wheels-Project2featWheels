@@ -44,10 +44,14 @@
 	//Analog IR pins
 #define IR_DETECT			P2_0
 
+	//Transmitter pins
+#define TRANSMITTER_P0		P1_0
+#define TRANSMITTER_P1		P1_1
+
 /*
 		P0			P1			P2			P3			P4
-.0		LCD						IR_ANALOG
-.1		LCD						LCD		
+.0		LCD			TRANSMTR	IR_ANALOG
+.1		LCD			TRANSMTR	LCD		
 .2		LCD						LCD
 .3		LCD						ZEROCROSS				MOTOR
 .4		LCD			ADC			ZEROCROSS

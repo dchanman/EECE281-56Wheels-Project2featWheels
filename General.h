@@ -26,10 +26,10 @@
 #define LCD_E	P2_2
 
 	//Motor pins
-#define MOTOR_L_FORWARD		P4_3
-#define MOTOR_L_BACKWARD	P3_7
-#define MOTOR_R_FORWARD		P3_6
-#define	MOTOR_R_BACKWARD	P3_5
+#define MOTOR_L_FORWARD		P4_3		//L redwire
+#define MOTOR_L_BACKWARD	P3_7		//L blackwire
+#define MOTOR_R_FORWARD		P3_6		//R redwire
+#define	MOTOR_R_BACKWARD	P3_5		//R blackwire
 
 	//ADC pins
 #define ADC_SCK		P1_6//P0_4

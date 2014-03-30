@@ -4,6 +4,8 @@
 #include "Joystick.h"
 #include "Transmitter.h"
 
+#define ANIMATION_TIME 500
+
 /**
 *debounce
 *
@@ -27,17 +29,16 @@ void debounce(void){
 *
 *@param: millis - the amount of time in ms the processor waits
 */
-void waitMillis(unsigned char millis){
-	unsigned char i;
-	for(i = 0; i < millis; i++){
+void waitMillis(int millis){
+	int i;
+	for(i = 0; i < millis/2; i++){
 			_asm	
 		;For a 22.1184MHz crystal one machine cycle 
 		;takes 12/22.1184MHz=0.5425347us
-	    mov R2, #10
+	    mov R1, #5
 	WMS_L2:	mov R0, #184
 	WMS_L1:	djnz R0, WMS_L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
 	    djnz R1, WMS_L2 ; 200us*5=0.001s
-	    ret
     _endasm;
 	}
 }
@@ -48,15 +49,18 @@ void CONTROLLER_Message_Advance(){
 	
 	while(Joystick_GetDirection() == JOYSTICK_DOWN){
 			if(i%3 == 0){
+				LCD_Clear();
 				LCD_WriteString("Advancing.                              == ))       <[ ]");
 			}
 			else if(i%3 == 1){
+				LCD_Clear();
 				LCD_WriteString("Advancing..                             == ))))    <[ ] ");
 			}
 			else{
+				LCD_Clear();
 				LCD_WriteString("Advancing...                            == )))))) <[ ]  ");
 			}
-			waitMillis(500);
+			waitMillis(ANIMATION_TIME);
 			i++;
 	}
 }
@@ -64,47 +68,69 @@ void CONTROLLER_Message_Advance(){
 void CONTROLLER_Message_Retreat(){
 	unsigned char i = 0;
 	
-	while(Joystick_GetDirection() == JOYSTICK_DOWN){
+	while(Joystick_GetDirection() == JOYSTICK_UP){
 			if(i%3 == 0){
-				LCD_WriteString("Advancing.                              == ))     <[ ]  ");
+				LCD_Clear();
+				LCD_WriteString("Retreating.                             == ))     <[ ]  ");
 			}
 			else if(i%3 == 1){
-				LCD_WriteString("Advancing..                             == ))))    <[ ] ");
+				LCD_Clear();
+				LCD_WriteString("Retreating..                            == ))))    <[ ] ");
 			}
 			else{
-				LCD_WriteString("Advancing...                            == ))))))   <[ ]");
+				LCD_Clear();
+				LCD_WriteString("Retreating...                           == ))))))   <[ ]");
 			}
-			waitMillis(500);
+			waitMillis(ANIMATION_TIME);
 			i++;
 	}
 }
 
 void CONTROLLER_Message_Spin(unsigned char seconds){
 	unsigned char i;
-	for(i = 0; i < seconds; i++){
-		waitMillis(250);
-		LCD_WriteString("Spinning receiver.                      <[ ]  ");
-		waitMillis(250);
-		LCD_WriteString("Spinning receiver..                      [ ]>  ");
-		waitMillis(250);
-		LCD_WriteString("Spinning receiver...                    <[ ]  ");
-		waitMillis(250);
-		LCD_WriteString("Spinning receiver....                    [ ]>  ");		
+	for(i = 0; i < seconds*2; i++){
+		if(i%2==0){
+			waitMillis(ANIMATION_TIME);
+			LCD_Clear();
+			LCD_WriteString("Spinning                                      <[ ]        ");
+		}
+		else{
+			waitMillis(ANIMATION_TIME);
+			LCD_Clear();
+			LCD_WriteString("Spinning                                       [ ]>       ");
+		}
 	}
 }
 
 void CONTROLLER_Message_Park(unsigned char seconds){
 	unsigned char i;
-	for(i = 0; i < seconds; i++){
-		waitMillis(250);
-		LCD_WriteString("Parallel parking.                       <[ ]    ");
-		waitMillis(250);
-		LCD_WriteString("Parallel parking..                       <[ ]   ");
-		waitMillis(250);
-		LCD_WriteString("Parallel parking...                       <[ ]  ");
-		waitMillis(250);
-		LCD_WriteString("Parallel parking....                       <[ ] ");		
+	for(i = 0; i < seconds*2; i++){
+		if(i%4==0){
+			waitMillis(ANIMATION_TIME);
+			LCD_Clear();
+			LCD_WriteString("Parallel park                           <[ ]              ");		
+		}
+		else if (i%4 == 1){
+			waitMillis(ANIMATION_TIME);
+			LCD_Clear();
+			LCD_WriteString("Parallel park                            <[ ]             ");		
+		}
+		else if(i%4 == 2){
+			waitMillis(ANIMATION_TIME);
+			LCD_Clear();
+			LCD_WriteString("Parallel park                             <[ ]            ");
+		}
+		else if(i%4 == 3){
+			waitMillis(ANIMATION_TIME);
+			LCD_Clear();
+			LCD_WriteString("Parallel park                              <[ ]           ");	
+		}	
 	}
+}
+
+void CONTROLLER_Message_Standby(){
+	LCD_Clear();
+	LCD_WriteString("Transmitter                             Ready!                     ");	
 }
 
 unsigned char _c51_external_startup(void)
@@ -121,27 +147,34 @@ void main(){
 	enum Joystick_Direction joystick_input;
 	
 	Transmitter_Start();	
+	CONTROLLER_Message_Standby();
 	while(1){
 		joystick_input = Joystick_GetDirection();
 		
 		if(joystick_input == JOYSTICK_IDLE){
-			LCD_WriteString("Transmitter ready!");			
+		
 		}
 		else if(joystick_input == JOYSTICK_UP){
 			Transmitter_Transmit(TRANSMITTER_CMD_RETREAT);
 			CONTROLLER_Message_Retreat();
+			CONTROLLER_Message_Standby();
+			Transmitter_Transmit(TRANSMITTER_CMD_IDLE);
 		}
 		else if(joystick_input == JOYSTICK_DOWN){
 			Transmitter_Transmit(TRANSMITTER_CMD_ADVANCE);
 			CONTROLLER_Message_Advance();
+			CONTROLLER_Message_Standby();
+			Transmitter_Transmit(TRANSMITTER_CMD_IDLE);
 		}
 		else if(joystick_input == JOYSTICK_LEFT){
 			Transmitter_Transmit(TRANSMITTER_CMD_SPIN);
 			CONTROLLER_Message_Spin(3);
+			CONTROLLER_Message_Standby();
 		}
 		else if(joystick_input == JOYSTICK_RIGHT){
 			Transmitter_Transmit(TRANSMITTER_CMD_PARK);
 			CONTROLLER_Message_Park(5);
+			CONTROLLER_Message_Standby();
 		}
 	
 	}

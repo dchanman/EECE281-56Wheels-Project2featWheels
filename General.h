@@ -22,8 +22,8 @@
 //Pin assignments
 	//LCD pins
 #define LCD_D P0
-#define LCD_RS	P2_1
-#define LCD_E	P2_2
+#define LCD_RS	P4_4//P2_1
+#define LCD_E	P4_0//P2_2
 
 	//Motor pins
 #define MOTOR_L_FORWARD		P4_3		//L redwire
@@ -50,11 +50,11 @@
 
 /*
 		P0			P1			P2			P3			P4
-.0		LCD			TRANSMTR	IR_ANALOG
-.1		LCD			TRANSMTR	LCD		
-.2		LCD						LCD
+.0		LCD			TRANSMTR	IR_ANALOG				LCD
+.1		LCD			TRANSMTR			
+.2		LCD						
 .3		LCD						ZEROCROSS				MOTOR
-.4		LCD			ADC			ZEROCROSS
+.4		LCD			ADC			ZEROCROSS				LCD
 .5		LCD			ADC						MOTOR
 .6		LCD			ADC						MOTOR
 .7		LCD			ADC						MOTOR

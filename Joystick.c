@@ -11,19 +11,19 @@ enum Joystick_Direction Joystick_GetDirection(){
 	Vy = Signal_GetADC(JOYSTICK_CHANNEL_Y);
 	
 	if(Vy > (ADC_MAXVAL - JOYSTICK_SENSITIVITY)){
-		return JOYSTICK_DOWN;
+		return JOYSTICK_UP;
 	}
 	else if(Vy < JOYSTICK_SENSITIVITY){
-		return JOYSTICK_UP;
+		return JOYSTICK_DOWN;
 	}
 	
 	Vx = Signal_GetADC(JOYSTICK_CHANNEL_X);
 	
 	if(Vx > (ADC_MAXVAL - JOYSTICK_SENSITIVITY)){
-		return JOYSTICK_RIGHT;
+		return JOYSTICK_LEFT;
 	}
 	else if(Vx < JOYSTICK_SENSITIVITY){
-		return JOYSTICK_LEFT;
+		return JOYSTICK_RIGHT;
 	}
 
 	

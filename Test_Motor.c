@@ -63,6 +63,7 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Set(MOTOR_LEFT, 100, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
@@ -70,6 +71,7 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Set(MOTOR_LEFT, 100, MOTOR_BACKWARD);
 		Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);		
@@ -77,6 +79,7 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 	
 		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 100, MOTOR_FORWARD);
@@ -84,6 +87,7 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 100, MOTOR_BACKWARD);
@@ -91,6 +95,7 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 
 		Motor_Set(MOTOR_LEFT, 50, MOTOR_FORWARD);
 		Motor_Set(MOTOR_RIGHT, 50, MOTOR_BACKWARD);		
@@ -98,6 +103,7 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 
 		Motor_Set(MOTOR_RIGHT, 50, MOTOR_FORWARD);
 		Motor_Set(MOTOR_LEFT, 50, MOTOR_BACKWARD);		
@@ -105,54 +111,63 @@ void main (void)
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 
 		Motor_Forward(25);	
 		printf("both forward at 25 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Forward(50);	
 		printf("both forward at 50 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 
 		Motor_Forward(75);	
 		printf("both forward at 75 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Forward(100);	
 		printf("both forward at 100 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 
 		Motor_Backward(25);	
 		printf("both backward at 25 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Backward(50);
 		printf("both backward at 50 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 
 		Motor_Backward(75);	
 		printf("both backward at 75 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		Motor_Backward(100);	
 		printf("both backward at 100 speed (Enter anything please) \n");
 		while(SW == 0);
 		debounce();
 		while(SW == 1);
+		debounce();
 		
 		/*
 		

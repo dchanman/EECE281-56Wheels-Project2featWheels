@@ -31,8 +31,9 @@ void main (void)
 	//	printf("\rGetting V1...");
 		v1 = Signal_Voltage(1);
 		
-		printf("v0: %4.2f | v1: %4.2f \r", v0, v1);
+		printf("v0: %4.5f | v1: %4.5f \n", v0, v1);
 		
+		Signal_Wait1s();
 		/*
 		voltage = Signal_Voltage(0);
 		frequency = Signal_GetFrequency();

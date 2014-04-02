@@ -7,13 +7,6 @@
 
 #define TRANSMITTER_PWM 1
 
-//Transmitter messages:
-#define TRANSMITTER_CMD_ADVANCE		0b11000000
-#define TRANSMITTER_CMD_RETREAT		0b00110000
-#define TRANSMITTER_CMD_SPIN		0b00001100
-#define TRANSMITTER_CMD_PARK		0b00000011
-#define TRANSMITTER_CMD_IDLE		0b00000000
-
 //These variables are used in the ISR
 volatile unsigned char pwmcount;
 

@@ -2,11 +2,17 @@
 #include "Signal.h"
 #include "Motor.h"
 
-#define RECEIVER_THRESHOLD_LOGIC 2.0
-#define RECEIVER_THRESHOLD_VOLTAGE 0.2
-#define RECEIVER_THRESHOLD_PHASE 10
+//If the peak voltage drops below this value, it is a logic 0
+#define RECEIVER_THRESHOLD_LOGIC 1.5
 
-#define RECEIVER_INITIAL_VOLTAGE_TARGET 4.0
+//Threshold of voltage difference - used to determine the location of the transmitter
+#define RECEIVER_THRESHOLD_VOLTAGE 0.01
+
+//Sensitivity of controls - how quickly the car advances/retreats on command
+#define RECEIVER_SENSITIVITY 0.02
+
+//Initial voltage target for distance
+#define RECEIVER_INITIAL_VOLTAGE_TARGET 2.8400
 
 /**
 *waitMillis
@@ -30,6 +36,41 @@ void waitMillis(int millis){
 	}
 }
 
+/**
+*Receiver_Receive
+*
+*Receives an unsigned char from
+*an electromagnetic signal. The signal
+*is assumed to be sent LSB to MSB, so
+*an incoming signal (1100) will be interpreted
+*as (0011)
+*
+*@return:	The received electromagnetic signal
+*/
+unsigned char Receiver_Receive(){
+	unsigned char k;
+	unsigned char msg = 0;
+	Signal_WaitBitTimeAndHalf();
+	for(k=0; k<8; k++){
+		if (Signal_Voltage(SIGNAL_CHANNEL_L) > RECEIVER_THRESHOLD_LOGIC){
+			msg |= (0x01 <<k);
+		}
+		Signal_WaitBitTime();	
+	}
+	printf("The message received was %b\n", msg);
+	return msg;
+}
+
+void Receiver_Spin(){
+	Motor_TurnLeft(100);
+	waitMillis(200);
+	while(Signal_Voltage(SIGNAL_CHANNEL_R) - Signal_Voltage(SIGNAL_CHANNEL_L) > RECEIVER_THRESHOLD_VOLTAGE);
+	waitMillis(200);
+	while(Signal_Voltage(SIGNAL_CHANNEL_L) - Signal_Voltage(SIGNAL_CHANNEL_R) > RECEIVER_THRESHOLD_VOLTAGE);
+	Motor_Stop();
+	waitMillis(500);
+}
+
 unsigned char _c51_external_startup(void)
 {
 	General_Init();
@@ -39,59 +80,93 @@ unsigned char _c51_external_startup(void)
 }
 
 void main(){
-	float voltageL, voltageR, phasediff, voltageTarget;
-	double period;
-	
+	float voltageL, voltageR, voltageTarget;
+	unsigned char cmd;
+	unsigned char advanceFlag, retreatFlag;
+			
+	//initialize voltageTarget with the default value
 	voltageTarget = RECEIVER_INITIAL_VOLTAGE_TARGET;
+	//initialize flags
+	advanceFlag = 0; retreatFlag = 0;
 
 	while(1){
-		printf("Getting Period...");
-		period = Signal_GetPeriod();
-		printf("\rGetting Voltage L");
-		voltageL = Signal_Voltage(RECEIVER_CHANNEL_L);
-		printf("\rGetting Voltage R");
-		voltageR = Signal_Voltage(RECEIVER_CHANNEL_R);
+		printf("Getting Voltage L     ");
+		voltageL = Signal_Voltage(SIGNAL_CHANNEL_L);	//SIGNAL_CHANNEL_L is defined in General.h
+		printf("\rGetting Voltage R     ");
+		voltageR = Signal_Voltage(SIGNAL_CHANNEL_R);	//SIGNAL_CHANNEL_R is defined in General.h
 		
-		printf("\r\nPeriod: %lf, VoltageL: %f, VoltageR: %f\n\t", period, voltageL, voltageR);
+		printf("\rVoltageL: %f, VoltageR: %f\n\t", voltageL, voltageR);
 		
 		//if data is being transmitted, receive message
 		if(voltageL < RECEIVER_THRESHOLD_LOGIC){
-			//begin receiving data
-			printf("Waiting for data...\n");
-		}
-		
-		//otherwise, follow the beacon
-		else{
-			phasediff = Signal_GetPhase(period);
-			printf("PhaseDiff: %f, ", phasediff);
+			printf("Receiving data...\n");
+			cmd = Receiver_Receive();
 			
-			//handle turning first
-			if(phasediff > RECEIVER_THRESHOLD_PHASE && phasediff < 180){
-				Motor_TurnLeft(50);
-				printf("Turning left...\n");
+			//Process the command
+			if(cmd == TRANSMITTER_CMD_ADVANCE){
+				advanceFlag = 1;
 			}
-			else if (phasediff > 180 && phasediff < 360-RECEIVER_THRESHOLD_PHASE){
-				Motor_TurnRight(50);
-				printf("Turning left...\n");
+			else if(cmd == TRANSMITTER_CMD_RETREAT){	
+				advanceFlag = 1;
 			}
-			//then handle distance
+			else if(cmd == TRANSMITTER_CMD_SPIN){
+				printf("Spinning...\n");
+				Receiver_Spin();
+			}
+			else if(cmd == TRANSMITTER_CMD_PARK){
+				printf("Parking...\n");
+				//not yet implemented
+			}			
+			else if (cmd == TRANSMITTER_CMD_IDLE){
+				printf("Idle...\n");
+				advanceFlag = 0;
+				retreatFlag = 0;
+			}
 			else{
-				if (voltageL > voltageTarget+RECEIVER_THRESHOLD_VOLTAGE){
-					Motor_Backward(50);
-					printf("Moving backward...\n");
-				}
-				else if(voltageL < voltageTarget - RECEIVER_THRESHOLD_VOLTAGE){
-					Motor_Forward(50);
-					printf("Moving forward...\n");
-				}
-				else{
-					Motor_Stop();
-					printf("Idle...\n");
-				}
+				printf("Invalid command %b\n", cmd);
 			}
+			continue; //restart the loop
 		}
 		
-		waitMillis(1000);
+		//modify distances if flags are set
+		if(advanceFlag){
+			voltageTarget+=RECEIVER_SENSITIVITY;
+			printf("Advancing... voltageTarget:%f\n", voltageTarget);
+		}
+		else if(retreatFlag){			
+			voltageTarget-=RECEIVER_SENSITIVITY;
+			printf("Retreating... voltageTarget:%f\n", voltageTarget);
+		}
+		
+		//after processing the message, follow the beacon
+	
+		//handle turning first
+		if(voltageL - voltageR > RECEIVER_THRESHOLD_VOLTAGE){
+			Motor_TurnLeft(50);
+			printf("Turning left...\n");
+		}
+		else if (voltageR - voltageL > RECEIVER_THRESHOLD_VOLTAGE){
+			Motor_TurnRight(50);
+			printf("Turning right...\n");
+		}
+		//then handle distance, using voltageL (voltageL and voltageR should be 
+		//close to equal anyways, so it doesn't matter much
+		else{
+			if (voltageL > voltageTarget+RECEIVER_THRESHOLD_VOLTAGE){
+				Motor_Backward(50);
+				printf("Moving backward...\n");
+			}
+			else if(voltageL < voltageTarget - RECEIVER_THRESHOLD_VOLTAGE){
+				Motor_Forward(50);
+				printf("Moving forward...\n");
+			}
+			else{
+				Motor_Stop();
+				printf("Idle...\n");
+			}
+		}
+		Signal_WaitBitTime();	//we cannot wait longer than BitTime
+								//otherwise we risk missing the Idle command
 	}
 	
 	

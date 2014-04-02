@@ -7,6 +7,8 @@ void Signal_TimerOverflow() interrupt 1{
 void Signal_Init(){
 	TR0=0; //Stop timer 0
 	TMOD |= 0b_00000001; // Set timer 0 as 16-bit timer
+	ET0 = 1;
+	EA =1;
 }
 
 /**
@@ -76,7 +78,7 @@ float Signal_Voltage (unsigned char channel)
 *(Unverified function. What does P2_0 and 2_1 do?)
 *@param: period - the period of the signal
 */
-void Signal_GetPhase( float period )
+float Signal_GetPhase( double period )
 {
 	float timeDiff;
 	float phaseDiff;
@@ -111,6 +113,8 @@ void Signal_GetPhase( float period )
 		else
 			printf( "Phase difference =  %.1f degrees\n\n\r", phaseDiff ); 
 	}
+	
+	return phaseDiff;
 }
 
 /**
@@ -224,13 +228,36 @@ double Signal_GetPeriod(){
 	
 	// Measure period at P1.0 using timer 0
 	TH0=0; TL0=0;	// Reset the timer
+	TOV = 0;
 	
-	while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
-	while(ZERO_CROSS_0==0); //Wait for the signal to be one
+	//while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
+	//while(ZERO_CROSS_0==0); //Wait for the signal to be one
+	TR0=1;
+	//printf("\t\tWaiting for signal to be high...\r");
+	while(Signal_Voltage(SIGNAL_CHANNEL_L) >= SIGNAL_PEAK_VOLTAGE){
+		if(TOV == 100){
+			printf("Timeout! No period detected!\n");
+			return 0;
+		}
+	}
+	//printf("\t\tSignal went high! Now waiting for signal to be low...");
+	TOV = 0;TH0 = 0; TL0 = 0;
+	while(Signal_Voltage(SIGNAL_CHANNEL_L) < SIGNAL_PEAK_VOLTAGE){
+		//printf("Timer: %d | %lf\r", TOV, (TOV*65536.0) + (TH0*256.0+TL0)*(24.0/CLK));
+			if(TOV == 100){
+			printf("Timeout! No period detected!\n");
+			return 0;
+		}
+	}
+	TOV = 0;TH0 = 0; TL0 = 0;
+	//printf("\t\tSignal went high-low! Now timing period...\r");
+	//TR0=1;	// Start timing
 	
-	TR0=1;	// Start timing
+	while(Signal_Voltage(SIGNAL_CHANNEL_L) >= SIGNAL_PEAK_VOLTAGE);	//Wait for the signal to be zero
+	while(Signal_Voltage(SIGNAL_CHANNEL_L) < SIGNAL_PEAK_VOLTAGE);
 	
-	while(ZERO_CROSS_0==1);	//Wait for the signal to be zero
+	printf("Success!\n");
+	//while(ZERO_CROSS_0 == 1);
 	
 	TR0=0;	// Stop timer 0
 	
@@ -295,6 +322,7 @@ double Signal_GetFrequency(){
 	
 	// Measure period at P1.0 using timer 0
 	TH0=0; TL0=0;	// Reset the timer
+	TOV = 0;
 	
 	while(ZERO_CROSS_0==1); //Wait for the signal to be zero	
 	while(ZERO_CROSS_0==0); //Wait for the signal to be one

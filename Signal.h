@@ -8,6 +8,8 @@
 #define VDIODER 1.018	//where is this value from?                                            
 #define VDIODEL 0.387	//where is this value from?
 
+#define SIGNAL_PEAK_VOLTAGE 1.0	//voltage above this signals a "peak"
+
 //Functions
 void Signal_Init();
 
@@ -15,7 +17,7 @@ void Signal_SPIWrite(unsigned char);
 unsigned int Signal_GetADC(unsigned char);
 
 float Signal_Voltage(unsigned char);
-void Signal_GetPhase(float);
+float Signal_GetPhase(double);
 double Signal_GetPeriod();
 double Signal_GetFrequency();
 

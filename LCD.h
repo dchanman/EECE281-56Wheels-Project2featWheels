@@ -16,7 +16,7 @@
 #define LCD_ENABLE 1
 #define LCD_DISABLE 0
 
-#define LCD_ROW1 0
+#define LCD_ROW1 0	
 #define LCD_ROW2 40
 
 #define LCD_SIZE 56

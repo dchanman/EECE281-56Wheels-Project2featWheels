@@ -41,6 +41,11 @@
 #define ZERO_CROSS_0	P2_4
 #define ZERO_CROSS_1	P2_5
 
+	//MCP Channels
+#define SIGNAL_CHANNEL_L	0
+#define SIGNAL_CHANNEL_R	1
+
+
 	//Analog IR pins
 #define IR_DETECT			P2_0
 

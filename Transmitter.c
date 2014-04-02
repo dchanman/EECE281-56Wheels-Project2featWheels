@@ -65,25 +65,25 @@ void Transmitter_Stop(){
 void Transmitter_Transmit(unsigned char message){
 	unsigned char k;
 	
-		printf("sending...");
+		//printf("sending...");
 		
 	//Send start bit
 	Transmitter_Stop();
-	printf("-%c-", TR1?'1':'0');
+	//printf("-%c-", TR1?'1':'0');
 	Signal_WaitBitTime();
 
 	
 	//Send data
 	for(k=0; k < 8; k++){
 		TR1 = message&(0x01<<k)?1:0;
-		printf("%c", TR1?'1':'0');
+	//	printf("%c", TR1?'1':'0');
 		Signal_WaitBitTime();
 	}
 	
 	
 	//Send stop bits
 	Transmitter_Start();
-	printf("-%c-\n", TR1?'1':'0');
+	//printf("-%c-\n", TR1?'1':'0');
 	Signal_WaitBitTime();
 	Signal_WaitBitTime();	
 }

@@ -23,14 +23,23 @@ unsigned char _c51_external_startup(void)
 void main (void)
 {		
 	unsigned char i = 0;
-	float voltage;
-	double frequency, period;
+	float voltage, v0, v1;
+	//double frequency, period;
 	while(1){
+	//	printf("Getting V0...");
+		v0 = Signal_Voltage(0);
+	//	printf("\rGetting V1...");
+		v1 = Signal_Voltage(1);
+		
+		printf("v0: %4.2f | v1: %4.2f \r", v0, v1);
+		
+		/*
 		voltage = Signal_Voltage(0);
 		frequency = Signal_GetFrequency();
 		period = Signal_GetPeriod();
 		printf("v0: %4.2f | freq: %lf | period: %lf", voltage, frequency, period);
 		printf("\r");			
+		*/
 	}
 }
 

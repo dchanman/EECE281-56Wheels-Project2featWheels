@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1034 (Dec 12 2012) (MSVC)
-0000              4   ; This file was generated Thu Apr 03 05:06:08 2014
+0000              4   ; This file was generated Thu Apr 03 06:46:16 2014
 0000              5   ;--------------------------------------------------------
                   5   $name Test_Motor
                   6   $optc51 --model-small
@@ -375,85 +375,85 @@
 0000            375   ;Allocation info for local variables in function 'General_Init'
 0000            376   ;------------------------------------------------------------
 0000            377   ;------------------------------------------------------------
-0000            378   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:1: void General_Init(){
+0000            378   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:1: void General_Init(){
 0000            379   ;        -----------------------------------------
 0000            380   ;         function General_Init
 0000            381   ;        -----------------------------------------
 0000            382   _General_Init:
 0000            383            using   0
-0000            384   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:3: P0M0=0;       P0M1=0;
+0000            384   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:3: P0M0=0;         P0M1=0;
 0000 75E600     385            mov     _P0M0,#0x00
 0003 75E700     386            mov     _P0M1,#0x00
-0006            387   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:4: P1M0=0;       P1M1=0;
+0006            387   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:4: P1M0=0;         P1M1=0;
 0006 75D600     388            mov     _P1M0,#0x00
 0009 75D700     389            mov     _P1M1,#0x00
-000C            390   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:5: P2M0=0;       P2M1=0;
+000C            390   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:5: P2M0=0;         P2M1=0;
 000C 75CE00     391            mov     _P2M0,#0x00
 000F 75CF00     392            mov     _P2M1,#0x00
-0012            393   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:6: P3M0=0;       P3M1=0;
+0012            393   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:6: P3M0=0;         P3M1=0;
 0012 75C600     394            mov     _P3M0,#0x00
 0015 75C700     395            mov     _P3M1,#0x00
-0018            396   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:7: AUXR=0B_0001_0001; // 1152 bytes of internal XDATA, P4.4 is a general purpose I/O
+0018            396   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:7: AUXR=0B_0001_0001; // 1152 bytes of internal XDATA, P4.4 is a general purpose I/O
 0018 758E11     397            mov     _AUXR,#0x11
-001B            398   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:8: P4M0=0;       P4M1=0;
+001B            398   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:8: P4M0=0;         P4M1=0;
 001B 75BE00     399            mov     _P4M0,#0x00
 001E 75BF00     400            mov     _P4M1,#0x00
-0021            401   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:11: PCON|=0x80;
+0021            401   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:11: PCON|=0x80;
 0021 438780     402            orl     _PCON,#0x80
-0024            403   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:12: SCON = 0x52;
+0024            403   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:12: SCON = 0x52;
 0024 759852     404            mov     _SCON,#0x52
-0027            405   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:13: BDRCON=0;
+0027            405   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:13: BDRCON=0;
 0027 759B00     406            mov     _BDRCON,#0x00
-002A            407   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:14: BRL=BRG_VAL;
+002A            407   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:14: BRL=BRG_VAL;
 002A 759AFA     408            mov     _BRL,#0xFA
-002D            409   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:15: BDRCON=BRR|TBCK|RBCK|SPD;
+002D            409   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/General.c:15: BDRCON=BRR|TBCK|RBCK|SPD;
 002D 759B1E     410            mov     _BDRCON,#0x1E
 0030 22         411            ret
 0031            412   ;------------------------------------------------------------
 0031            413   ;Allocation info for local variables in function 'Motor_Init'
 0031            414   ;------------------------------------------------------------
 0031            415   ;------------------------------------------------------------
-0031            416   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:7: void Motor_Init()
+0031            416   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:7: void Motor_Init()
 0031            417   ;        -----------------------------------------
 0031            418   ;         function Motor_Init
 0031            419   ;        -----------------------------------------
 0031            420   _Motor_Init:
-0031            421   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:10: TR1=0; // Stop timer 1
+0031            421   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:10: TR1=0; // Stop timer 1
 0031 C28E       422            clr     _TR1
-0033            423   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:11: TMOD |= 0x10; // 16-bit timer
+0033            423   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:11: TMOD |= 0x10; // 16-bit timer
 0033 438910     424            orl     _TMOD,#0x10
-0036            425   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:16: TH1=RH1=TIMER1_RELOAD_VALUE/0x100;
+0036            425   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:16: TH1=RH1=TIMER1_RELOAD_VALUE/0x100;
 0036 75F5FF     426            mov     _RH1,#0xFF
 0039 758DFF     427            mov     _TH1,#0xFF
-003C            428   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:17: TL1=RL1=TIMER1_RELOAD_VALUE%0x100;
+003C            428   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:17: TL1=RL1=TIMER1_RELOAD_VALUE%0x100;
 003C 75F348     429            mov     _RL1,#0x48
 003F 758B48     430            mov     _TL1,#0x48
-0042            431   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:18: TR1=1; // Start timer 1 (bit 4 in TCON)
+0042            431   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:18: TR1=1; // Start timer 1 (bit 4 in TCON)
 0042 D28E       432            setb    _TR1
-0044            433   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:19: ET1=1; // Enable timer 1 interrupt
+0044            433   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:19: ET1=1; // Enable timer 1 interrupt
 0044 D2AB       434            setb    _ET1
-0046            435   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:20: EA=1;  // Enable global interrupts
+0046            435   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:20: EA=1;  // Enable global interrupts
 0046 D2AF       436            setb    _EA
-0048            437   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:22: pwmcount=0;
-0048 750800     438            mov     _pwmcount,#0x00
-004B            439   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:24: motor_l_speed=50;
-004B 75E032     440            mov     _motor_l_speed,#0x32
-004E            441   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:25: motor_r_speed=50;
-004E 753032     442            mov     _motor_r_speed,#0x32
-0051            443   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:26: motor_l_direction = MOTOR_FORWARD;
-0051 75F001     444            mov     _motor_l_direction,#0x01
+0048            437   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:22: pwmcount=0;
+0048 758000     438            mov     _pwmcount,#0x00
+004B            439   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:24: motor_l_speed=50;
+004B 754032     440            mov     _motor_l_speed,#0x32
+004E            441   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:25: motor_r_speed=50;
+004E 750032     442            mov     _motor_r_speed,#0x32
+0051            443   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:26: motor_l_direction = MOTOR_FORWARD;
+0051 75C001     444            mov     _motor_l_direction,#0x01
 0054 E4         445            clr     a
-0055 F5F1       446            mov     (_motor_l_direction + 1),a
-0057            447   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:27: motor_r_direction = MOTOR_BACKWARD;
+0055 F5C1       446            mov     (_motor_l_direction + 1),a
+0057            447   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:27: motor_r_direction = MOTOR_BACKWARD;
 0057 E4         448            clr     a
-0058 F5A0       449            mov     _motor_r_direction,a
-005A F5A1       450            mov     (_motor_r_direction + 1),a
+0058 F570       449            mov     _motor_r_direction,a
+005A F571       450            mov     (_motor_r_direction + 1),a
 005C 22         451            ret
 005D            452   ;------------------------------------------------------------
 005D            453   ;Allocation info for local variables in function 'pwmcounter'
 005D            454   ;------------------------------------------------------------
 005D            455   ;------------------------------------------------------------
-005D            456   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:37: void pwmcounter (void) interrupt 3
+005D            456   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:37: void pwmcounter (void) interrupt 3
 005D            457   ;        -----------------------------------------
 005D            458   ;         function pwmcounter
 005D            459   ;        -----------------------------------------
@@ -461,83 +461,83 @@
 005D C0E0       461            push    acc
 005F C0D0       462            push    psw
 0061 75D000     463            mov     psw,#0x00
-0064            464   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:39: if(++pwmcount>99){
-0064 0508       465            inc     _pwmcount
-0066 E508       466            mov     a,_pwmcount
+0064            464   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:39: if(++pwmcount>99){
+0064 0580       465            inc     _pwmcount
+0066 E580       466            mov     a,_pwmcount
 0068 249C       467            add     a,#0xff - 0x63
 006A 5001       468            jnc     L004002?
-006C            469   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:40: pwmcount=0;
-006C 750800     470            mov     _pwmcount,#0x00
+006C            469   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:40: pwmcount=0;
+006C 758000     470            mov     _pwmcount,#0x00
 006F            471   L004002?:
-006F            472   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:43: if(motor_l_direction == MOTOR_BACKWARD && motor_r_direction == MOTOR_BACKWARD && IR_DETECT == IR_SOMETHING){
-006F E5F0       473            mov     a,_motor_l_direction
-0071 45F1       474            orl     a,(_motor_l_direction + 1)
+006F            472   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:43: if(motor_l_direction == MOTOR_BACKWARD && motor_r_direction == MOTOR_BACKWARD && IR_DETECT == IR_SOMETHING){
+006F E5C0       473            mov     a,_motor_l_direction
+0071 45C1       474            orl     a,(_motor_l_direction + 1)
 0073 7001       475            jnz     L004004?
-0075 E5A0       476            mov     a,_motor_r_direction
-0077 45A1       477            orl     a,(_motor_r_direction + 1)
+0075 E570       476            mov     a,_motor_r_direction
+0077 4571       477            orl     a,(_motor_r_direction + 1)
 0079 7001       478            jnz     L004004?
-007B 20A018     479            jb      _P2_0,L004004?
-007E            480   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:44: MOTOR_L_FORWARD                =       0;
+007B 20A0D0     479            jb      _P2_0,L004004?
+007E            480   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:44: MOTOR_L_FORWARD          =       0;
 007E C2C3       481            clr     _P4_3
-0080            482   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:45: MOTOR_L_BACKWARD       =       0;
+0080            482   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:45: MOTOR_L_BACKWARD         =       0;
 0080 C2B7       483            clr     _P3_7
-0082            484   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:46: MOTOR_R_FORWARD                =       0;
+0082            484   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:46: MOTOR_R_FORWARD          =       0;
 0082 C2B6       485            clr     _P3_6
-0084            486   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:47: MOTOR_R_BACKWARD       =       0;
+0084            486   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:47: MOTOR_R_BACKWARD         =       0;
 0084 C2B5       487            clr     _P3_5
-0086            488   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:48: return;
+0086            488   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:48: return;
 0086 8001       489            sjmp    L004013?
 0088            490   L004004?:
-0088            491   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:52: if(motor_l_direction == MOTOR_FORWARD){
+0088            491   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:52: if(motor_l_direction == MOTOR_FORWARD){
 0088 7401       492            mov     a,#0x01
-008A B5F098     493            cjne    a,_motor_l_direction,L004025?
+008A B5C050     493            cjne    a,_motor_l_direction,L004025?
 008D E4         494            clr     a
-008E B5F198     495            cjne    a,(_motor_l_direction + 1),L004025?
+008E B5C150     495            cjne    a,(_motor_l_direction + 1),L004025?
 0091 8001       496            sjmp    L004026?
 0093            497   L004025?:
 0093 8001       498            sjmp    L004008?
 0095            499   L004026?:
-0095            500   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:53: MOTOR_L_FORWARD                =       (motor_l_speed>pwmcount)?1:0;
+0095            500   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:53: MOTOR_L_FORWARD          =       (motor_l_speed>pwmcount)?1:0;
 0095 C3         501            clr     c
-0096 E508       502            mov     a,_pwmcount
-0098 95E0       503            subb    a,_motor_l_speed
+0096 E580       502            mov     a,_pwmcount
+0098 9540       503            subb    a,_motor_l_speed
 009A 92C3       504            mov     _P4_3,c
-009C            505   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:54: MOTOR_L_BACKWARD       =       0;
+009C            505   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:54: MOTOR_L_BACKWARD         =       0;
 009C C2B7       506            clr     _P3_7
 009E 8001       507            sjmp    L004009?
 00A0            508   L004008?:
-00A0            509   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:57: MOTOR_L_BACKWARD       =       (motor_l_speed>pwmcount)?1:0;
+00A0            509   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:57: MOTOR_L_BACKWARD         =       (motor_l_speed>pwmcount)?1:0;
 00A0 C3         510            clr     c
-00A1 E508       511            mov     a,_pwmcount
-00A3 95E0       512            subb    a,_motor_l_speed
+00A1 E580       511            mov     a,_pwmcount
+00A3 9540       512            subb    a,_motor_l_speed
 00A5 92B7       513            mov     _P3_7,c
-00A7            514   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:58: MOTOR_L_FORWARD                =       0;
+00A7            514   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:58: MOTOR_L_FORWARD          =       0;
 00A7 C2C3       515            clr     _P4_3
 00A9            516   L004009?:
-00A9            517   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:62: if(motor_r_direction == MOTOR_FORWARD){
+00A9            517   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:62: if(motor_r_direction == MOTOR_FORWARD){
 00A9 7401       518            mov     a,#0x01
-00AB B5A098     519            cjne    a,_motor_r_direction,L004027?
+00AB B57050     519            cjne    a,_motor_r_direction,L004027?
 00AE E4         520            clr     a
-00AF B5A198     521            cjne    a,(_motor_r_direction + 1),L004027?
+00AF B57150     521            cjne    a,(_motor_r_direction + 1),L004027?
 00B2 8001       522            sjmp    L004028?
 00B4            523   L004027?:
 00B4 8001       524            sjmp    L004011?
 00B6            525   L004028?:
-00B6            526   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:63: MOTOR_R_FORWARD                =       (motor_r_speed>pwmcount)?1:0;
+00B6            526   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:63: MOTOR_R_FORWARD          =       (motor_r_speed>pwmcount)?1:0;
 00B6 C3         527            clr     c
-00B7 E508       528            mov     a,_pwmcount
-00B9 9530       529            subb    a,_motor_r_speed
+00B7 E580       528            mov     a,_pwmcount
+00B9 9500       529            subb    a,_motor_r_speed
 00BB 92B6       530            mov     _P3_6,c
-00BD            531   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:64: MOTOR_R_BACKWARD       =       0;
+00BD            531   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:64: MOTOR_R_BACKWARD         =       0;
 00BD C2B5       532            clr     _P3_5
 00BF 8001       533            sjmp    L004013?
 00C1            534   L004011?:
-00C1            535   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:67: MOTOR_R_BACKWARD       =       (motor_r_speed>pwmcount)?1:0;
+00C1            535   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:67: MOTOR_R_BACKWARD         =       (motor_r_speed>pwmcount)?1:0;
 00C1 C3         536            clr     c
-00C2 E508       537            mov     a,_pwmcount
-00C4 9530       538            subb    a,_motor_r_speed
+00C2 E580       537            mov     a,_pwmcount
+00C4 9500       538            subb    a,_motor_r_speed
 00C6 92B5       539            mov     _P3_5,c
-00C8            540   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:68: MOTOR_R_FORWARD                =       0;
+00C8            540   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:68: MOTOR_R_FORWARD          =       0;
 00C8 C2B6       541            clr     _P3_6
 00CA            542   L004013?:
 00CA D0D0       543            pop     psw
@@ -553,32 +553,32 @@
 00CF            553   ;direction                 Allocated with name '_Motor_Set_PARM_3'
 00CF            554   ;motor                     Allocated to registers r2 r3 
 00CF            555   ;------------------------------------------------------------
-00CF            556   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:82: void Motor_Set(int motor, unsigned char speed, int direction){
+00CF            556   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:82: void Motor_Set(int motor, unsigned char speed, int direction){
 00CF            557   ;        -----------------------------------------
 00CF            558   ;         function Motor_Set
 00CF            559   ;        -----------------------------------------
 00CF            560   _Motor_Set:
 00CF AA82       561            mov     r2,dpl
 00D1 AB83       562            mov     r3,dph
-00D3            563   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:83: if(motor == MOTOR_LEFT){
+00D3            563   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:83: if(motor == MOTOR_LEFT){
 00D3 EA         564            mov     a,r2
 00D4 4B         565            orl     a,r3
 00D5 7001       566            jnz     L005004?
-00D7            567   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:84: motor_l_speed = speed;
-00D7 85C0E0     568            mov     _motor_l_speed,_Motor_Set_PARM_2
-00DA            569   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:85: motor_l_direction = direction;
-00DA 8570F0     570            mov     _motor_l_direction,_Motor_Set_PARM_3
-00DD 8571F1     571            mov     (_motor_l_direction + 1),(_Motor_Set_PARM_3 + 1)
+00D7            567   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:84: motor_l_speed = speed;
+00D7 859040     568            mov     _motor_l_speed,_Motor_Set_PARM_2
+00DA            569   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:85: motor_l_direction = direction;
+00DA 8540C0     570            mov     _motor_l_direction,_Motor_Set_PARM_3
+00DD 8541C1     571            mov     (_motor_l_direction + 1),(_Motor_Set_PARM_3 + 1)
 00E0 22         572            ret
 00E1            573   L005004?:
-00E1            574   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:87: else if (motor == MOTOR_RIGHT){
-00E1 BA0118     575            cjne    r2,#0x01,L005006?
-00E4 BB0018     576            cjne    r3,#0x00,L005006?
-00E7            577   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:88: motor_r_speed = speed;
-00E7 85C030     578            mov     _motor_r_speed,_Motor_Set_PARM_2
-00EA            579   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:89: motor_r_direction = direction;
-00EA 8570A0     580            mov     _motor_r_direction,_Motor_Set_PARM_3
-00ED 8571A1     581            mov     (_motor_r_direction + 1),(_Motor_Set_PARM_3 + 1)
+00E1            574   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:87: else if (motor == MOTOR_RIGHT){
+00E1 BA01D0     575            cjne    r2,#0x01,L005006?
+00E4 BB00D0     576            cjne    r3,#0x00,L005006?
+00E7            577   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:88: motor_r_speed = speed;
+00E7 859000     578            mov     _motor_r_speed,_Motor_Set_PARM_2
+00EA            579   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:89: motor_r_direction = direction;
+00EA 854070     580            mov     _motor_r_direction,_Motor_Set_PARM_3
+00ED 854171     581            mov     (_motor_r_direction + 1),(_Motor_Set_PARM_3 + 1)
 00F0            582   L005006?:
 00F0 22         583            ret
 00F1            584   ;------------------------------------------------------------
@@ -586,126 +586,126 @@
 00F1            586   ;------------------------------------------------------------
 00F1            587   ;speed                     Allocated to registers r2 
 00F1            588   ;------------------------------------------------------------
-00F1            589   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:99: void Motor_Forward(unsigned char speed){
+00F1            589   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:99: void Motor_Forward(unsigned char speed){
 00F1            590   ;        -----------------------------------------
 00F1            591   ;         function Motor_Forward
 00F1            592   ;        -----------------------------------------
 00F1            593   _Motor_Forward:
 00F1 AA82       594            mov     r2,dpl
-00F3            595   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:100: motor_l_speed = speed;
-00F3 8AE0       596            mov     _motor_l_speed,r2
-00F5            597   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:101: motor_r_speed = speed;
-00F5 8A30       598            mov     _motor_r_speed,r2
-00F7            599   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:102: motor_l_direction = MOTOR_FORWARD;
-00F7 75F001     600            mov     _motor_l_direction,#0x01
+00F3            595   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:100: motor_l_speed = speed;
+00F3 8A40       596            mov     _motor_l_speed,r2
+00F5            597   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:101: motor_r_speed = speed;
+00F5 8A00       598            mov     _motor_r_speed,r2
+00F7            599   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:102: motor_l_direction = MOTOR_FORWARD;
+00F7 75C001     600            mov     _motor_l_direction,#0x01
 00FA E4         601            clr     a
-00FB F5F1       602            mov     (_motor_l_direction + 1),a
-00FD            603   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:103: motor_r_direction = MOTOR_FORWARD;
-00FD 75A001     604            mov     _motor_r_direction,#0x01
+00FB F5C1       602            mov     (_motor_l_direction + 1),a
+00FD            603   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:103: motor_r_direction = MOTOR_FORWARD;
+00FD 757001     604            mov     _motor_r_direction,#0x01
 0100 E4         605            clr     a
-0101 F5A1       606            mov     (_motor_r_direction + 1),a
+0101 F571       606            mov     (_motor_r_direction + 1),a
 0103 22         607            ret
 0104            608   ;------------------------------------------------------------
 0104            609   ;Allocation info for local variables in function 'Motor_Backward'
 0104            610   ;------------------------------------------------------------
 0104            611   ;speed                     Allocated to registers r2 
 0104            612   ;------------------------------------------------------------
-0104            613   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:117: void Motor_Backward(unsigned char speed){
+0104            613   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:117: void Motor_Backward(unsigned char speed){
 0104            614   ;        -----------------------------------------
 0104            615   ;         function Motor_Backward
 0104            616   ;        -----------------------------------------
 0104            617   _Motor_Backward:
 0104 AA82       618            mov     r2,dpl
-0106            619   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:118: motor_l_speed = speed;
-0106 8AE0       620            mov     _motor_l_speed,r2
-0108            621   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:119: motor_r_speed = speed;
-0108 8A30       622            mov     _motor_r_speed,r2
-010A            623   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:120: motor_l_direction = MOTOR_BACKWARD;
-010A            624   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:121: motor_r_direction = MOTOR_BACKWARD;
+0106            619   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:118: motor_l_speed = speed;
+0106 8A40       620            mov     _motor_l_speed,r2
+0108            621   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:119: motor_r_speed = speed;
+0108 8A00       622            mov     _motor_r_speed,r2
+010A            623   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:120: motor_l_direction = MOTOR_BACKWARD;
+010A            624   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:121: motor_r_direction = MOTOR_BACKWARD;
 010A E4         625            clr     a
-010B F5F0       626            mov     _motor_l_direction,a
-010D F5F1       627            mov     (_motor_l_direction + 1),a
-010F F5A0       628            mov     _motor_r_direction,a
-0111 F5A1       629            mov     (_motor_r_direction + 1),a
+010B F5C0       626            mov     _motor_l_direction,a
+010D F5C1       627            mov     (_motor_l_direction + 1),a
+010F F570       628            mov     _motor_r_direction,a
+0111 F571       629            mov     (_motor_r_direction + 1),a
 0113 22         630            ret
 0114            631   ;------------------------------------------------------------
 0114            632   ;Allocation info for local variables in function 'Motor_TurnRight'
 0114            633   ;------------------------------------------------------------
 0114            634   ;speed                     Allocated to registers r2 
 0114            635   ;------------------------------------------------------------
-0114            636   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:133: void Motor_TurnRight(unsigned char speed){
+0114            636   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:133: void Motor_TurnRight(unsigned char speed){
 0114            637   ;        -----------------------------------------
 0114            638   ;         function Motor_TurnRight
 0114            639   ;        -----------------------------------------
 0114            640   _Motor_TurnRight:
 0114 AA82       641            mov     r2,dpl
-0116            642   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:134: motor_l_speed = speed;
-0116 8AE0       643            mov     _motor_l_speed,r2
-0118            644   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:135: motor_r_speed = speed;
-0118 8A30       645            mov     _motor_r_speed,r2
-011A            646   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:136: motor_r_direction = MOTOR_BACKWARD;
+0116            642   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:134: motor_l_speed = speed;
+0116 8A40       643            mov     _motor_l_speed,r2
+0118            644   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:135: motor_r_speed = speed;
+0118 8A00       645            mov     _motor_r_speed,r2
+011A            646   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:136: motor_r_direction = MOTOR_BACKWARD;
 011A E4         647            clr     a
-011B F5A0       648            mov     _motor_r_direction,a
-011D F5A1       649            mov     (_motor_r_direction + 1),a
-011F            650   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:137: motor_l_direction = MOTOR_FORWARD;
-011F 75F001     651            mov     _motor_l_direction,#0x01
+011B F570       648            mov     _motor_r_direction,a
+011D F571       649            mov     (_motor_r_direction + 1),a
+011F            650   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:137: motor_l_direction = MOTOR_FORWARD;
+011F 75C001     651            mov     _motor_l_direction,#0x01
 0122 E4         652            clr     a
-0123 F5F1       653            mov     (_motor_l_direction + 1),a
+0123 F5C1       653            mov     (_motor_l_direction + 1),a
 0125 22         654            ret
 0126            655   ;------------------------------------------------------------
 0126            656   ;Allocation info for local variables in function 'Motor_TurnLeft'
 0126            657   ;------------------------------------------------------------
 0126            658   ;speed                     Allocated to registers r2 
 0126            659   ;------------------------------------------------------------
-0126            660   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:147: void Motor_TurnLeft(unsigned char speed){
+0126            660   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:147: void Motor_TurnLeft(unsigned char speed){
 0126            661   ;        -----------------------------------------
 0126            662   ;         function Motor_TurnLeft
 0126            663   ;        -----------------------------------------
 0126            664   _Motor_TurnLeft:
 0126 AA82       665            mov     r2,dpl
-0128            666   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:148: motor_l_speed = speed;
-0128 8AE0       667            mov     _motor_l_speed,r2
-012A            668   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:149: motor_r_speed = speed;
-012A 8A30       669            mov     _motor_r_speed,r2
-012C            670   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:150: motor_l_direction = MOTOR_BACKWARD;
+0128            666   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:148: motor_l_speed = speed;
+0128 8A40       667            mov     _motor_l_speed,r2
+012A            668   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:149: motor_r_speed = speed;
+012A 8A00       669            mov     _motor_r_speed,r2
+012C            670   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:150: motor_l_direction = MOTOR_BACKWARD;
 012C E4         671            clr     a
-012D F5F0       672            mov     _motor_l_direction,a
-012F F5F1       673            mov     (_motor_l_direction + 1),a
-0131            674   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:151: motor_r_direction = MOTOR_FORWARD;
-0131 75A001     675            mov     _motor_r_direction,#0x01
+012D F5C0       672            mov     _motor_l_direction,a
+012F F5C1       673            mov     (_motor_l_direction + 1),a
+0131            674   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:151: motor_r_direction = MOTOR_FORWARD;
+0131 757001     675            mov     _motor_r_direction,#0x01
 0134 E4         676            clr     a
-0135 F5A1       677            mov     (_motor_r_direction + 1),a
+0135 F571       677            mov     (_motor_r_direction + 1),a
 0137 22         678            ret
 0138            679   ;------------------------------------------------------------
 0138            680   ;Allocation info for local variables in function 'Motor_Stop'
 0138            681   ;------------------------------------------------------------
 0138            682   ;------------------------------------------------------------
-0138            683   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:159: void Motor_Stop(){
+0138            683   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:159: void Motor_Stop(){
 0138            684   ;        -----------------------------------------
 0138            685   ;         function Motor_Stop
 0138            686   ;        -----------------------------------------
 0138            687   _Motor_Stop:
-0138            688   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:160: motor_l_speed         =       0;
-0138 75E000     689            mov     _motor_l_speed,#0x00
-013B            690   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:161: motor_r_speed         =       0;
-013B 753000     691            mov     _motor_r_speed,#0x00
+0138            688   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:160: motor_l_speed   =       0;
+0138 754000     689            mov     _motor_l_speed,#0x00
+013B            690   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/Motor.c:161: motor_r_speed   =       0;
+013B 750000     691            mov     _motor_r_speed,#0x00
 013E 22         692            ret
 013F            693   ;------------------------------------------------------------
 013F            694   ;Allocation info for local variables in function 'debounce'
 013F            695   ;------------------------------------------------------------
 013F            696   ;------------------------------------------------------------
-013F            697   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:7: void debounce(void){
+013F            697   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:7: void debounce(void){
 013F            698   ;        -----------------------------------------
 013F            699   ;         function debounce
 013F            700   ;        -----------------------------------------
 013F            701   _debounce:
-013F            702   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:14: _endasm;
+013F            702   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:14: _endasm;
 013F            703            
 013F            704     ;For a 22.1184MHz crystal one machine cycle
 013F            705     ;takes 12/22.1184MHz=0.5425347us
 013F 782E       706              mov R0, #46
 0141            707              shortL1:
-0141 D858       708            djnz R0,shortL1 ; 2 machine cycles-> 2*0.5425347us*184=49.9us
+0141 D810       708            djnz R0,shortL1 ; 2 machine cycles-> 2*0.5425347us*184=49.9us
 0143 22         709              ret
 0144            710             
 0144 22         711            ret
@@ -713,31 +713,31 @@
 0145            713   ;Allocation info for local variables in function '_c51_external_startup'
 0145            714   ;------------------------------------------------------------
 0145            715   ;------------------------------------------------------------
-0145            716   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:17: unsigned char _c51_external_startup(void)
+0145            716   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:17: unsigned char _c51_external_startup(void)
 0145            717   ;        -----------------------------------------
 0145            718   ;         function _c51_external_startup
 0145            719   ;        -----------------------------------------
 0145            720   __c51_external_startup:
-0145            721   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:19: General_Init();
+0145            721   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:19: General_Init();
 0145 120100     722            lcall   _General_Init
-0148            723   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:20: Motor_Init();    
+0148            723   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:20: Motor_Init();    
 0148 120100     724            lcall   _Motor_Init
-014B            725   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:21: return 0;
+014B            725   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:21: return 0;
 014B 758200     726            mov     dpl,#0x00
 014E 22         727            ret
 014F            728   ;------------------------------------------------------------
 014F            729   ;Allocation info for local variables in function 'updateUI'
 014F            730   ;------------------------------------------------------------
 014F            731   ;------------------------------------------------------------
-014F            732   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:29: void updateUI(){
+014F            732   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:29: void updateUI(){
 014F            733   ;        -----------------------------------------
 014F            734   ;         function updateUI
 014F            735   ;        -----------------------------------------
 014F            736   _updateUI:
-014F            737   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:31: printf( CLEAR_SCREEN );
-014F 7498       738            mov     a,#__str_0
+014F            737   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:31: printf( CLEAR_SCREEN );
+014F 7450       738            mov     a,#__str_0
 0151 C0E0       739            push    acc
-0153 7485       740            mov     a,#(__str_0 >> 8)
+0153 7488       740            mov     a,#(__str_0 >> 8)
 0155 C0E0       741            push    acc
 0157 7480       742            mov     a,#0x80
 0159 C0E0       743            push    acc
@@ -745,7 +745,7 @@
 015E 1581       745            dec     sp
 0160 1581       746            dec     sp
 0162 1581       747            dec     sp
-0164            748   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:32: printf( FORE_BACK , COLOR_BLACK, COLOR_WHITE );
+0164            748   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:32: printf( FORE_BACK , COLOR_BLACK, COLOR_WHITE );
 0164 7407       749            mov     a,#0x07
 0166 C0E0       750            push    acc
 0168 E4         751            clr     a
@@ -753,9 +753,9 @@
 016B E4         753            clr     a
 016C C0E0       754            push    acc
 016E C0E0       755            push    acc
-0170 7458       756            mov     a,#__str_1
+0170 7410       756            mov     a,#__str_1
 0172 C0E0       757            push    acc
-0174 7486       758            mov     a,#(__str_1 >> 8)
+0174 7489       758            mov     a,#(__str_1 >> 8)
 0176 C0E0       759            push    acc
 0178 7480       760            mov     a,#0x80
 017A C0E0       761            push    acc
@@ -763,10 +763,10 @@
 017F E581       763            mov     a,sp
 0181 24F9       764            add     a,#0xf9
 0183 F581       765            mov     sp,a
-0185            766   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:33: printf("ษออออออออออออหออออออออออออป\n");
-0185 7498       767            mov     a,#__str_2
+0185            766   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:33: printf("ษออออออออออออหออออออออออออป\n");
+0185 7450       767            mov     a,#__str_2
 0187 C0E0       768            push    acc
-0189 7486       769            mov     a,#(__str_2 >> 8)
+0189 7489       769            mov     a,#(__str_2 >> 8)
 018B C0E0       770            push    acc
 018D 7480       771            mov     a,#0x80
 018F C0E0       772            push    acc
@@ -774,10 +774,10 @@
 0194 1581       774            dec     sp
 0196 1581       775            dec     sp
 0198 1581       776            dec     sp
-019A            777   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:34: printf("บ Speed L    บ            บ\n");
-019A 74D8       778            mov     a,#__str_3
+019A            777   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:34: printf("บ Speed L    บ            บ\n");
+019A 7490       778            mov     a,#__str_3
 019C C0E0       779            push    acc
-019E 7486       780            mov     a,#(__str_3 >> 8)
+019E 7489       780            mov     a,#(__str_3 >> 8)
 01A0 C0E0       781            push    acc
 01A2 7480       782            mov     a,#0x80
 01A4 C0E0       783            push    acc
@@ -785,10 +785,10 @@
 01A9 1581       785            dec     sp
 01AB 1581       786            dec     sp
 01AD 1581       787            dec     sp
-01AF            788   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:35: printf("ฬออออออออออออฮออออออออออออน\n");
-01AF 7418       789            mov     a,#__str_4
+01AF            788   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:35: printf("ฬออออออออออออฮออออออออออออน\n");
+01AF 74D0       789            mov     a,#__str_4
 01B1 C0E0       790            push    acc
-01B3 7487       791            mov     a,#(__str_4 >> 8)
+01B3 7489       791            mov     a,#(__str_4 >> 8)
 01B5 C0E0       792            push    acc
 01B7 7480       793            mov     a,#0x80
 01B9 C0E0       794            push    acc
@@ -796,10 +796,10 @@
 01BE 1581       796            dec     sp
 01C0 1581       797            dec     sp
 01C2 1581       798            dec     sp
-01C4            799   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:36: printf("บ Speed R    บ            บ\n");
-01C4 7458       800            mov     a,#__str_5
+01C4            799   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:36: printf("บ Speed R    บ            บ\n");
+01C4 7410       800            mov     a,#__str_5
 01C6 C0E0       801            push    acc
-01C8 7487       802            mov     a,#(__str_5 >> 8)
+01C8 748A       802            mov     a,#(__str_5 >> 8)
 01CA C0E0       803            push    acc
 01CC 7480       804            mov     a,#0x80
 01CE C0E0       805            push    acc
@@ -807,10 +807,10 @@
 01D3 1581       807            dec     sp
 01D5 1581       808            dec     sp
 01D7 1581       809            dec     sp
-01D9            810   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:37: printf("ฬออออออออออออฮออออออออออออน\n");
-01D9 7418       811            mov     a,#__str_4
+01D9            810   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:37: printf("ฬออออออออออออฮออออออออออออน\n");
+01D9 74D0       811            mov     a,#__str_4
 01DB C0E0       812            push    acc
-01DD 7487       813            mov     a,#(__str_4 >> 8)
+01DD 7489       813            mov     a,#(__str_4 >> 8)
 01DF C0E0       814            push    acc
 01E1 7480       815            mov     a,#0x80
 01E3 C0E0       816            push    acc
@@ -818,10 +818,10 @@
 01E8 1581       818            dec     sp
 01EA 1581       819            dec     sp
 01EC 1581       820            dec     sp
-01EE            821   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:38: printf("บ Direction Lบ            บ\n");
-01EE 7498       822            mov     a,#__str_6
+01EE            821   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:38: printf("บ Direction Lบ            บ\n");
+01EE 7450       822            mov     a,#__str_6
 01F0 C0E0       823            push    acc
-01F2 7487       824            mov     a,#(__str_6 >> 8)
+01F2 748A       824            mov     a,#(__str_6 >> 8)
 01F4 C0E0       825            push    acc
 01F6 7480       826            mov     a,#0x80
 01F8 C0E0       827            push    acc
@@ -829,10 +829,10 @@
 01FD 1581       829            dec     sp
 01FF 1581       830            dec     sp
 0201 1581       831            dec     sp
-0203            832   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:39: printf("ฬออออออออออออฮออออออออออออน\n");
-0203 7418       833            mov     a,#__str_4
+0203            832   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:39: printf("ฬออออออออออออฮออออออออออออน\n");
+0203 74D0       833            mov     a,#__str_4
 0205 C0E0       834            push    acc
-0207 7487       835            mov     a,#(__str_4 >> 8)
+0207 7489       835            mov     a,#(__str_4 >> 8)
 0209 C0E0       836            push    acc
 020B 7480       837            mov     a,#0x80
 020D C0E0       838            push    acc
@@ -840,10 +840,10 @@
 0212 1581       840            dec     sp
 0214 1581       841            dec     sp
 0216 1581       842            dec     sp
-0218            843   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:40: printf("บ Direction Rบ            บ\n");
-0218 74D8       844            mov     a,#__str_7
+0218            843   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:40: printf("บ Direction Rบ            บ\n");
+0218 7490       844            mov     a,#__str_7
 021A C0E0       845            push    acc
-021C 7487       846            mov     a,#(__str_7 >> 8)
+021C 748A       846            mov     a,#(__str_7 >> 8)
 021E C0E0       847            push    acc
 0220 7480       848            mov     a,#0x80
 0222 C0E0       849            push    acc
@@ -851,10 +851,10 @@
 0227 1581       851            dec     sp
 0229 1581       852            dec     sp
 022B 1581       853            dec     sp
-022D            854   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:41: printf("ฬออออออออออออฮออออออออออออน\n");
-022D 7418       855            mov     a,#__str_4
+022D            854   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:41: printf("ฬออออออออออออฮออออออออออออน\n");
+022D 74D0       855            mov     a,#__str_4
 022F C0E0       856            push    acc
-0231 7487       857            mov     a,#(__str_4 >> 8)
+0231 7489       857            mov     a,#(__str_4 >> 8)
 0233 C0E0       858            push    acc
 0235 7480       859            mov     a,#0x80
 0237 C0E0       860            push    acc
@@ -862,10 +862,10 @@
 023C 1581       862            dec     sp
 023E 1581       863            dec     sp
 0240 1581       864            dec     sp
-0242            865   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:42: printf("บ            บ            บ\n");
-0242 7418       866            mov     a,#__str_8
+0242            865   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:42: printf("บ            บ            บ\n");
+0242 74D0       866            mov     a,#__str_8
 0244 C0E0       867            push    acc
-0246 7488       868            mov     a,#(__str_8 >> 8)
+0246 748A       868            mov     a,#(__str_8 >> 8)
 0248 C0E0       869            push    acc
 024A 7480       870            mov     a,#0x80
 024C C0E0       871            push    acc
@@ -873,10 +873,10 @@
 0251 1581       873            dec     sp
 0253 1581       874            dec     sp
 0255 1581       875            dec     sp
-0257            876   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:43: printf("ศออออออออออออสออออออออออออผ\n");
-0257 7458       877            mov     a,#__str_9
+0257            876   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:43: printf("ศออออออออออออสออออออออออออผ\n");
+0257 7410       877            mov     a,#__str_9
 0259 C0E0       878            push    acc
-025B 7488       879            mov     a,#(__str_9 >> 8)
+025B 748B       879            mov     a,#(__str_9 >> 8)
 025D C0E0       880            push    acc
 025F 7480       881            mov     a,#0x80
 0261 C0E0       882            push    acc
@@ -884,7 +884,7 @@
 0266 1581       884            dec     sp
 0268 1581       885            dec     sp
 026A 1581       886            dec     sp
-026C            887   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:44: printf( GOTO_YX , 2, 18);
+026C            887   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:44: printf( GOTO_YX , 2, 18);
 026C 7412       888            mov     a,#0x12
 026E C0E0       889            push    acc
 0270 E4         890            clr     a
@@ -893,9 +893,9 @@
 0275 C0E0       893            push    acc
 0277 E4         894            clr     a
 0278 C0E0       895            push    acc
-027A 7498       896            mov     a,#__str_10
+027A 7450       896            mov     a,#__str_10
 027C C0E0       897            push    acc
-027E 7488       898            mov     a,#(__str_10 >> 8)
+027E 748B       898            mov     a,#(__str_10 >> 8)
 0280 C0E0       899            push    acc
 0282 7480       900            mov     a,#0x80
 0284 C0E0       901            push    acc
@@ -903,7 +903,7 @@
 0289 E581       903            mov     a,sp
 028B 24F9       904            add     a,#0xf9
 028D F581       905            mov     sp,a
-028F            906   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:45: printf( FORE_BACK , COLOR_RED, COLOR_WHITE );
+028F            906   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:45: printf( FORE_BACK , COLOR_RED, COLOR_WHITE );
 028F 7407       907            mov     a,#0x07
 0291 C0E0       908            push    acc
 0293 E4         909            clr     a
@@ -912,9 +912,9 @@
 0298 C0E0       912            push    acc
 029A E4         913            clr     a
 029B C0E0       914            push    acc
-029D 7458       915            mov     a,#__str_1
+029D 7410       915            mov     a,#__str_1
 029F C0E0       916            push    acc
-02A1 7486       917            mov     a,#(__str_1 >> 8)
+02A1 7489       917            mov     a,#(__str_1 >> 8)
 02A3 C0E0       918            push    acc
 02A5 7480       919            mov     a,#0x80
 02A7 C0E0       920            push    acc
@@ -922,14 +922,14 @@
 02AC E581       922            mov     a,sp
 02AE 24F9       923            add     a,#0xf9
 02B0 F581       924            mov     sp,a
-02B2            925   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:46: printf("%d", motor_l_speed);
-02B2 AAE0       926            mov     r2,_motor_l_speed
+02B2            925   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:46: printf("%d", motor_l_speed);
+02B2 AA40       926            mov     r2,_motor_l_speed
 02B4 7B00       927            mov     r3,#0x00
 02B6 C002       928            push    ar2
 02B8 C003       929            push    ar3
-02BA 74D8       930            mov     a,#__str_11
+02BA 7490       930            mov     a,#__str_11
 02BC C0E0       931            push    acc
-02BE 7488       932            mov     a,#(__str_11 >> 8)
+02BE 748B       932            mov     a,#(__str_11 >> 8)
 02C0 C0E0       933            push    acc
 02C2 7480       934            mov     a,#0x80
 02C4 C0E0       935            push    acc
@@ -937,7 +937,7 @@
 02C9 E581       937            mov     a,sp
 02CB 24FB       938            add     a,#0xfb
 02CD F581       939            mov     sp,a
-02CF            940   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:47: printf( GOTO_YX , 4, 18);
+02CF            940   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:47: printf( GOTO_YX , 4, 18);
 02CF 7412       941            mov     a,#0x12
 02D1 C0E0       942            push    acc
 02D3 E4         943            clr     a
@@ -946,9 +946,9 @@
 02D8 C0E0       946            push    acc
 02DA E4         947            clr     a
 02DB C0E0       948            push    acc
-02DD 7498       949            mov     a,#__str_10
+02DD 7450       949            mov     a,#__str_10
 02DF C0E0       950            push    acc
-02E1 7488       951            mov     a,#(__str_10 >> 8)
+02E1 748B       951            mov     a,#(__str_10 >> 8)
 02E3 C0E0       952            push    acc
 02E5 7480       953            mov     a,#0x80
 02E7 C0E0       954            push    acc
@@ -956,14 +956,14 @@
 02EC E581       956            mov     a,sp
 02EE 24F9       957            add     a,#0xf9
 02F0 F581       958            mov     sp,a
-02F2            959   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:48: printf("%d", motor_r_speed);
-02F2 AA30       960            mov     r2,_motor_r_speed
+02F2            959   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:48: printf("%d", motor_r_speed);
+02F2 AA00       960            mov     r2,_motor_r_speed
 02F4 7B00       961            mov     r3,#0x00
 02F6 C002       962            push    ar2
 02F8 C003       963            push    ar3
-02FA 74D8       964            mov     a,#__str_11
+02FA 7490       964            mov     a,#__str_11
 02FC C0E0       965            push    acc
-02FE 7488       966            mov     a,#(__str_11 >> 8)
+02FE 748B       966            mov     a,#(__str_11 >> 8)
 0300 C0E0       967            push    acc
 0302 7480       968            mov     a,#0x80
 0304 C0E0       969            push    acc
@@ -971,7 +971,7 @@
 0309 E581       971            mov     a,sp
 030B 24FB       972            add     a,#0xfb
 030D F581       973            mov     sp,a
-030F            974   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:49: printf( GOTO_YX , 6, 18);
+030F            974   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:49: printf( GOTO_YX , 6, 18);
 030F 7412       975            mov     a,#0x12
 0311 C0E0       976            push    acc
 0313 E4         977            clr     a
@@ -980,9 +980,9 @@
 0318 C0E0       980            push    acc
 031A E4         981            clr     a
 031B C0E0       982            push    acc
-031D 7498       983            mov     a,#__str_10
+031D 7450       983            mov     a,#__str_10
 031F C0E0       984            push    acc
-0321 7488       985            mov     a,#(__str_10 >> 8)
+0321 748B       985            mov     a,#(__str_10 >> 8)
 0323 C0E0       986            push    acc
 0325 7480       987            mov     a,#0x80
 0327 C0E0       988            push    acc
@@ -990,24 +990,24 @@
 032C E581       990            mov     a,sp
 032E 24F9       991            add     a,#0xf9
 0330 F581       992            mov     sp,a
-0332            993   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:50: printf("%s", (motor_l_direction ? "Fwd ":"Rev"));
-0332 E5F0       994            mov     a,_motor_l_direction
-0334 45F1       995            orl     a,(_motor_l_direction + 1)
+0332            993   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:50: printf("%s", (motor_l_direction ? "Fwd ":"Rev"));
+0332 E5C0       994            mov     a,_motor_l_direction
+0334 45C1       995            orl     a,(_motor_l_direction + 1)
 0336 6001       996            jz      L013003?
-0338 7A58       997            mov     r2,#__str_13
-033A 7B89       998            mov     r3,#(__str_13 >> 8)
+0338 7A10       997            mov     r2,#__str_13
+033A 7B8C       998            mov     r3,#(__str_13 >> 8)
 033C 8001       999            sjmp    L013004?
 033E           1000   L013003?:
-033E 7AD8      1001            mov     r2,#__str_14
-0340 7B89      1002            mov     r3,#(__str_14 >> 8)
+033E 7A90      1001            mov     r2,#__str_14
+0340 7B8C      1002            mov     r3,#(__str_14 >> 8)
 0342           1003   L013004?:
 0342 7C80      1004            mov     r4,#0x80
 0344 C002      1005            push    ar2
 0346 C003      1006            push    ar3
 0348 C004      1007            push    ar4
-034A 7418      1008            mov     a,#__str_12
+034A 74D0      1008            mov     a,#__str_12
 034C C0E0      1009            push    acc
-034E 748A      1010            mov     a,#(__str_12 >> 8)
+034E 748C      1010            mov     a,#(__str_12 >> 8)
 0350 C0E0      1011            push    acc
 0352 7480      1012            mov     a,#0x80
 0354 C0E0      1013            push    acc
@@ -1015,7 +1015,7 @@
 0359 E581      1015            mov     a,sp
 035B 24FA      1016            add     a,#0xfa
 035D F581      1017            mov     sp,a
-035F           1018   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:51: printf( GOTO_YX , 8, 18);
+035F           1018   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:51: printf( GOTO_YX , 8, 18);
 035F 7412      1019            mov     a,#0x12
 0361 C0E0      1020            push    acc
 0363 E4        1021            clr     a
@@ -1024,9 +1024,9 @@
 0368 C0E0      1024            push    acc
 036A E4        1025            clr     a
 036B C0E0      1026            push    acc
-036D 7498      1027            mov     a,#__str_10
+036D 7450      1027            mov     a,#__str_10
 036F C0E0      1028            push    acc
-0371 7488      1029            mov     a,#(__str_10 >> 8)
+0371 748B      1029            mov     a,#(__str_10 >> 8)
 0373 C0E0      1030            push    acc
 0375 7480      1031            mov     a,#0x80
 0377 C0E0      1032            push    acc
@@ -1034,24 +1034,24 @@
 037C E581      1034            mov     a,sp
 037E 24F9      1035            add     a,#0xf9
 0380 F581      1036            mov     sp,a
-0382           1037   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:52: printf("%s", (motor_r_direction ? "Fwd ":"Rev"));  
-0382 E5A0      1038            mov     a,_motor_r_direction
-0384 45A1      1039            orl     a,(_motor_r_direction + 1)
+0382           1037   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:52: printf("%s", (motor_r_direction ? "Fwd ":"Rev"));    
+0382 E570      1038            mov     a,_motor_r_direction
+0384 4571      1039            orl     a,(_motor_r_direction + 1)
 0386 6001      1040            jz      L013005?
-0388 7A58      1041            mov     r2,#__str_13
-038A 7B89      1042            mov     r3,#(__str_13 >> 8)
+0388 7A10      1041            mov     r2,#__str_13
+038A 7B8C      1042            mov     r3,#(__str_13 >> 8)
 038C 8001      1043            sjmp    L013006?
 038E           1044   L013005?:
-038E 7AD8      1045            mov     r2,#__str_14
-0390 7B89      1046            mov     r3,#(__str_14 >> 8)
+038E 7A90      1045            mov     r2,#__str_14
+0390 7B8C      1046            mov     r3,#(__str_14 >> 8)
 0392           1047   L013006?:
 0392 7C80      1048            mov     r4,#0x80
 0394 C002      1049            push    ar2
 0396 C003      1050            push    ar3
 0398 C004      1051            push    ar4
-039A 7418      1052            mov     a,#__str_12
+039A 74D0      1052            mov     a,#__str_12
 039C C0E0      1053            push    acc
-039E 748A      1054            mov     a,#(__str_12 >> 8)
+039E 748C      1054            mov     a,#(__str_12 >> 8)
 03A0 C0E0      1055            push    acc
 03A2 7480      1056            mov     a,#0x80
 03A4 C0E0      1057            push    acc
@@ -1064,17 +1064,17 @@
 03B0           1064   ;Allocation info for local variables in function 'main'
 03B0           1065   ;------------------------------------------------------------
 03B0           1066   ;------------------------------------------------------------
-03B0           1067   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:55: void main (void)
+03B0           1067   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:55: void main (void)
 03B0           1068   ;        -----------------------------------------
 03B0           1069   ;         function main
 03B0           1070   ;        -----------------------------------------
 03B0           1071   _main:
-03B0           1072   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:57: while(1){
+03B0           1072   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:57: while(1){
 03B0           1073   L014092?:
-03B0           1074   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:58: printf( CLEAR_SCREEN);
-03B0 7498      1075            mov     a,#__str_0
+03B0           1074   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:58: printf( CLEAR_SCREEN);
+03B0 7450      1075            mov     a,#__str_0
 03B2 C0E0      1076            push    acc
-03B4 7485      1077            mov     a,#(__str_0 >> 8)
+03B4 7488      1077            mov     a,#(__str_0 >> 8)
 03B6 C0E0      1078            push    acc
 03B8 7480      1079            mov     a,#0x80
 03BA C0E0      1080            push    acc
@@ -1082,24 +1082,24 @@
 03BF 1581      1082            dec     sp
 03C1 1581      1083            dec     sp
 03C3 1581      1084            dec     sp
-03C5           1085   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:60: Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
-03C5 75C000    1086            mov     _Motor_Set_PARM_2,#0x00
-03C8 757001    1087            mov     _Motor_Set_PARM_3,#0x01
+03C5           1085   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:60: Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+03C5 759000    1086            mov     _Motor_Set_PARM_2,#0x00
+03C8 754001    1087            mov     _Motor_Set_PARM_3,#0x01
 03CB E4        1088            clr     a
-03CC F571      1089            mov     (_Motor_Set_PARM_3 + 1),a
+03CC F541      1089            mov     (_Motor_Set_PARM_3 + 1),a
 03CE 900000    1090            mov     dptr,#0x0000
 03D1 120100    1091            lcall   _Motor_Set
-03D4           1092   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:61: Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
-03D4 75C000    1093            mov     _Motor_Set_PARM_2,#0x00
-03D7 757001    1094            mov     _Motor_Set_PARM_3,#0x01
+03D4           1092   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:61: Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
+03D4 759000    1093            mov     _Motor_Set_PARM_2,#0x00
+03D7 754001    1094            mov     _Motor_Set_PARM_3,#0x01
 03DA E4        1095            clr     a
-03DB F571      1096            mov     (_Motor_Set_PARM_3 + 1),a
+03DB F541      1096            mov     (_Motor_Set_PARM_3 + 1),a
 03DD 900001    1097            mov     dptr,#0x0001
 03E0 120100    1098            lcall   _Motor_Set
-03E3           1099   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:62: printf("Nothing is moving (Enter anything please) \n");
-03E3 7418      1100            mov     a,#__str_15
+03E3           1099   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:62: printf("Nothing is moving (Enter anything please) \n");
+03E3 74D0      1100            mov     a,#__str_15
 03E5 C0E0      1101            push    acc
-03E7 748B      1102            mov     a,#(__str_15 >> 8)
+03E7 748D      1102            mov     a,#(__str_15 >> 8)
 03E9 C0E0      1103            push    acc
 03EB 7480      1104            mov     a,#0x80
 03ED C0E0      1105            push    acc
@@ -1107,34 +1107,34 @@
 03F2 1581      1107            dec     sp
 03F4 1581      1108            dec     sp
 03F6 1581      1109            dec     sp
-03F8           1110   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:63: while(SW == 0);
+03F8           1110   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:63: while(SW == 0);
 03F8           1111   L014001?:
-03F8 30C458    1112            jnb     _P4_4,L014001?
-03FB           1113   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:64: debounce();
+03F8 30C410    1112            jnb     _P4_4,L014001?
+03FB           1113   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:64: debounce();
 03FB 120100    1114            lcall   _debounce
-03FE           1115   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:65: while(SW == 1);
+03FE           1115   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:65: while(SW == 1);
 03FE           1116   L014004?:
-03FE 20C498    1117            jb      _P4_4,L014004?
-0401           1118   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:66: debounce();
+03FE 20C450    1117            jb      _P4_4,L014004?
+0401           1118   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:66: debounce();
 0401 120100    1119            lcall   _debounce
-0404           1120   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:68: Motor_Set(MOTOR_LEFT, 100, MOTOR_FORWARD);
-0404 75C064    1121            mov     _Motor_Set_PARM_2,#0x64
-0407 757001    1122            mov     _Motor_Set_PARM_3,#0x01
+0404           1120   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:68: Motor_Set(MOTOR_LEFT, 100, MOTOR_FORWARD);
+0404 759064    1121            mov     _Motor_Set_PARM_2,#0x64
+0407 754001    1122            mov     _Motor_Set_PARM_3,#0x01
 040A E4        1123            clr     a
-040B F571      1124            mov     (_Motor_Set_PARM_3 + 1),a
+040B F541      1124            mov     (_Motor_Set_PARM_3 + 1),a
 040D 900000    1125            mov     dptr,#0x0000
 0410 120100    1126            lcall   _Motor_Set
-0413           1127   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:69: Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
-0413 75C000    1128            mov     _Motor_Set_PARM_2,#0x00
-0416 757001    1129            mov     _Motor_Set_PARM_3,#0x01
+0413           1127   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:69: Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
+0413 759000    1128            mov     _Motor_Set_PARM_2,#0x00
+0416 754001    1129            mov     _Motor_Set_PARM_3,#0x01
 0419 E4        1130            clr     a
-041A F571      1131            mov     (_Motor_Set_PARM_3 + 1),a
+041A F541      1131            mov     (_Motor_Set_PARM_3 + 1),a
 041C 900001    1132            mov     dptr,#0x0001
 041F 120100    1133            lcall   _Motor_Set
-0422           1134   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:70: printf("left motor moving forward at 100 speed (Enter anything please) \n");
-0422 74D8      1135            mov     a,#__str_16
+0422           1134   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:70: printf("left motor moving forward at 100 speed (Enter anything please) \n");
+0422 7490      1135            mov     a,#__str_16
 0424 C0E0      1136            push    acc
-0426 748B      1137            mov     a,#(__str_16 >> 8)
+0426 748E      1137            mov     a,#(__str_16 >> 8)
 0428 C0E0      1138            push    acc
 042A 7480      1139            mov     a,#0x80
 042C C0E0      1140            push    acc
@@ -1142,35 +1142,35 @@
 0431 1581      1142            dec     sp
 0433 1581      1143            dec     sp
 0435 1581      1144            dec     sp
-0437           1145   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:71: while(SW == 0);
+0437           1145   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:71: while(SW == 0);
 0437           1146   L014007?:
-0437 30C418    1147            jnb     _P4_4,L014007?
-043A           1148   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:72: debounce();
+0437 30C4D0    1147            jnb     _P4_4,L014007?
+043A           1148   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:72: debounce();
 043A 120100    1149            lcall   _debounce
-043D           1150   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:73: while(SW == 1);
+043D           1150   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:73: while(SW == 1);
 043D           1151   L014010?:
-043D 20C458    1152            jb      _P4_4,L014010?
-0440           1153   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:74: debounce();
+043D 20C410    1152            jb      _P4_4,L014010?
+0440           1153   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:74: debounce();
 0440 120100    1154            lcall   _debounce
-0443           1155   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:76: Motor_Set(MOTOR_LEFT, 100, MOTOR_BACKWARD);
-0443 75C064    1156            mov     _Motor_Set_PARM_2,#0x64
+0443           1155   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:76: Motor_Set(MOTOR_LEFT, 100, MOTOR_BACKWARD);
+0443 759064    1156            mov     _Motor_Set_PARM_2,#0x64
 0446 E4        1157            clr     a
-0447 F570      1158            mov     _Motor_Set_PARM_3,a
-0449 F571      1159            mov     (_Motor_Set_PARM_3 + 1),a
+0447 F540      1158            mov     _Motor_Set_PARM_3,a
+0449 F541      1159            mov     (_Motor_Set_PARM_3 + 1),a
 044B F582      1160            mov     dpl,a
 044D F583      1161            mov     dph,a
 044F 120100    1162            lcall   _Motor_Set
-0452           1163   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:77: Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);          
-0452 75C000    1164            mov     _Motor_Set_PARM_2,#0x00
-0455 757001    1165            mov     _Motor_Set_PARM_3,#0x01
+0452           1163   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:77: Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);            
+0452 759000    1164            mov     _Motor_Set_PARM_2,#0x00
+0455 754001    1165            mov     _Motor_Set_PARM_3,#0x01
 0458 E4        1166            clr     a
-0459 F571      1167            mov     (_Motor_Set_PARM_3 + 1),a
+0459 F541      1167            mov     (_Motor_Set_PARM_3 + 1),a
 045B 900001    1168            mov     dptr,#0x0001
 045E 120100    1169            lcall   _Motor_Set
-0461           1170   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:78: printf("left motor moving backward at 100 speed (Enter anything please) \n");
-0461 7498      1171            mov     a,#__str_17
+0461           1170   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:78: printf("left motor moving backward at 100 speed (Enter anything please) \n");
+0461 7450      1171            mov     a,#__str_17
 0463 C0E0      1172            push    acc
-0465 748C      1173            mov     a,#(__str_17 >> 8)
+0465 748F      1173            mov     a,#(__str_17 >> 8)
 0467 C0E0      1174            push    acc
 0469 7480      1175            mov     a,#0x80
 046B C0E0      1176            push    acc
@@ -1178,34 +1178,34 @@
 0470 1581      1178            dec     sp
 0472 1581      1179            dec     sp
 0474 1581      1180            dec     sp
-0476           1181   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:79: while(SW == 0);
+0476           1181   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:79: while(SW == 0);
 0476           1182   L014013?:
-0476 30C4D8    1183            jnb     _P4_4,L014013?
-0479           1184   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:80: debounce();
+0476 30C490    1183            jnb     _P4_4,L014013?
+0479           1184   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:80: debounce();
 0479 120100    1185            lcall   _debounce
-047C           1186   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:81: while(SW == 1);
+047C           1186   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:81: while(SW == 1);
 047C           1187   L014016?:
-047C 20C418    1188            jb      _P4_4,L014016?
-047F           1189   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:82: debounce();
+047C 20C4D0    1188            jb      _P4_4,L014016?
+047F           1189   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:82: debounce();
 047F 120100    1190            lcall   _debounce
-0482           1191   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:84: Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
-0482 75C000    1192            mov     _Motor_Set_PARM_2,#0x00
-0485 757001    1193            mov     _Motor_Set_PARM_3,#0x01
+0482           1191   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:84: Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+0482 759000    1192            mov     _Motor_Set_PARM_2,#0x00
+0485 754001    1193            mov     _Motor_Set_PARM_3,#0x01
 0488 E4        1194            clr     a
-0489 F571      1195            mov     (_Motor_Set_PARM_3 + 1),a
+0489 F541      1195            mov     (_Motor_Set_PARM_3 + 1),a
 048B 900000    1196            mov     dptr,#0x0000
 048E 120100    1197            lcall   _Motor_Set
-0491           1198   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:85: Motor_Set(MOTOR_RIGHT, 100, MOTOR_FORWARD);
-0491 75C064    1199            mov     _Motor_Set_PARM_2,#0x64
-0494 757001    1200            mov     _Motor_Set_PARM_3,#0x01
+0491           1198   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:85: Motor_Set(MOTOR_RIGHT, 100, MOTOR_FORWARD);
+0491 759064    1199            mov     _Motor_Set_PARM_2,#0x64
+0494 754001    1200            mov     _Motor_Set_PARM_3,#0x01
 0497 E4        1201            clr     a
-0498 F571      1202            mov     (_Motor_Set_PARM_3 + 1),a
+0498 F541      1202            mov     (_Motor_Set_PARM_3 + 1),a
 049A 900001    1203            mov     dptr,#0x0001
 049D 120100    1204            lcall   _Motor_Set
-04A0           1205   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:86: printf("right motor moving forward at 100 speed (Enter anything please) \n");
-04A0 7458      1206            mov     a,#__str_18
+04A0           1205   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:86: printf("right motor moving forward at 100 speed (Enter anything please) \n");
+04A0 7410      1206            mov     a,#__str_18
 04A2 C0E0      1207            push    acc
-04A4 748D      1208            mov     a,#(__str_18 >> 8)
+04A4 7490      1208            mov     a,#(__str_18 >> 8)
 04A6 C0E0      1209            push    acc
 04A8 7480      1210            mov     a,#0x80
 04AA C0E0      1211            push    acc
@@ -1213,34 +1213,34 @@
 04AF 1581      1213            dec     sp
 04B1 1581      1214            dec     sp
 04B3 1581      1215            dec     sp
-04B5           1216   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:87: while(SW == 0);
+04B5           1216   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:87: while(SW == 0);
 04B5           1217   L014019?:
-04B5 30C498    1218            jnb     _P4_4,L014019?
-04B8           1219   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:88: debounce();
+04B5 30C450    1218            jnb     _P4_4,L014019?
+04B8           1219   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:88: debounce();
 04B8 120100    1220            lcall   _debounce
-04BB           1221   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:89: while(SW == 1);
+04BB           1221   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:89: while(SW == 1);
 04BB           1222   L014022?:
-04BB 20C4D8    1223            jb      _P4_4,L014022?
-04BE           1224   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:90: debounce();
+04BB 20C490    1223            jb      _P4_4,L014022?
+04BE           1224   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:90: debounce();
 04BE 120100    1225            lcall   _debounce
-04C1           1226   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:92: Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
-04C1 75C000    1227            mov     _Motor_Set_PARM_2,#0x00
-04C4 757001    1228            mov     _Motor_Set_PARM_3,#0x01
+04C1           1226   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:92: Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+04C1 759000    1227            mov     _Motor_Set_PARM_2,#0x00
+04C4 754001    1228            mov     _Motor_Set_PARM_3,#0x01
 04C7 E4        1229            clr     a
-04C8 F571      1230            mov     (_Motor_Set_PARM_3 + 1),a
+04C8 F541      1230            mov     (_Motor_Set_PARM_3 + 1),a
 04CA 900000    1231            mov     dptr,#0x0000
 04CD 120100    1232            lcall   _Motor_Set
-04D0           1233   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:93: Motor_Set(MOTOR_RIGHT, 100, MOTOR_BACKWARD);
-04D0 75C064    1234            mov     _Motor_Set_PARM_2,#0x64
+04D0           1233   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:93: Motor_Set(MOTOR_RIGHT, 100, MOTOR_BACKWARD);
+04D0 759064    1234            mov     _Motor_Set_PARM_2,#0x64
 04D3 E4        1235            clr     a
-04D4 F570      1236            mov     _Motor_Set_PARM_3,a
-04D6 F571      1237            mov     (_Motor_Set_PARM_3 + 1),a
+04D4 F540      1236            mov     _Motor_Set_PARM_3,a
+04D6 F541      1237            mov     (_Motor_Set_PARM_3 + 1),a
 04D8 900001    1238            mov     dptr,#0x0001
 04DB 120100    1239            lcall   _Motor_Set
-04DE           1240   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:94: printf("right motor moving backward at 100 speed (Enter anything please) \n");
-04DE 7418      1241            mov     a,#__str_19
+04DE           1240   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:94: printf("right motor moving backward at 100 speed (Enter anything please) \n");
+04DE 74D0      1241            mov     a,#__str_19
 04E0 C0E0      1242            push    acc
-04E2 748E      1243            mov     a,#(__str_19 >> 8)
+04E2 7490      1243            mov     a,#(__str_19 >> 8)
 04E4 C0E0      1244            push    acc
 04E6 7480      1245            mov     a,#0x80
 04E8 C0E0      1246            push    acc
@@ -1248,34 +1248,34 @@
 04ED 1581      1248            dec     sp
 04EF 1581      1249            dec     sp
 04F1 1581      1250            dec     sp
-04F3           1251   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:95: while(SW == 0);
+04F3           1251   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:95: while(SW == 0);
 04F3           1252   L014025?:
-04F3 30C458    1253            jnb     _P4_4,L014025?
-04F6           1254   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:96: debounce();
+04F3 30C410    1253            jnb     _P4_4,L014025?
+04F6           1254   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:96: debounce();
 04F6 120100    1255            lcall   _debounce
-04F9           1256   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:97: while(SW == 1);
+04F9           1256   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:97: while(SW == 1);
 04F9           1257   L014028?:
-04F9 20C498    1258            jb      _P4_4,L014028?
-04FC           1259   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:98: debounce();
+04F9 20C450    1258            jb      _P4_4,L014028?
+04FC           1259   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:98: debounce();
 04FC 120100    1260            lcall   _debounce
-04FF           1261   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:100: Motor_Set(MOTOR_LEFT, 50, MOTOR_FORWARD);
-04FF 75C032    1262            mov     _Motor_Set_PARM_2,#0x32
-0502 757001    1263            mov     _Motor_Set_PARM_3,#0x01
+04FF           1261   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:100: Motor_Set(MOTOR_LEFT, 50, MOTOR_FORWARD);
+04FF 759032    1262            mov     _Motor_Set_PARM_2,#0x32
+0502 754001    1263            mov     _Motor_Set_PARM_3,#0x01
 0505 E4        1264            clr     a
-0506 F571      1265            mov     (_Motor_Set_PARM_3 + 1),a
+0506 F541      1265            mov     (_Motor_Set_PARM_3 + 1),a
 0508 900000    1266            mov     dptr,#0x0000
 050B 120100    1267            lcall   _Motor_Set
-050E           1268   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:101: Motor_Set(MOTOR_RIGHT, 50, MOTOR_BACKWARD);               
-050E 75C032    1269            mov     _Motor_Set_PARM_2,#0x32
+050E           1268   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:101: Motor_Set(MOTOR_RIGHT, 50, MOTOR_BACKWARD);                 
+050E 759032    1269            mov     _Motor_Set_PARM_2,#0x32
 0511 E4        1270            clr     a
-0512 F570      1271            mov     _Motor_Set_PARM_3,a
-0514 F571      1272            mov     (_Motor_Set_PARM_3 + 1),a
+0512 F540      1271            mov     _Motor_Set_PARM_3,a
+0514 F541      1272            mov     (_Motor_Set_PARM_3 + 1),a
 0516 900001    1273            mov     dptr,#0x0001
 0519 120100    1274            lcall   _Motor_Set
-051C           1275   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:102: printf("left forward, right backward at 50 speed (Enter anything please) \n");
-051C 74D8      1276            mov     a,#__str_20
+051C           1275   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:102: printf("left forward, right backward at 50 speed (Enter anything please) \n");
+051C 7490      1276            mov     a,#__str_20
 051E C0E0      1277            push    acc
-0520 748E      1278            mov     a,#(__str_20 >> 8)
+0520 7491      1278            mov     a,#(__str_20 >> 8)
 0522 C0E0      1279            push    acc
 0524 7480      1280            mov     a,#0x80
 0526 C0E0      1281            push    acc
@@ -1283,35 +1283,35 @@
 052B 1581      1283            dec     sp
 052D 1581      1284            dec     sp
 052F 1581      1285            dec     sp
-0531           1286   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:103: while(SW == 0);
+0531           1286   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:103: while(SW == 0);
 0531           1287   L014031?:
-0531 30C418    1288            jnb     _P4_4,L014031?
-0534           1289   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:104: debounce();
+0531 30C4D0    1288            jnb     _P4_4,L014031?
+0534           1289   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:104: debounce();
 0534 120100    1290            lcall   _debounce
-0537           1291   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:105: while(SW == 1);
+0537           1291   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:105: while(SW == 1);
 0537           1292   L014034?:
-0537 20C458    1293            jb      _P4_4,L014034?
-053A           1294   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:106: debounce();
+0537 20C410    1293            jb      _P4_4,L014034?
+053A           1294   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:106: debounce();
 053A 120100    1295            lcall   _debounce
-053D           1296   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:108: Motor_Set(MOTOR_RIGHT, 50, MOTOR_FORWARD);
-053D 75C032    1297            mov     _Motor_Set_PARM_2,#0x32
-0540 757001    1298            mov     _Motor_Set_PARM_3,#0x01
+053D           1296   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:108: Motor_Set(MOTOR_RIGHT, 50, MOTOR_FORWARD);
+053D 759032    1297            mov     _Motor_Set_PARM_2,#0x32
+0540 754001    1298            mov     _Motor_Set_PARM_3,#0x01
 0543 E4        1299            clr     a
-0544 F571      1300            mov     (_Motor_Set_PARM_3 + 1),a
+0544 F541      1300            mov     (_Motor_Set_PARM_3 + 1),a
 0546 900001    1301            mov     dptr,#0x0001
 0549 120100    1302            lcall   _Motor_Set
-054C           1303   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:109: Motor_Set(MOTOR_LEFT, 50, MOTOR_BACKWARD);                
-054C 75C032    1304            mov     _Motor_Set_PARM_2,#0x32
+054C           1303   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:109: Motor_Set(MOTOR_LEFT, 50, MOTOR_BACKWARD);          
+054C 759032    1304            mov     _Motor_Set_PARM_2,#0x32
 054F E4        1305            clr     a
-0550 F570      1306            mov     _Motor_Set_PARM_3,a
-0552 F571      1307            mov     (_Motor_Set_PARM_3 + 1),a
+0550 F540      1306            mov     _Motor_Set_PARM_3,a
+0552 F541      1307            mov     (_Motor_Set_PARM_3 + 1),a
 0554 F582      1308            mov     dpl,a
 0556 F583      1309            mov     dph,a
 0558 120100    1310            lcall   _Motor_Set
-055B           1311   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:110: printf("left backward, right forward at 50 speed (Enter anything please) \n");
-055B 7498      1312            mov     a,#__str_21
+055B           1311   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:110: printf("left backward, right forward at 50 speed (Enter anything please) \n");
+055B 7450      1312            mov     a,#__str_21
 055D C0E0      1313            push    acc
-055F 748F      1314            mov     a,#(__str_21 >> 8)
+055F 7492      1314            mov     a,#(__str_21 >> 8)
 0561 C0E0      1315            push    acc
 0563 7480      1316            mov     a,#0x80
 0565 C0E0      1317            push    acc
@@ -1319,23 +1319,23 @@
 056A 1581      1319            dec     sp
 056C 1581      1320            dec     sp
 056E 1581      1321            dec     sp
-0570           1322   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:111: while(SW == 0);
+0570           1322   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:111: while(SW == 0);
 0570           1323   L014037?:
-0570 30C4D8    1324            jnb     _P4_4,L014037?
-0573           1325   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:112: debounce();
+0570 30C490    1324            jnb     _P4_4,L014037?
+0573           1325   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:112: debounce();
 0573 120100    1326            lcall   _debounce
-0576           1327   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:113: while(SW == 1);
+0576           1327   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:113: while(SW == 1);
 0576           1328   L014040?:
-0576 20C418    1329            jb      _P4_4,L014040?
-0579           1330   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:114: debounce();
+0576 20C4D0    1329            jb      _P4_4,L014040?
+0579           1330   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:114: debounce();
 0579 120100    1331            lcall   _debounce
-057C           1332   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:116: Motor_Forward(25);        
+057C           1332   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:116: Motor_Forward(25);  
 057C 758219    1333            mov     dpl,#0x19
 057F 120100    1334            lcall   _Motor_Forward
-0582           1335   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:117: printf("both forward at 25 speed (Enter anything please) \n");
-0582 7458      1336            mov     a,#__str_22
+0582           1335   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:117: printf("both forward at 25 speed (Enter anything please) \n");
+0582 7410      1336            mov     a,#__str_22
 0584 C0E0      1337            push    acc
-0586 7490      1338            mov     a,#(__str_22 >> 8)
+0586 7493      1338            mov     a,#(__str_22 >> 8)
 0588 C0E0      1339            push    acc
 058A 7480      1340            mov     a,#0x80
 058C C0E0      1341            push    acc
@@ -1343,23 +1343,23 @@
 0591 1581      1343            dec     sp
 0593 1581      1344            dec     sp
 0595 1581      1345            dec     sp
-0597           1346   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:118: while(SW == 0);
+0597           1346   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:118: while(SW == 0);
 0597           1347   L014043?:
-0597 30C498    1348            jnb     _P4_4,L014043?
-059A           1349   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:119: debounce();
+0597 30C450    1348            jnb     _P4_4,L014043?
+059A           1349   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:119: debounce();
 059A 120100    1350            lcall   _debounce
-059D           1351   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:120: while(SW == 1);
+059D           1351   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:120: while(SW == 1);
 059D           1352   L014046?:
-059D 20C4D8    1353            jb      _P4_4,L014046?
-05A0           1354   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:121: debounce();
+059D 20C490    1353            jb      _P4_4,L014046?
+05A0           1354   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:121: debounce();
 05A0 120100    1355            lcall   _debounce
-05A3           1356   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:123: Motor_Forward(50);        
+05A3           1356   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:123: Motor_Forward(50);  
 05A3 758232    1357            mov     dpl,#0x32
 05A6 120100    1358            lcall   _Motor_Forward
-05A9           1359   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:124: printf("both forward at 50 speed (Enter anything please) \n");
-05A9 7418      1360            mov     a,#__str_23
+05A9           1359   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:124: printf("both forward at 50 speed (Enter anything please) \n");
+05A9 74D0      1360            mov     a,#__str_23
 05AB C0E0      1361            push    acc
-05AD 7491      1362            mov     a,#(__str_23 >> 8)
+05AD 7493      1362            mov     a,#(__str_23 >> 8)
 05AF C0E0      1363            push    acc
 05B1 7480      1364            mov     a,#0x80
 05B3 C0E0      1365            push    acc
@@ -1367,23 +1367,23 @@
 05B8 1581      1367            dec     sp
 05BA 1581      1368            dec     sp
 05BC 1581      1369            dec     sp
-05BE           1370   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:125: while(SW == 0);
+05BE           1370   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:125: while(SW == 0);
 05BE           1371   L014049?:
-05BE 30C458    1372            jnb     _P4_4,L014049?
-05C1           1373   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:126: debounce();
+05BE 30C410    1372            jnb     _P4_4,L014049?
+05C1           1373   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:126: debounce();
 05C1 120100    1374            lcall   _debounce
-05C4           1375   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:127: while(SW == 1);
+05C4           1375   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:127: while(SW == 1);
 05C4           1376   L014052?:
-05C4 20C498    1377            jb      _P4_4,L014052?
-05C7           1378   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:128: debounce();
+05C4 20C450    1377            jb      _P4_4,L014052?
+05C7           1378   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:128: debounce();
 05C7 120100    1379            lcall   _debounce
-05CA           1380   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:130: Motor_Forward(75);        
+05CA           1380   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:130: Motor_Forward(75);  
 05CA 75824B    1381            mov     dpl,#0x4B
 05CD 120100    1382            lcall   _Motor_Forward
-05D0           1383   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:131: printf("both forward at 75 speed (Enter anything please) \n");
-05D0 74D8      1384            mov     a,#__str_24
+05D0           1383   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:131: printf("both forward at 75 speed (Enter anything please) \n");
+05D0 7490      1384            mov     a,#__str_24
 05D2 C0E0      1385            push    acc
-05D4 7491      1386            mov     a,#(__str_24 >> 8)
+05D4 7494      1386            mov     a,#(__str_24 >> 8)
 05D6 C0E0      1387            push    acc
 05D8 7480      1388            mov     a,#0x80
 05DA C0E0      1389            push    acc
@@ -1391,23 +1391,23 @@
 05DF 1581      1391            dec     sp
 05E1 1581      1392            dec     sp
 05E3 1581      1393            dec     sp
-05E5           1394   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:132: while(SW == 0);
+05E5           1394   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:132: while(SW == 0);
 05E5           1395   L014055?:
-05E5 30C418    1396            jnb     _P4_4,L014055?
-05E8           1397   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:133: debounce();
+05E5 30C4D0    1396            jnb     _P4_4,L014055?
+05E8           1397   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:133: debounce();
 05E8 120100    1398            lcall   _debounce
-05EB           1399   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:134: while(SW == 1);
+05EB           1399   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:134: while(SW == 1);
 05EB           1400   L014058?:
-05EB 20C458    1401            jb      _P4_4,L014058?
-05EE           1402   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:135: debounce();
+05EB 20C410    1401            jb      _P4_4,L014058?
+05EE           1402   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:135: debounce();
 05EE 120100    1403            lcall   _debounce
-05F1           1404   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:137: Motor_Forward(100);       
+05F1           1404   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:137: Motor_Forward(100);         
 05F1 758264    1405            mov     dpl,#0x64
 05F4 120100    1406            lcall   _Motor_Forward
-05F7           1407   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:138: printf("both forward at 100 speed (Enter anything please) \n");
-05F7 7498      1408            mov     a,#__str_25
+05F7           1407   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:138: printf("both forward at 100 speed (Enter anything please) \n");
+05F7 7450      1408            mov     a,#__str_25
 05F9 C0E0      1409            push    acc
-05FB 7492      1410            mov     a,#(__str_25 >> 8)
+05FB 7495      1410            mov     a,#(__str_25 >> 8)
 05FD C0E0      1411            push    acc
 05FF 7480      1412            mov     a,#0x80
 0601 C0E0      1413            push    acc
@@ -1415,23 +1415,23 @@
 0606 1581      1415            dec     sp
 0608 1581      1416            dec     sp
 060A 1581      1417            dec     sp
-060C           1418   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:139: while(SW == 0);
+060C           1418   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:139: while(SW == 0);
 060C           1419   L014061?:
-060C 30C4D8    1420            jnb     _P4_4,L014061?
-060F           1421   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:140: debounce();
+060C 30C490    1420            jnb     _P4_4,L014061?
+060F           1421   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:140: debounce();
 060F 120100    1422            lcall   _debounce
-0612           1423   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:141: while(SW == 1);
+0612           1423   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:141: while(SW == 1);
 0612           1424   L014064?:
-0612 20C418    1425            jb      _P4_4,L014064?
-0615           1426   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:142: debounce();
+0612 20C4D0    1425            jb      _P4_4,L014064?
+0615           1426   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:142: debounce();
 0615 120100    1427            lcall   _debounce
-0618           1428   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:144: Motor_Backward(25);       
+0618           1428   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:144: Motor_Backward(25);         
 0618 758219    1429            mov     dpl,#0x19
 061B 120100    1430            lcall   _Motor_Backward
-061E           1431   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:145: printf("both backward at 25 speed (Enter anything please) \n");
-061E 7458      1432            mov     a,#__str_26
+061E           1431   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:145: printf("both backward at 25 speed (Enter anything please) \n");
+061E 7410      1432            mov     a,#__str_26
 0620 C0E0      1433            push    acc
-0622 7493      1434            mov     a,#(__str_26 >> 8)
+0622 7496      1434            mov     a,#(__str_26 >> 8)
 0624 C0E0      1435            push    acc
 0626 7480      1436            mov     a,#0x80
 0628 C0E0      1437            push    acc
@@ -1439,23 +1439,23 @@
 062D 1581      1439            dec     sp
 062F 1581      1440            dec     sp
 0631 1581      1441            dec     sp
-0633           1442   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:146: while(SW == 0);
+0633           1442   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:146: while(SW == 0);
 0633           1443   L014067?:
-0633 30C498    1444            jnb     _P4_4,L014067?
-0636           1445   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:147: debounce();
+0633 30C450    1444            jnb     _P4_4,L014067?
+0636           1445   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:147: debounce();
 0636 120100    1446            lcall   _debounce
-0639           1447   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:148: while(SW == 1);
+0639           1447   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:148: while(SW == 1);
 0639           1448   L014070?:
-0639 20C4D8    1449            jb      _P4_4,L014070?
-063C           1450   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:149: debounce();
+0639 20C490    1449            jb      _P4_4,L014070?
+063C           1450   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:149: debounce();
 063C 120100    1451            lcall   _debounce
-063F           1452   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:151: Motor_Backward(50);
+063F           1452   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:151: Motor_Backward(50);
 063F 758232    1453            mov     dpl,#0x32
 0642 120100    1454            lcall   _Motor_Backward
-0645           1455   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:152: printf("both backward at 50 speed (Enter anything please) \n");
-0645 7418      1456            mov     a,#__str_27
+0645           1455   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:152: printf("both backward at 50 speed (Enter anything please) \n");
+0645 74D0      1456            mov     a,#__str_27
 0647 C0E0      1457            push    acc
-0649 7494      1458            mov     a,#(__str_27 >> 8)
+0649 7496      1458            mov     a,#(__str_27 >> 8)
 064B C0E0      1459            push    acc
 064D 7480      1460            mov     a,#0x80
 064F C0E0      1461            push    acc
@@ -1463,23 +1463,23 @@
 0654 1581      1463            dec     sp
 0656 1581      1464            dec     sp
 0658 1581      1465            dec     sp
-065A           1466   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:153: while(SW == 0);
+065A           1466   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:153: while(SW == 0);
 065A           1467   L014073?:
-065A 30C458    1468            jnb     _P4_4,L014073?
-065D           1469   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:154: debounce();
+065A 30C410    1468            jnb     _P4_4,L014073?
+065D           1469   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:154: debounce();
 065D 120100    1470            lcall   _debounce
-0660           1471   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:155: while(SW == 1);
+0660           1471   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:155: while(SW == 1);
 0660           1472   L014076?:
-0660 20C498    1473            jb      _P4_4,L014076?
-0663           1474   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:156: debounce();
+0660 20C450    1473            jb      _P4_4,L014076?
+0663           1474   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:156: debounce();
 0663 120100    1475            lcall   _debounce
-0666           1476   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:158: Motor_Backward(75);       
+0666           1476   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:158: Motor_Backward(75);         
 0666 75824B    1477            mov     dpl,#0x4B
 0669 120100    1478            lcall   _Motor_Backward
-066C           1479   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:159: printf("both backward at 75 speed (Enter anything please) \n");
-066C 74D8      1480            mov     a,#__str_28
+066C           1479   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:159: printf("both backward at 75 speed (Enter anything please) \n");
+066C 7490      1480            mov     a,#__str_28
 066E C0E0      1481            push    acc
-0670 7494      1482            mov     a,#(__str_28 >> 8)
+0670 7497      1482            mov     a,#(__str_28 >> 8)
 0672 C0E0      1483            push    acc
 0674 7480      1484            mov     a,#0x80
 0676 C0E0      1485            push    acc
@@ -1487,23 +1487,23 @@
 067B 1581      1487            dec     sp
 067D 1581      1488            dec     sp
 067F 1581      1489            dec     sp
-0681           1490   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:160: while(SW == 0);
+0681           1490   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:160: while(SW == 0);
 0681           1491   L014079?:
-0681 30C418    1492            jnb     _P4_4,L014079?
-0684           1493   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:161: debounce();
+0681 30C4D0    1492            jnb     _P4_4,L014079?
+0684           1493   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:161: debounce();
 0684 120100    1494            lcall   _debounce
-0687           1495   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:162: while(SW == 1);
+0687           1495   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:162: while(SW == 1);
 0687           1496   L014082?:
-0687 20C458    1497            jb      _P4_4,L014082?
-068A           1498   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:163: debounce();
+0687 20C410    1497            jb      _P4_4,L014082?
+068A           1498   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:163: debounce();
 068A 120100    1499            lcall   _debounce
-068D           1500   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:165: Motor_Backward(100);      
+068D           1500   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:165: Motor_Backward(100);        
 068D 758264    1501            mov     dpl,#0x64
 0690 120100    1502            lcall   _Motor_Backward
-0693           1503   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:166: printf("both backward at 100 speed (Enter anything please) \n");
-0693 7498      1504            mov     a,#__str_29
+0693           1503   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:166: printf("both backward at 100 speed (Enter anything please) \n");
+0693 7450      1504            mov     a,#__str_29
 0695 C0E0      1505            push    acc
-0697 7495      1506            mov     a,#(__str_29 >> 8)
+0697 7498      1506            mov     a,#(__str_29 >> 8)
 0699 C0E0      1507            push    acc
 069B 7480      1508            mov     a,#0x80
 069D C0E0      1509            push    acc
@@ -1511,15 +1511,15 @@
 06A2 1581      1511            dec     sp
 06A4 1581      1512            dec     sp
 06A6 1581      1513            dec     sp
-06A8           1514   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:167: while(SW == 0);
+06A8           1514   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:167: while(SW == 0);
 06A8           1515   L014085?:
-06A8 30C4D8    1516            jnb     _P4_4,L014085?
-06AB           1517   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:168: debounce();
+06A8 30C490    1516            jnb     _P4_4,L014085?
+06AB           1517   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:168: debounce();
 06AB 120100    1518            lcall   _debounce
-06AE           1519   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:169: while(SW == 1);
+06AE           1519   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:169: while(SW == 1);
 06AE           1520   L014088?:
-06AE 20C418    1521            jb      _P4_4,L014088?
-06B1           1522   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:170: debounce();
+06AE 20C4D0    1521            jb      _P4_4,L014088?
+06B1           1522   ;        C:\Users\Kyujin Park\Documents\GitHub\EECE281-56Wheels-Project2featWheels\Test_Motor.c:170: debounce();
 06B1 120100    1523            lcall   _debounce
 06B4 020100    1524            ljmp    L014092?
 06B7           1525            rseg R_CSEG

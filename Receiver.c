@@ -11,34 +11,35 @@
 
 //Sensitivity of controls - how quickly the car advances/retreats on command
 #define RECEIVER_SENSITIVITY 1
-#define RECEIVER_TURN_SENSITIVITY 1
+#define RECEIVER_TURN_SENSITIVITY 2
 
 //Initial voltage target for distance
 #define RECEIVER_INITIAL_DISTANCE 40
 
 //Voltage polynomial constants
-/*old
-#define coefL3 -19.5948
-#define coefL2 62.9132
-#define coefL1 -6.1026
-#define coefLC 58.2774
+//*old
+#define coefL3 -6.2486
+#define coefL2 29.9770
+#define coefL1 -45.2027
+#define coefLC 47.3031
 
-#define coefR3 -0.00018971355
-#define coefR2 0.029084943809
-#define coefR1 -1.48107822777
-#define coefRC 25.11287711904
+#define coefR3 -3.9116
+#define coefR2 20.3518
+#define coefR1 -36.8696
+#define coefRC 48.9563
+//*/
+/*
+#define coefR3	-9.65294188  
+#define coefR2   36.1962775
+#define coefR1  -47.2467579
+#define coefRC   56.1804219
+
+#define coefL3   -30.1328273
+#define coefL2    77.6249768
+#define coefL1   -66.7616999
+#define coefLC    54.3730411
+
 */
-#define coefL3	-4.7823   
-#define coefL2   24.0931  
-#define coefL1  -40.2797   
-#define coefLC   48.0162
-
-#define coefR3   -3.3163
-#define coefR2   17.7225  
-#define coefR1  -34.5157   
-#define coefRC   50.3941
-
-
 
 
 /**
@@ -137,7 +138,7 @@ unsigned char _c51_external_startup(void)
 }
 
 void main(){
-	float voltageL, voltageR, distanceL, distanceR, filterL, filterR, debounce;
+	float voltageL, voltageR, distanceL, distanceR, filterL, filterR, filterL2, filterR2, debounce, distanceAverage;
 	unsigned char distance;
 	unsigned char cmd;
 	int count =0;
@@ -202,9 +203,10 @@ void main(){
 		
 		filterL = distanceL;
 		filterR = distanceR;
+		distanceAverage = (distanceL + distanceR)/2.0;
 		
-		waitMillis(500);
-		debounce = Signal_Voltage(SIGNAL_CHANNEL_L);
+		//waitMillis(500);
+		//debounce = Signal_Voltage(SIGNAL_CHANNEL_L);
 		
 		/*
 		//if data is being transmitted, receive message
@@ -242,6 +244,7 @@ void main(){
 
 		//after processing the message, follow the beacon
 		
+		/*
 		//independent wheel movements:
 			//left wheel first
 		if(distanceL > distance + RECEIVER_SENSITIVITY){
@@ -269,26 +272,29 @@ void main(){
 			Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
 			printf("Right Motor: IDLE   |\n");
 		}
+		*/
 	
 		//synchronized wheel movements:
-		/*
+		
+		
 		//handle turning first
 		if(distanceL - distanceR > RECEIVER_TURN_SENSITIVITY){
-			Motor_TurnLeft(50);
+			Motor_TurnLeft(20);
 			printf("Turning left...\n");
 		}
 		else if (distanceR - distanceL > RECEIVER_TURN_SENSITIVITY){
-			Motor_TurnRight(50);
+			Motor_TurnRight(20);
 			printf("Turning right...\n");
 		}
 		//then handle distance, using voltageL (voltageL and voltageR should be 
 		//close to equal anyways, so it doesn't matter much
 		else{
-			if (distanceL > distance + RECEIVER_SENSITIVITY){
-				Motor_Forward(50);
+			
+			if (distanceAverage > distance + RECEIVER_SENSITIVITY){
+				Motor_Forward(20);
 				printf("Moving forward...\n");
 			}
-			else if(distanceL < distance - RECEIVER_SENSITIVITY){
+			else if(distanceAverage < distance - RECEIVER_SENSITIVITY){
 				Motor_Backward(50);
 				printf("Moving backward...\n");
 			}
@@ -297,9 +303,31 @@ void main(){
 				printf("Idle...\n");
 			}
 		}
+		
+		
+		/*Sasha's method
+		if (distanceAverage > distance + RECEIVER_SENSITIVITY){
+			Motor_Forward(20);
+			printf("Moving forward...\n");
+		}
+		else if(distanceAverage < distance - RECEIVER_SENSITIVITY){
+			Motor_Backward(50);
+			printf("Moving backward...\n");
+		}
+
+		else if(distanceL - distanceR > RECEIVER_TURN_SENSITIVITY){
+			Motor_TurnLeft(20);
+			printf("Turning left...\n");
+		}
+		else if (distanceR - distanceL > RECEIVER_TURN_SENSITIVITY){
+			Motor_TurnRight(20);
+			printf("Turning right...\n");
+		}
+		else{
+			Motor_Stop();
+			printf("Idle...\n");
+		}
 		*/
-		//Signal_WaitBitTime();	//we cannot wait longer than BitTime
-								//otherwise we risk missing the Idle command
 	}
 	
 	

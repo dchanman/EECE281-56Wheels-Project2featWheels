@@ -28,15 +28,15 @@
 #define coefR1 -1.48107822777
 #define coefRC 25.11287711904
 */
-#define coefL3	-3.6076
-#define coefL2   19.4649
-#define coefL1  -36.7559
-#define coefLC   59.5052
+#define coefL3	-4.7823   
+#define coefL2   24.0931  
+#define coefL1  -40.2797   
+#define coefLC   48.0162
 
-#define coefR3   -8.0475
-#define coefR2   34.6667
-#define coefR1  -48.6592
-#define coefRC   57.9873
+#define coefR3   -3.3163
+#define coefR2   17.7225  
+#define coefR1  -34.5157   
+#define coefRC   50.3941
 
 
 
@@ -137,7 +137,7 @@ unsigned char _c51_external_startup(void)
 }
 
 void main(){
-	float voltageL, voltageR, distanceL, distanceR, filterL, filterR;
+	float voltageL, voltageR, distanceL, distanceR, filterL, filterR, debounce;
 	unsigned char distance;
 	unsigned char cmd;
 	int count =0;
@@ -147,20 +147,21 @@ void main(){
 	filterL = 0;
 	filterR = 0;
 	
+
 	
-/*
+	
 
 	while(1){	
 		voltageL = Signal_Voltage(SIGNAL_CHANNEL_L);
 		voltageR = Signal_Voltage(SIGNAL_CHANNEL_R);
-		distanceL = Receiver_GetDistanceL(voltageL);
-		distanceR = Receiver_GetDistanceR(voltageR);
+		//distanceL = Receiver_GetDistanceL(voltageL);
+		//distanceR = Receiver_GetDistanceR(voltageR);
 		printf("VoltageL: %f | VoltageR: %f \n", voltageL, voltageR);
-		printf("\tDistanceL: %f | DistanceR: %f \n", distanceL, distanceR); 
+		//printf("\tDistanceL: %f | DistanceR: %f \n", distanceL, distanceR); 
 		count++;
 	}
 
-*/
+
 	
 	while(1){
 		/*
@@ -169,9 +170,19 @@ void main(){
 		voltageL = Signal_Voltage(SIGNAL_CHANNEL_L);	//SIGNAL_CHANNEL_L is defined in General.h
 		voltageR = Signal_Voltage(SIGNAL_CHANNEL_R);	//SIGNAL_CHANNEL_R is defined in General.h
 		//printf("\rVoltageL: %f, VoltageR: %f\n\t", voltageL, voltageR);
+				
+		/*
+		*If the voltage is too high, we are too close to the controller. Back up.
+		*/
+		if(voltageL > 2.8059 || voltageR > 2.3849){
+			printf("Too close!\n");
+			Motor_Backward(50);
+		}
 		distanceL = Receiver_GetDistanceL(voltageL);
 		distanceR = Receiver_GetDistanceR(voltageR);		
 		printf("L:%f | R: %f | VL:%f | VR: %f | ", distanceL, distanceR, voltageL, voltageR);
+		
+		
 		
 		/*
 		*Apply filter on the most recently read value
@@ -192,16 +203,12 @@ void main(){
 		filterL = distanceL;
 		filterR = distanceR;
 		
-		/*
-		*If the voltage is too high, we are too close to the controller. Back up.
-		*/
-		if(voltageL > 2.8059 || voltageR > 2.3849){
-			printf("Too close!\n");
-			Motor_Backward(50);
-		}
+		waitMillis(500);
+		debounce = Signal_Voltage(SIGNAL_CHANNEL_L);
 		
 		//if data is being transmitted, receive message
-		if(voltageL < RECEIVER_THRESHOLD_LOGIC){
+		//if(voltageL < RECEIVER_THRESHOLD_LOGIC){
+		if(debounce < filterL){	//if voltage continues to decrease, and it's not just backward movement, must be data transmission
 			printf("Receiving data...\n");
 			cmd = Receiver_Receive();
 			
@@ -233,7 +240,36 @@ void main(){
 
 		//after processing the message, follow the beacon
 		
+		//independent wheel movements:
+			//left wheel first
+		if(distanceL > distance + RECEIVER_SENSITIVITY){
+			Motor_Set(MOTOR_LEFT, 40, MOTOR_FORWARD);
+			printf("Left Motor: FORWARD	 |");
+		}
+		else if (distanceL < distance - RECEIVER_SENSITIVITY){
+			Motor_Set(MOTOR_LEFT, 40, MOTOR_BACKWARD);
+			printf("Left Motor: BACKWARD |");
+		}
+		else{
+			Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
+			printf("Left Motor: IDLE   	|");
+		}
+			//right wheel 
+		if(distanceR > distance + RECEIVER_SENSITIVITY){
+			Motor_Set(MOTOR_RIGHT, 40, MOTOR_FORWARD);
+			printf("Right Motor: FORWARD |\n");
+		}
+		else if (distanceR < distance - RECEIVER_SENSITIVITY){
+			Motor_Set(MOTOR_RIGHT, 40, MOTOR_BACKWARD);
+			printf("Right Motor: BACKWARD |\n");
+		}
+		else{
+			Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
+			printf("Right Motor: IDLE   |\n");
+		}
 	
+		//synchronized wheel movements:
+		/*
 		//handle turning first
 		if(distanceL - distanceR > RECEIVER_TURN_SENSITIVITY){
 			Motor_TurnLeft(50);
@@ -259,7 +295,8 @@ void main(){
 				printf("Idle...\n");
 			}
 		}
-		Signal_WaitBitTime();	//we cannot wait longer than BitTime
+		*/
+		//Signal_WaitBitTime();	//we cannot wait longer than BitTime
 								//otherwise we risk missing the Idle command
 	}
 	

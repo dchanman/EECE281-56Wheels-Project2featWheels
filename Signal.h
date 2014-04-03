@@ -4,9 +4,9 @@
 #define ADC_VCC 4.7281
 #define ADC_MAXVAL 1023
 
-#define SQRT2 1.41421356237
-#define VDIODER 1.018	//where is this value from?                                            
-#define VDIODEL 0.387	//where is this value from?
+//#define SQRT2 1.41421356237
+//#define VDIODER 1.018	//where is this value from?                                            
+//#define VDIODEL 0.387	//where is this value from?
 
 #define SIGNAL_PEAK_VOLTAGE 2.0	//voltage above this signals a "peak"
 

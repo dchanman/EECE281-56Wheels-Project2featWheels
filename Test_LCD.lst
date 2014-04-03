@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1034 (Dec 12 2012) (MSVC)
-0000              4   ; This file was generated Tue Mar 25 20:02:53 2014
+0000              4   ; This file was generated Tue Apr 01 14:12:11 2014
 0000              5   ;--------------------------------------------------------
                   5   $name Test_LCD
                   6   $optc51 --model-small
@@ -438,9 +438,9 @@
 0041            438   ;        -----------------------------------------
 0041            439   _LCD_Clear:
 0041            440   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:39: LCD_RS = 0;
-0041 C2A1       441            clr     _P2_1
+0041 C2C4       441            clr     _P4_4
 0043            442   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:40: LCD_E = LCD_ENABLE;
-0043 D2A2       443            setb    _P2_2
+0043 D2C0       443            setb    _P4_0
 0045            444   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:41: LCD_ShortDelay();
 0045 120100     445            lcall   _LCD_ShortDelay
 0048            446   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:42: LCD_D = 1;
@@ -448,7 +448,7 @@
 004B            448   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:43: LCD_ShortDelay();
 004B 120100     449            lcall   _LCD_ShortDelay
 004E            450   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:44: LCD_E = LCD_DISABLE;
-004E C2A2       451            clr     _P2_2
+004E C2C0       451            clr     _P4_0
 0050            452   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:45: LCD_LongDelay();
 0050 020100     453            ljmp    _LCD_LongDelay
 0053            454   ;------------------------------------------------------------
@@ -463,7 +463,7 @@
 0053            463   _LCD_Put:
 0053 AA82       464            mov     r2,dpl
 0055            465   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:56: LCD_E = LCD_ENABLE;
-0055 D2A2       466            setb    _P2_2
+0055 D2C0       466            setb    _P4_0
 0057            467   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:57: LCD_ShortDelay();
 0057 C002       468            push    ar2
 0059 120100     469            lcall   _LCD_ShortDelay
@@ -473,7 +473,7 @@
 0060            473   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:59: LCD_ShortDelay();
 0060 120100     474            lcall   _LCD_ShortDelay
 0063            475   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:60: LCD_E = LCD_DISABLE;
-0063 C2A2       476            clr     _P2_2
+0063 C2C0       476            clr     _P4_0
 0065            477   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:61: LCD_ShortDelay();
 0065 020100     478            ljmp    _LCD_ShortDelay
 0068            479   ;------------------------------------------------------------
@@ -490,7 +490,7 @@
 006A AB83       490            mov     r3,dph
 006C ACF0       491            mov     r4,b
 006E            492   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:70: LCD_RS = 1;
-006E D2A1       493            setb    _P2_1
+006E D2C4       493            setb    _P4_4
 0070            494   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:71: while(*c != '\0'){
 0070            495   L007001?:
 0070 8A82       496            mov     dpl,r2
@@ -641,7 +641,7 @@
 0145            641   ;        -----------------------------------------
 0145            642   _LCD_Init:
 0145            643   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:100: LCD_E = 0;
-0145 C2A2       644            clr     _P2_2
+0145 C2C0       644            clr     _P4_0
 0147            645   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:101: LCD_Clear();
 0147 120100     646            lcall   _LCD_Clear
 014A            647   ;        C:\Users\Derek\Documents\GitHub\EECE281-56Wheels-Project2featWheels\/LCD.c:102: LCD_Put(((unsigned char)0b00111000));   //Function set, 8 bit, 2 lines, 5×7

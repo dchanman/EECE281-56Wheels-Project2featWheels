@@ -157,8 +157,6 @@ void Motor_TurnLeft(unsigned char speed){
 *Stops all motor movement.
 */
 void Motor_Stop(){
-		MOTOR_L_FORWARD		=	0;
-		MOTOR_L_BACKWARD	= 	0;
-		MOTOR_R_FORWARD		=	0;
-		MOTOR_R_BACKWARD	= 	0;
+		motor_l_speed	=	0;
+		motor_r_speed	= 	0;
 }

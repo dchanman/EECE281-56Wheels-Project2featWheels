@@ -12,7 +12,7 @@ void debounce(void){
 		shortL1: djnz R0,shortL1  ; 2 machine cycles-> 2*0.5425347us*184=49.9us
 		ret
 	_endasm;
-}
+	}
 
 unsigned char _c51_external_startup(void)
 {

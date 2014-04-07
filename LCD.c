@@ -70,7 +70,7 @@ void LCD_WriteString(unsigned char *c){
 	LCD_RS = 1;
 	while(*c != '\0'){
 		LCD_Put(*c);
-		printf("%c",*c); 
+		//printf("%c",*c); 
 		c++;
 		
 	}

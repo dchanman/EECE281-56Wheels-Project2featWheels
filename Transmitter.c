@@ -1,3 +1,5 @@
+unsigned char flag_on;
+
 /**
 *Transmitter_Init
 *
@@ -19,15 +21,18 @@ void Transmitter_Init(){
 	EA=1;  // Enable global interrupts
 	
 	pwmcount=0;
+	flag_on = 1;
 }
 
 // Interrupt 3 is for timer 1.  This function is executed every time
 // timer 1 overflows: 100 us.
 void pwmcounter (void) interrupt 3
 {
-	if(++pwmcount>1) pwmcount=0;
-	P1_0=(TRANSMITTER_PWM>pwmcount)?1:0;
-	P1_1=(TRANSMITTER_PWM>pwmcount)?0:1;
+	if(flag_on == 1){
+		if(++pwmcount>1) pwmcount=0;
+		P1_0=(TRANSMITTER_PWM>pwmcount)?1:0;
+		P1_1=(TRANSMITTER_PWM>pwmcount)?0:1;
+	}
 }
 
 /**
@@ -38,7 +43,7 @@ void pwmcounter (void) interrupt 3
 */
 void Transmitter_Start(){
 	pwmcount = 0;
-	TR1 = 1;
+	flag_on = 1;
 }
 
 /**
@@ -48,7 +53,7 @@ void Transmitter_Start(){
 *@modifies: TR1
 */
 void Transmitter_Stop(){
-	TR1 = 0;
+	flag_on = 0;
 }
 
 /**
@@ -65,25 +70,25 @@ void Transmitter_Stop(){
 void Transmitter_Transmit(unsigned char message){
 	unsigned char k;
 	
-		//printf("sending...");
+		printf("sending...");
 		
 	//Send start bit
 	Transmitter_Stop();
-	//printf("-%c-", TR1?'1':'0');
+	printf("-%c-", flag_on?'1':'0');
 	Signal_WaitBitTime();
 
 	
 	//Send data
 	for(k=0; k < 8; k++){
-		TR1 = message&(0x01<<k)?1:0;
-	//	printf("%c", TR1?'1':'0');
+		flag_on = message&(0x01<<k)?1:0;
+		printf("%c", flag_on?'1':'0');
 		Signal_WaitBitTime();
 	}
 	
 	
-	//Send stop bits
+	//Send stop bitss
 	Transmitter_Start();
-	//printf("-%c-\n", TR1?'1':'0');
+	printf("-%c-\n", flag_on?'1':'0');
 	Signal_WaitBitTime();
 	Signal_WaitBitTime();	
 }

@@ -53,6 +53,8 @@
 #define TRANSMITTER_P0		P1_0
 #define TRANSMITTER_P1		P1_1
 
+//
+
 /*
 		P0			P1			P2			P3			P4
 .0		LCD			TRANSMTR	IR_ANALOG				LCD

@@ -11,24 +11,29 @@
 #define SIGNAL_PEAK_VOLTAGE 2.0	//voltage above this signals a "peak"
 
 //Transmitter messages:
-#define TRANSMITTER_CMD_ADVANCE		0b11000000
-#define TRANSMITTER_CMD_RETREAT		0b00110000
-#define TRANSMITTER_CMD_SPIN		0b00001100
-#define TRANSMITTER_CMD_PARK		0b00000011
-#define TRANSMITTER_CMD_IDLE		0b00000000
+//#define TRANSMITTER_CMD_ADVANCE		0b11111111
+//#define TRANSMITTER_CMD_RETREAT		0b11100000
+//#define TRANSMITTER_CMD_SPIN		0b00011111
+//#define TRANSMITTER_CMD_PARK		0b00000000
+//#define TRANSMITTER_CMD_IDLE		0b11000000
+#define TRANSMITTER_CMD_ADVANCE		0b00000111
+#define TRANSMITTER_CMD_RETREAT		0b00000000
+#define TRANSMITTER_CMD_SPIN		0b00000101
+#define TRANSMITTER_CMD_PARK		0b00000010
 
 //Functions
 void Signal_Init();
 
 void Signal_SPIWrite(unsigned char);
 unsigned int Signal_GetADC(unsigned char);
-
+	
 float Signal_Voltage(unsigned char);
 float Signal_GetPhase(double);
 double Signal_GetPeriod();
 double Signal_GetFrequency();
 
 void Signal_Wait1s();
+void Signal_WaitHalfBitTime();
 void Signal_WaitBitTime();
 void Signal_WaitBitTimeAndHalf();
 

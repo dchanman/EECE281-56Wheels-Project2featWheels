@@ -179,6 +179,22 @@ void Signal_WaitBitTimeAndHalf(void)
 	SWBTAH_L2:	mov R0, #184
 	SWBTAH_L1:	djnz R0, SWBTAH_L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
 	    djnz R1, SWBTAH_L2 ; 200us*150=0.03s
+	    djnz R2, SWBTAH_L3
+	    ret
+    _endasm;
+}
+
+void Signal_WaitHalfBitTime(void)
+{
+	_asm	
+		;For a 22.1184MHz crystal one machine cycle 
+		;takes 12/22.1184MHz=0.5425347us
+		mov R2, #12
+	SWHBT_L3:	mov R1, #100
+	SWHBT_L2:	mov R0, #184
+	SWHBT_L1:	djnz R0, SWHBT_L1 ; 2 machine cycles-> 2*0.5425347us*184=200us
+	    djnz R1, SWHBT_L2 ; 200us*150=0.03s
+	    djnz R2, SWHBT_L3
 	    ret
     _endasm;
 }

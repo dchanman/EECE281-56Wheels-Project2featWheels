@@ -4,42 +4,37 @@
 #include <math.h>
 
 //If the peak voltage drops below this value, it is a logic 0
-#define RECEIVER_THRESHOLD_LOGIC 0.020
+#define RECEIVER_THRESHOLD_LOGIC 0.0040
 
 //Threshold of voltage difference - used to determine the location of the transmitter
 #define RECEIVER_THRESHOLD_VOLTAGE 0
 
 //Sensitivity of controls - how quickly the car advances/retreats on command
-#define RECEIVER_SENSITIVITY 1
-#define RECEIVER_TURN_SENSITIVITY 2
+#define RECEIVER_SENSITIVITY 2
+#define RECEIVER_TURN_SENSITIVITY 4
 
 //Initial voltage target for distance
-#define RECEIVER_INITIAL_DISTANCE 40
+#define RECEIVER_INITIAL_DISTANCE 35
+
+//Noise filteration
+#define RECEIVER_NOISE 0.0030
 
 //Voltage polynomial constants
-//*old
-#define coefL3 -6.2486
-#define coefL2 29.9770
-#define coefL1 -45.2027
-#define coefLC 47.3031
 
-#define coefR3 -3.9116
-#define coefR2 20.3518
-#define coefR1 -36.8696
-#define coefRC 48.9563
-//*/
-/*
-#define coefR3	-9.65294188  
-#define coefR2   36.1962775
-#define coefR1  -47.2467579
-#define coefRC   56.1804219
+#define coefR5	0
+#define coefR4	0
+#define coefL3 -9.5928
+#define coefL2 -42.0957
+#define coefL1 -60.2518
+#define coefLC 59.0742
 
-#define coefL3   -30.1328273
-#define coefL2    77.6249768
-#define coefL1   -66.7616999
-#define coefLC    54.3730411
+#define coefL5	0
+#define coefL4	0
+#define coefR3 -5.4185
+#define coefR2 28.9661
+#define coefR1 -52.4874
+#define coefRC 62.9946
 
-*/
 
 
 /**
@@ -75,55 +70,54 @@ void waitMillis(int millis){
 *
 *@return:	The received electromagnetic signal
 */
-unsigned char Receiver_Receive(){
+unsigned char Receiver_Receive(float threshold){
 	unsigned char k;
 	unsigned char msg = 0;
-	Signal_WaitBitTimeAndHalf();
+	float val;
+	printf("Message: ");
+	Signal_WaitHalfBitTime();
 	for(k=0; k<8; k++){
-		if (Signal_Voltage(SIGNAL_CHANNEL_L) > RECEIVER_THRESHOLD_LOGIC){
-			msg |= (0x01 <<k);
-		}
-		Signal_WaitBitTime();	
+		val = Signal_Voltage(SIGNAL_CHANNEL_L);
+		msg |= (val > threshold)?(0x01<<k):0x00;
+		Signal_WaitBitTime();
+		printf("%s", val>threshold?"1":"0");
+			
 	}
+	printf("\n");
 	printf("The message received was %b\n", msg);
+	Signal_WaitBitTimeAndHalf();
 	return msg;
 }
 
 void Receiver_Spin(){
 	Motor_TurnLeft(100);
-	waitMillis(200);
-	while(Signal_Voltage(SIGNAL_CHANNEL_R) - Signal_Voltage(SIGNAL_CHANNEL_L) > RECEIVER_THRESHOLD_VOLTAGE);
-	waitMillis(200);
-	while(Signal_Voltage(SIGNAL_CHANNEL_L) - Signal_Voltage(SIGNAL_CHANNEL_R) > RECEIVER_THRESHOLD_VOLTAGE);
+	waitMillis(1625);
 	Motor_Stop();
+}
+
+void Receiver_Park(){
+	Motor_TurnLeft(70);
 	waitMillis(500);
+	Motor_Forward(70);
+	waitMillis(2000);
+	Motor_TurnRight(70);
+	waitMillis(500);
+	Motor_Stop();
 }
-/*
-float Receiver_GetTargetVR(unsigned char distance){
-	return (coefR3*distance*distance*distance 
-		+coefR2*distance*distance
-			+coefR1*distance
-				+coefRC);
-
-}
-
-float Receiver_GetTargetVL(unsigned char distance){
-	return (coefL3*distance*distance*distance 
-		+coefRL*distance*distance
-			+coefL1*distance
-				+coefLC);
-}
-*/
 
 float Receiver_GetDistanceR(float voltage){
-	return (coefR3*voltage*voltage*voltage
+	return (coefR5*voltage*voltage*voltage*voltage*voltage
+	+coefR4*voltage*voltage*voltage*voltage
+	+coefR3*voltage*voltage*voltage
 		+coefR2*voltage*voltage
 			+coefR1*voltage
 				+coefRC);
 }
 
 float Receiver_GetDistanceL(float voltage){
-	return (coefL3*voltage*voltage*voltage
+	return (coefR5*voltage*voltage*voltage*voltage*voltage
+	+coefR4*voltage*voltage*voltage*voltage	
+	+coefL3*voltage*voltage*voltage
 		+coefL2*voltage*voltage
 			+coefL1*voltage
 				+coefLC);
@@ -138,151 +132,123 @@ unsigned char _c51_external_startup(void)
 }
 
 void main(){
-	float voltageL, voltageR, distanceL, distanceR, filterL, filterR, filterL2, filterR2, debounce, distanceAverage;
+	float voltageL, voltageR, distanceL, distanceR, filterL, filterR, filterL2, filterR2, distanceAverage;
 	unsigned char distance;
 	unsigned char cmd;
 	int count =0;
 			
 	//initialize voltageTarget with the default value
 	distance = RECEIVER_INITIAL_DISTANCE;
+	filterL2 = 0;
+	filterR2 = 0;
 	filterL = 0;
 	filterR = 0;
+	voltageL = 0;
+	voltageR = 0;
+	distanceL = 0;
+	distanceR = 0;
 	
 
 	
-	
-/*
+	/*
+
 	while(1){	
 		voltageL = Signal_Voltage(SIGNAL_CHANNEL_L);
 		voltageR = Signal_Voltage(SIGNAL_CHANNEL_R);
-		distanceL = Receiver_GetDistanceL(voltageL);
-		distanceR = Receiver_GetDistanceR(voltageR);
+	//	distanceL = Receiver_GetDistanceL(voltageL);
+	//	distanceR = Receiver_GetDistanceR(voltageR);
 		printf("VoltageL: %f | VoltageR: %f \n", voltageL, voltageR);
-		printf("\tDistanceL: %f | DistanceR: %f \n", distanceL, distanceR); 
+	//	printf("\tDistanceL: %f | DistanceR: %f \n", distanceL, distanceR); 
 		count++;
 	}
-
 */
+
 	
 	while(1){
+		count++;
+		if(count == 4){
+			printf(CLEAR_SCREEN);
+			printf("filterL2:%f filterL:%f voltageL:%f\n", filterL2, filterL, voltageL);
+			printf("filterR2:%f filterR:%f voltageR:%f\n", filterR2, filterR, voltageR);
+		/*
+		*Apply filters
+		*/
+		if((filterL2 > filterL + RECEIVER_NOISE) && (filterL > voltageL + RECEIVER_NOISE) &&
+			(filterR2 > filterR + RECEIVER_NOISE) && (filterR > voltageR + RECEIVER_NOISE)){
+			
+				printf("Receiving data...\n");
+				Motor_Stop();
+				cmd = Receiver_Receive(voltageL);
+					
+				//Process the command
+				if(cmd == 0b00111111){	//Advance
+					distance = ((distance > 30)?distance-5:25);
+					printf("Advance: New distance set to %d", distance);
+				}
+				else if(cmd == 0b00000110){ 
+					printf("Parking...\n");
+					Receiver_Park();
+				}
+				else if(cmd == 0b00000000){//Retreat	
+					distance = ((distance < 60)?distance+5:60);
+					printf("Ret				reat: New distance set to %d", distance);
+				}
+				else if(cmd== 0b00011011){
+				 //Spin
+					printf("Spinning...\n");
+					Motor_Stop();
+					Receiver_Spin();
+				}			
+				else{
+					printf("Invalid command %b\n", cmd);
+				}
+				//waitMillis(5000);
+				count =0;
+				filterL2 = 0;
+				filterR2 = 0;
+				filterL = 0;
+				filterR = 0;
+				continue; //restart the loop			
+			}
+			
+			filterL2 = filterL;
+			filterR2 = filterR;
+			filterL = voltageL;
+			filterR = voltageR;	
+			if(count >= 4){count = 0;}		
+		}
 		/*
 		*Update the values we are detecting
 		*/
+		//Motor_Stop();
+		filterL2 = filterL;
+		filterR2 = filterR;
+		filterL = voltageL;
+		filterR = voltageR;
 		voltageL = Signal_Voltage(SIGNAL_CHANNEL_L);	//SIGNAL_CHANNEL_L is defined in General.h
 		voltageR = Signal_Voltage(SIGNAL_CHANNEL_R);	//SIGNAL_CHANNEL_R is defined in General.h
-		//printf("\rVoltageL: %f, VoltageR: %f\n\t", voltageL, voltageR);
+;			
 				
 		/*
 		*If the voltage is too high, we are too close to the controller. Back up.
 		*/
-		if(voltageL > 2.8059 || voltageR > 2.3849){
+		if(voltageL > 2.787136 || voltageR > 2.787136){
 			printf("Too close!\n");
-			Motor_Backward(50);
-		}
+			Motor_Backward(80);
+			continue;
+		}		
 		distanceL = Receiver_GetDistanceL(voltageL);
-		distanceR = Receiver_GetDistanceR(voltageR);		
-		printf("L:%f | R: %f | VL:%f | VR: %f | ", distanceL, distanceR, voltageL, voltageR);
-		
-		
-		
-		/*
-		*Apply filter on the most recently read value
-		*/
-		if(abs(filterL - distanceL) > RECEIVER_TURN_SENSITIVITY){
-			filterL = distanceL;
-			filterR = distanceR;
-			printf("Filtered!\n");
-			continue;
-		}
-		else if(abs(filterR - distanceR) > RECEIVER_TURN_SENSITIVITY){
-			filterL = distanceL;
-			filterR = distanceR;
-			printf("Filtered!\n");
-			continue;
-		}
-		
-		filterL = distanceL;
-		filterR = distanceR;
-		distanceAverage = (distanceL + distanceR)/2.0;
-		
-		//waitMillis(500);
-		//debounce = Signal_Voltage(SIGNAL_CHANNEL_L);
-		
-		/*
-		//if data is being transmitted, receive message
-		//if(voltageL < RECEIVER_THRESHOLD_LOGIC){
-		if(debounce < filterL){	//if voltage continues to decrease, and it's not just backward movement, must be data transmission
-			printf("Receiving data...\n");
-			cmd = Receiver_Receive();
-			
-			//Process the command
-			if(cmd == TRANSMITTER_CMD_ADVANCE){
-				distance = ((distance > 25)?distance-5:25);
-				printf("New distance set to %d", distance);
-			}
-			else if(cmd == TRANSMITTER_CMD_RETREAT){	
-				distance = ((distance < 60)?distance+5:60);
-				printf("New distance set to %d", distance);
-			}
-			else if(cmd == TRANSMITTER_CMD_SPIN){
-				printf("Spinning...\n");
-				Receiver_Spin();
-			}
-			else if(cmd == TRANSMITTER_CMD_PARK){
-				printf("Parking...\n");
-				//not yet implemented
-			}			
-			else if (cmd == TRANSMITTER_CMD_IDLE){
-				printf("Idle...\n");
-			}
-			else{
-				printf("Invalid command %b\n", cmd);
-			}
-			continue; //restart the loop
-		}
-		*/
-
-		//after processing the message, follow the beacon
-		
-		/*
-		//independent wheel movements:
-			//left wheel first
-		if(distanceL > distance + RECEIVER_SENSITIVITY){
-			Motor_Set(MOTOR_LEFT, 40, MOTOR_FORWARD);
-			printf("Left Motor: FORWARD	 |");
-		}
-		else if (distanceL < distance - RECEIVER_SENSITIVITY){
-			Motor_Set(MOTOR_LEFT, 40, MOTOR_BACKWARD);
-			printf("Left Motor: BACKWARD |");
-		}
-		else{
-			Motor_Set(MOTOR_LEFT, 0, MOTOR_FORWARD);
-			printf("Left Motor: IDLE   	|");
-		}
-			//right wheel 
-		if(distanceR > distance + RECEIVER_SENSITIVITY){
-			Motor_Set(MOTOR_RIGHT, 40, MOTOR_FORWARD);
-			printf("Right Motor: FORWARD |\n");
-		}
-		else if (distanceR < distance - RECEIVER_SENSITIVITY){
-			Motor_Set(MOTOR_RIGHT, 40, MOTOR_BACKWARD);
-			printf("Right Motor: BACKWARD |\n");
-		}
-		else{
-			Motor_Set(MOTOR_RIGHT, 0, MOTOR_FORWARD);
-			printf("Right Motor: IDLE   |\n");
-		}
-		*/
-	
-		//synchronized wheel movements:
-		
+		distanceR = Receiver_GetDistanceR(voltageR);
+		distanceAverage = (distanceL + distanceR)/2.0;		
+		printf("L:%3.2f | R: %3.2f | VL:%f | VR: %f | cnt: %d | ", distanceL, distanceR, voltageL, voltageR);
 		
 		//handle turning first
 		if(distanceL - distanceR > RECEIVER_TURN_SENSITIVITY){
 			Motor_TurnLeft(20);
 			printf("Turning left...\n");
+
 		}
-		else if (distanceR - distanceL > RECEIVER_TURN_SENSITIVITY){
+		else if (distanceR - distanceL > RECEIVER_TURN_SENSITIVITY*0.75){
 			Motor_TurnRight(20);
 			printf("Turning right...\n");
 		}
@@ -291,11 +257,11 @@ void main(){
 		else{
 			
 			if (distanceAverage > distance + RECEIVER_SENSITIVITY){
-				Motor_Forward(20);
+				Motor_Forward(40);
 				printf("Moving forward...\n");
 			}
 			else if(distanceAverage < distance - RECEIVER_SENSITIVITY){
-				Motor_Backward(50);
+				Motor_Backward(40);
 				printf("Moving backward...\n");
 			}
 			else{
@@ -303,32 +269,9 @@ void main(){
 				printf("Idle...\n");
 			}
 		}
-		
-		
-		/*Sasha's method
-		if (distanceAverage > distance + RECEIVER_SENSITIVITY){
-			Motor_Forward(20);
-			printf("Moving forward...\n");
-		}
-		else if(distanceAverage < distance - RECEIVER_SENSITIVITY){
-			Motor_Backward(50);
-			printf("Moving backward...\n");
-		}
-
-		else if(distanceL - distanceR > RECEIVER_TURN_SENSITIVITY){
-			Motor_TurnLeft(20);
-			printf("Turning left...\n");
-		}
-		else if (distanceR - distanceL > RECEIVER_TURN_SENSITIVITY){
-			Motor_TurnRight(20);
-			printf("Turning right...\n");
-		}
-		else{
-			Motor_Stop();
-			printf("Idle...\n");
-		}
-		*/
-	}
-	
-	
+	}	
 }
+
+
+
+

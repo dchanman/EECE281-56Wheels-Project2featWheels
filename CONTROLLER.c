@@ -145,37 +145,43 @@ unsigned char _c51_external_startup(void)
 void main(){
 	
 	enum Joystick_Direction joystick_input;
-	
+	printf(CLEAR_SCREEN);
+	printf("Hello Kyu!");
 	Transmitter_Start();	
 	CONTROLLER_Message_Standby();
 	while(1){
 		joystick_input = Joystick_GetDirection();
 		
-		if(joystick_input == JOYSTICK_IDLE){
-		
-		}
-		else if(joystick_input == JOYSTICK_UP){
+		if(joystick_input == JOYSTICK_UP){
+			LCD_Clear();
+			LCD_WriteString("Retreating          ");
 			Transmitter_Transmit(TRANSMITTER_CMD_RETREAT);
 			CONTROLLER_Message_Retreat();
 			CONTROLLER_Message_Standby();
-			Transmitter_Transmit(TRANSMITTER_CMD_IDLE);
+			//Transmitter_Transmit(TRANSMITTER_CMD_IDLE);
 		}
 		else if(joystick_input == JOYSTICK_DOWN){
+			LCD_Clear();
+			LCD_WriteString("Advancing           ");
 			Transmitter_Transmit(TRANSMITTER_CMD_ADVANCE);
 			CONTROLLER_Message_Advance();
 			CONTROLLER_Message_Standby();
-			Transmitter_Transmit(TRANSMITTER_CMD_IDLE);
+			//Transmitter_Transmit(TRANSMITTER_CMD_IDLE);
 		}
 		else if(joystick_input == JOYSTICK_LEFT){
+			LCD_Clear();
+			LCD_WriteString("Spinning            ");
 			Transmitter_Transmit(TRANSMITTER_CMD_SPIN);
 			CONTROLLER_Message_Spin(3);
 			CONTROLLER_Message_Standby();
 		}
 		else if(joystick_input == JOYSTICK_RIGHT){
+			LCD_Clear();
+			LCD_WriteString("Parking             ");
 			Transmitter_Transmit(TRANSMITTER_CMD_PARK);
 			CONTROLLER_Message_Park(5);
 			CONTROLLER_Message_Standby();
-		}
+		} 	
 	
 	}
 	

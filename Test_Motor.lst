@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1034 (Dec 12 2012) (MSVC)
-0000              4   ; This file was generated Thu Apr 03 06:46:16 2014
+0000              4   ; This file was generated Thu Apr 03 09:11:34 2014
 0000              5   ;--------------------------------------------------------
                   5   $name Test_Motor
                   6   $optc51 --model-small
